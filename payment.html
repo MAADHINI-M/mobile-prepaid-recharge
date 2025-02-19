@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Prepaid Recharge</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        h1, h2, h3 {
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: darkred;
+            padding: 10px 20px;
+            color: white;
+        }
+
+        .navbar img {
+            height: 50px;
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar ul li {
+            margin-left: 20px;
+        }
+
+        .navbar ul li input[type="text"] {
+            padding: 5px;
+            border: none;
+            border-radius: 3px;
+        }
+
+        #userProfile {
+            cursor: pointer;
+        }
+
+        /* Payment Section Styles */
+        #payment {
+            padding: 20px;
+            background-color: white;
+            margin: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        #payment-form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        #payment-form label {
+            font-weight: bold;
+            margin-top: 15px;
+            display: block;
+        }
+
+        #payment-form input, #payment-form select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #payment-form button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background-color: darkred;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #payment-form button:hover {
+            background-color: darkred;
+        }
+
+        /* History Page Styles */
+        #history {
+            padding: 20px;
+            background-color: white;
+            margin: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .transaction {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .transaction:last-child {
+            border-bottom: none;
+        }
+
+        .transaction p {
+            margin: 5px 0;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: darkred;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer .credit {
+            margin: 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <img src="/images/Logo.png" alt="logo">
+        <h1 style="color: white;">Mobi-Comm Services Ltd</h1>
+        <ul>
+            <li><a href="home.html#navbarNav">Home</a></li>
+            <li><a href="recharge.html">Recharge Plans</a></li>
+            <li><a href="#">History</a></li>
+            <li><a href="home.html#review">Reviews</a></li>
+            <li><a href="home.html#faq">Faq</a></li>
+            <li><a href="home.html#about">About us</a></li>
+            <li><input type="text" placeholder="Search..."></li>
+            <li id="userProfile"><a href="home.html#navbarNav">Login</a></li>
+        </ul>
+    </div>
+
+    <!-- Payment Section -->
+    <section id="payment">
+        <h2>Payment</h2>
+        <form id="payment-form">
+            <label for="payment-method">Choose Payment Method:</label>
+            <select id="payment-method" onchange="togglePaymentFields()">
+                <option value="credit-card">Credit Card</option>
+                <option value="debit-card">Debit Card</option>
+                <option value="upi">UPI</option>
+            </select>
+            
+            <!-- Credit/Debit Card Details -->
+            <div id="card-details" class="payment-details" style="display: none;">
+                <label for="card-number">Card Number:</label>
+                <input type="text" id="card-number" placeholder="Enter card number" required>
+                
+                <label for="expiry-date">Expiry Date:</label>
+                <input type="text" id="expiry-date" placeholder="MM/YY" required>
+                
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" placeholder="Enter CVV" required>
+            </div>
+            
+            <!-- UPI Details -->
+            <div id="upi-details" class="payment-details" style="display: none;">
+                <label for="upi-id">Enter UPI ID:</label>
+                <input type="text" id="upi-id" placeholder="Enter UPI ID" required>
+            </div>
+            <button type="button" onclick="processPayment()">Proceed to Pay</button>
+        </form>
+        <div id="payment-status"></div>
+    </section>
+
+    <!-- History Page -->
+    <section id="history" style="display: none;">
+        <h2>Transaction History</h2>
+        <div id="transaction-list"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="credit">
+            <p>&copy; <span id="year"></span> | All Rights Reserved | Designed by  <span id="companyceo">Mobi-Comm Services Ltd | </span> All rights are reserved!</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dummy transaction history
+        let transactions = [];
+
+        // Function to toggle payment fields
+        function togglePaymentFields() {
+            const paymentMethod = document.getElementById('payment-method').value;
+            const cardDetails = document.getElementById('card-details');
+            const upiDetails = document.getElementById('upi-details');
+
+            if (paymentMethod === 'credit-card' || paymentMethod === 'debit-card') {
+                cardDetails.style.display = 'block';
+                upiDetails.style.display = 'none';
+            } else if (paymentMethod === 'upi') {
+                cardDetails.style.display = 'none';
+                upiDetails.style.display = 'block';
+            }
+        }
+
+        // Function to process payment
+        function processPayment() {
+            const paymentMethod = document.getElementById('payment-method').value;
+            const cardNumber = document.getElementById('card-number');
+            const expiryDate = document.getElementById('expiry-date');
+            const cvv = document.getElementById('cvv');
+            const upiId = document.getElementById('upi-id');
+            const paymentStatus = document.getElementById('payment-status');
+
+            // Simulate payment processing
+            if (paymentMethod === 'credit-card' || paymentMethod === 'debit-card') {
+                if (!cardNumber.value || !expiryDate.value || !cvv.value) {
+                    paymentStatus.innerHTML = '<p style="color: red;">Please fill all card details.</p>';
+                    return;
+                }
+            } else if (paymentMethod === 'upi') {
+                if (!upiId.value) {
+                    paymentStatus.innerHTML = '<p style="color: red;">Please enter UPI ID.</p>';
+                    return;
+                }
+            }
+
+            // Simulate successful payment
+            const transaction = {
+                id: transactions.length + 1,
+                date: new Date().toLocaleString(),
+                amount: '₹500', // Dummy amount
+                method: paymentMethod,
+                status: 'Success'
+            };
+            transactions.push(transaction);
+
+            // Display success message
+            paymentStatus.innerHTML = `<p style="color: green;">Payment successful! Transaction ID: ${transaction.id}</p>`;
+
+            // Save transaction to localStorage
+            localStorage.setItem('transactions', JSON.stringify(transactions));
+
+            // Redirect to history page after 2 seconds
+            setTimeout(() => {
+                window.location.href = 'history.html';
+            }, 2000);
+        }
+
+        // Function to display transaction history
+        function displayHistory() {
+            const historySection = document.getElementById('history');
+            const transactionList = document.getElementById('transaction-list');
+
+            // Retrieve transactions from localStorage
+            const storedTransactions = JSON.parse(localStorage.getItem('transactions')) || [];
+            transactions = storedTransactions;
+
+            if (transactions.length === 0) {
+                transactionList.innerHTML = '<p>No transactions found.</p>';
+            } else {
+                transactionList.innerHTML = transactions.map(transaction => `
+                    <div class="transaction">
+                        <p><strong>Transaction ID:</strong> ${transaction.id}</p>
+                        <p><strong>Date:</strong> ${transaction.date}</p>
+                        <p><strong>Amount:</strong> ${transaction.amount}</p>
+                        <p><strong>Method:</strong> ${transaction.method}</p>
+                        <p><strong>Status:</strong> ${transaction.status}</p>
+                    </div>
+                `).join('');
+            }
+
+            // Show history section
+            historySection.style.display = 'block';
+        }
+
+        // Check if on history page
+        if (window.location.pathname.includes('history.html')) {
+            displayHistory();
+        }
+    </script>
+</body>
+</html>

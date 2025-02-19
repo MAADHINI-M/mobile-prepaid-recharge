@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Prepaid Recharge</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Custom CSS for Recharge Plans */
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #f8f9fa;
+            margin-bottom: 20px;
+            border: 2px solid #e7e7e7;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-body {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .card-footer {
+            background: #ffffff;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: darkred;
+            border-color: darkred;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: bold;
+            width: 100%;
+            padding: 10px 0;
+        }
+
+        .btn-primary:hover {
+            background-color: darkred;
+            border-color: darkred;
+            transform: translateY(-2px);
+        }
+
+        /* Gradient Backgrounds for Card Types */
+        .card.basic {
+            background: linear-gradient(135deg, #4caf50, #a1887f);
+        }
+
+        .card.standard {
+            background: linear-gradient(135deg, #ffeb3b, #ffc400);
+        }
+
+        .card.premium {
+            background: linear-gradient(135deg, #e91e63, #f57c00);
+        }
+
+        .card.gold-premium {
+            background: linear-gradient(135deg, #fff176, #ff9800);
+        }
+
+        /* Text Colors for Card Types */
+        .card.basic .card-title,
+        .card.basic .card-text,
+        .card.basic .card-footer {
+            color: #fff;
+        }
+
+        .card.standard .card-title,
+        .card.standard .card-text,
+        .card.standard .card-footer {
+            color: #000;
+        }
+
+        .card.premium .card-title,
+        .card.premium .card-text,
+        .card.premium .card-footer {
+            color: #fff;
+        }
+
+        .card.gold-premium .card-title,
+        .card.gold-premium .card-text,
+        .card.gold-premium .card-footer {
+            color: #000;
+        }
+
+        /* Animation for buttons */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .btn-primary:hover {
+            animation: pulse 1s infinite;
+        }
+
+        /* Navbar shadow */
+        .navbar {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Footer shadow */
+        footer {
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Sticky Plan Buttons */
+        .sticky-plan-buttons {
+            position: sticky;
+            top: 0;
+            background: #fff;
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e7e7e7;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="/images/Logo.png" alt="logo" class="rounded-circle" width="50" height="50">
+                <span class="ms-2">Mobi-Comm Services Ltd</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="home.html#navbarNav">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="recharge.html">Recharge Plans</a></li>
+                    <li class="nav-item"><a class="nav-link" href="home.html#trendingPlans">Trending Plans</a></li>
+                    <li class="nav-item"><a class="nav-link" href="home.html#review">Reviews</a></li>
+                    <li class="nav-item"><a class="nav-link" href="home.html#faq">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="home.html#about">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="profile.html"`>Profile/li>
+                    <li class="nav-item">
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search">
+                        </form>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="home.html#navbarNav">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Recharge Plans Section -->
+    <div class="container mt-5 pt-5">
+        <h2 class="text-center mb-4">Choose Your Recharge Plan</h2>
+        <!-- Sticky Plan Buttons -->
+        <div class="sticky-plan-buttons text-center mb-4">
+            <button id="basicPlansBtn" class="btn btn-success me-2">Basic Plans</button>
+            <button id="standardPlansBtn" class="btn btn-warning me-2">Standard Plans</button>
+            <button id="premiumPlansBtn" class="btn btn-danger me-2">Premium Plans</button>
+            <button id="goldPremiumPlansBtn" class="btn btn-info">Gold Premium Plans</button>
+        </div>
+        <div class="row row-cols-1 g-4" id="plansContainer">
+            <!-- Plans will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-danger text-white text-center py-3">
+        <div class="container">
+            <p class="mb-0">&copy; <span id="year"></span> | All Rights Reserved | Designed by <span class="text-light">Mobi-Comm Services Ltd</span></p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const plansContainer = document.getElementById("plansContainer");
+
+            const plans = {
+                basic: generatePlans("Basic", 10, 100, 28),
+                standard: generatePlans("Standard", 200, 500, 56),
+                premium: generatePlans("Premium", 500, 1000, 84),
+                goldPremium: generatePlans("Gold Premium", 1000, 2000, 365)
+            };
+
+            function generatePlans(type, minPrice, maxPrice, maxValidity) {
+                const plans = [];
+                for (let i = 1; i <= 10; i++) {
+                    const price = Math.floor(Math.random() * (maxPrice - minPrice + 1)) + minPrice;
+                    const validity = Math.floor(Math.random() * maxValidity) + 1;
+                    const data = `${Math.floor(Math.random() * 10) + 1}GB`; // Random data in GB
+                    const sms = `Unlimited`; // Unlimited SMS
+                    plans.push({
+                        type: type,
+                        price: price,
+                        validity: validity,
+                        data: data,
+                        sms: sms,
+                        description: `Data: ${data}\nValidity: ${validity} days\nSMS: ${sms}\nPrice: Rs. ${price}`
+                    });
+                }
+                return plans;
+            }
+
+            function displayPlans(plans) {
+                plansContainer.innerHTML = "";
+                plans.forEach(plan => {
+                    const card = document.createElement("div");
+                    card.className = `col-md-6 mt-4 ${plan.type.toLowerCase().replace(" ", "-")}`;
+                    card.innerHTML = `
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">${plan.type} Plan</h5>
+                                <p class="card-text">Price: Rs. ${plan.price}</p>
+                                <p class="card-text">Validity: ${plan.validity} days</p>
+                                <p class="card-text">Data: ${plan.data}</p>
+                                <p class="card-text">SMS: ${plan.sms}</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="payment.html" class="btn btn-primary" onclick="recharge('${plan.type}', ${plan.price}, ${plan.validity}, '${plan.data}', '${plan.sms}')">Recharge Now</a>
+                            </div>
+                        </div>
+                    `;
+                    plansContainer.appendChild(card);
+                });
+            }
+
+            function recharge(type, price, validity, data, sms) {
+                localStorage.setItem('rechargePlan', JSON.stringify({
+                    type: type,
+                    price: price,
+                    validity: validity,
+                    data: data,
+                    sms: sms
+                }));
+            }
+
+            // Display all plans initially
+            displayPlans(plans.basic.concat(plans.standard, plans.premium, plans.goldPremium));
+
+            // Event listeners for plan buttons
+            document.getElementById("basicPlansBtn").addEventListener("click", () => displayPlans(plans.basic));
+            document.getElementById("standardPlansBtn").addEventListener("click", () => displayPlans(plans.standard));
+            document.getElementById("premiumPlansBtn").addEventListener("click", () => displayPlans(plans.premium));
+            document.getElementById("goldPremiumPlansBtn").addEventListener("click", () => displayPlans(plans.goldPremium));
+
+            // Update the current year in the footer
+            document.getElementById("year").textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>
