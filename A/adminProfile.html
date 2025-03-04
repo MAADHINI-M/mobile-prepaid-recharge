@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Profile - Mobi Comm</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+        }
+  /* Sidebar Styling */
+  .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 260px;
+            height: 100vh;
+            background: linear-gradient(180deg, #921e24 0%, #6b1519 100%) !important;
+            color: white;
+            padding: 30px 20px;
+            overflow-y: auto;
+            z-index: 1001;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar .brand {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .sidebar .brand img {
+            max-height: 50px;
+            margin-right: 10px;
+        }
+
+        .sidebar .brand h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin: 0;
+            color: #fff;
+        }
+
+        .sidebar h4 {
+            font-size: 1.4rem;
+            margin: 20px 0 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #ffffff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 5px;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .sidebar a:hover {
+            background-color: #28a745;
+            transform: translateX(5px);
+        }
+
+        .sidebar .btn-logout {
+            background: linear-gradient(45deg, #28a745);
+            color: black;
+            font-weight: bold;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            margin-top: 20px;
+            border-radius: 8px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .sidebar .btn-logout:hover {
+            background: linear-gradient(45deg, #218838, #c9e265);
+            transform: scale(1.05);
+        }
+
+        .sidebar .search-form {
+            margin: 15px 0;
+        }
+
+        .sidebar .search-form .form-control {
+            border-radius: 8px 0 0 8px;
+            border: 2px solid #ffffff;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .sidebar .search-form .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .sidebar .search-form .btn {
+            border-radius: 0 8px 8px 0;
+            background-color: #ffffff;
+            border: 2px solid #ffffff;
+            border-left: none;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            width: calc(100% - 250px);
+            overflow-x: auto;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 25px;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+        .card-header {
+            background: linear-gradient(45deg, #90237c 0%, #b92b9a 100%);
+            color: white;
+            border-radius: 15px 15px 0 0;
+            padding: 15px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .card-body {
+            padding: 20px;
+            background: #fff;
+            border-radius: 0 0 15px 15px;
+        }
+        .btn-custom {
+            background: linear-gradient(45deg, #90237c 0%, #b92b9a 100%);
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-custom:hover {
+            background: linear-gradient(45deg, #90237c 0%, #b92b9a 100%);
+            color: white;
+            transform: scale(1.05);
+        }
+        .activity-log, .admin-list {
+            max-height: 200px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .modal-content {
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .modal-header {
+            background: linear-gradient(45deg, #90237c 0%, #b92b9a 100%);
+            color: white;
+            border-radius: 15px 15px 0 0;
+        }
+        h1 {
+            font-weight: 700;
+            color: #333;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            .sidebar-overlay.active {
+                display: block;
+            }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 60px 15px 15px;
+            }
+            .card-header {
+                font-size: 1rem;
+                padding: 12px 15px;
+            }
+            .btn-custom {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            h1 {
+                font-size: 1.75rem;
+            }
+        }
+        @media (max-width: 576px) {
+            .card-body {
+                padding: 15px;
+            }
+            .list-group-item {
+                font-size: 0.85rem;
+            }
+            .activity-log, .admin-list {
+                max-height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hamburger Menu Button -->
+    <button class="menu-toggle d-md-none"><i class="bi bi-list"></i></button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="brand">
+            <img src="/image/Logo.png" alt="Mobi-Comm Logo" class="img-fluid">
+            <h1>MOBI-COMM</h1>
+        </div>
+        <form class="search-form d-flex">
+            <input type="text" class="form-control" placeholder="Search">
+            <button class="btn" type="button"><i class="bi bi-search"></i></button>
+        </form>
+        <h4>Admin Panel</h4>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="manage-user.html">Managing Users</a>
+        <a href="manage-plans.html">Managing Plans</a>
+        <a href="3.billingandtransaction.html">Billing & Transactions</a>
+        <a href="4.report&analytics.html">Report & Analytics</a>
+        <a href="8.network&systemhealth.html">Network & System Health</a>
+        <a href="adminProfile.html">
+            <i class="bi bi-person-fill"></i> Profile
+        </a>
+        <button class="btn-logout" onclick="logout()">Logout</button>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1 class="text-center mb-4">Admin Profile</h1>
+
+        <!-- Profile Information -->
+        <div class="card">
+            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#profileInfo">
+                <h5 class="mb-0">Profile Information</h5>
+            </div>
+            <div id="profileInfo" class="card-body collapse show">
+                <p><strong>Name:</strong> <span id="adminName">John Doe</span></p>
+                <p><strong>Role:</strong> Administrator</p>
+                <p><strong>Email:</strong> <a href="mailto:admin@mobicomm.com" id="adminEmail">admin@mobicomm.com</a></p>
+                <p><strong>Phone:</strong> <span id="adminPhone">+12 3456-7890</span></p>
+                <p><strong>Username:</strong> <span id="adminUsername">AdminJohn</span></p>
+                <p><strong>Joined On:</strong> 2023-01-15</p>
+            </div>
+        </div>
+
+        <!-- About Admin -->
+        <div class="card">
+            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#aboutAdmin">
+                <h5 class="mb-0">About Admin</h5>
+            </div>
+            <div id="aboutAdmin" class="card-body collapse show">
+                <p><span id="adminNameAbout">John Doe</span> oversees the management and security of Mobi Comm Private Ltd’s mobile recharge platform. Their responsibilities include monitoring transactions, maintaining platform efficiency, and ensuring a secure and smooth experience for all users.</p>
+            </div>
+        </div>
+
+        <!-- Roles & Responsibilities -->
+        <div class="card">
+            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#rolesResponsibilities">
+                <h5 class="mb-0">Roles & Responsibilities</h5>
+            </div>
+            <div id="rolesResponsibilities" class="card-body collapse show">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">✔ Manage user accounts and roles</li>
+                    <li class="list-group-item">✔ Approve or reject recharge requests</li>
+                    <li class="list-group-item">✔ Oversee security and fraud detection</li>
+                    <li class="list-group-item">✔ Monitor website performance and system logs</li>
+                    <li class="list-group-item">✔ Generate reports and analytics</li>
+                    <li class="list-group-item">✔ Respond to customer inquiries and support tickets</li>
+                    <li class="list-group-item">✔ Implement platform updates and maintenance</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Permissions & Access Management -->
+        <div class="card">
+            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#permissions">
+                <h5 class="mb-0">Permissions & Access Management</h5>
+            </div>
+            <div id="permissions" class="card-body collapse show">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>User Management:</strong> Add, edit, or remove users</li>
+                    <li class="list-group-item"><strong>Recharge Approvals:</strong> View, approve, or decline recharge requests</li>
+                    <li class="list-group-item"><strong>Transaction Monitoring:</strong> Track payments and prevent fraud</li>
+                    <li class="list-group-item"><strong>System Settings:</strong> Modify platform configurations</li>
+                    <li class="list-group-item"><strong>Report Generation:</strong> View revenue, transactions, and user activity</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Account Settings -->
+        <div class="card">
+            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#accountSettings">
+                <h5 class="mb-0">Account Settings</h5>
+            </div>
+            <div id="accountSettings" class="card-body collapse show">
+                <button class="btn btn-custom mb-2" data-bs-toggle="modal" data-bs-target="#changePasswordModal">Change Password</button><br>
+                <button class="btn btn-custom mb-2" data-bs-toggle="modal" data-bs-target="#updateProfileModal">Update Profile Details</button><br>
+                <button class="btn btn-custom mb-2" onclick="manageNotifications()">Manage Notifications</button><br>
+                <button class="btn btn-custom" id="toggle2FABtn" onclick="toggle2FA()">Enable Two-Factor Authentication (2FA)</button>
+            </div>
+        </div>
+
+        <!-- Activity Log & Security -->
+        <div class="card">
+            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#activityLog">
+                <h5 class="mb-0">Activity Log & Security</h5>
+            </div>
+            <div id="activityLog" class="card-body collapse show">
+                <p><strong>Last Login:</strong> March 02, 2025 10:30 AM</p>
+                <p><strong>Recent Activities:</strong> <a href="#" onclick="showLogs()">View Logs</a></p>
+                <div id="logs" class="activity-log d-none">
+                    <ul class="list-group" id="logList">
+                        <li class="list-group-item">2025-03-01 10:30 - Approved recharge request #123</li>
+                        <li class="list-group-item">2025-03-01 09:15 - Updated user profile #456</li>
+                    </ul>
+                </div>
+                <p><strong>Failed Login Attempts:</strong> <a href="#" onclick="showFailedAttempts()">View Details</a></p>
+                <p><strong>System Alerts & Warnings:</strong> <a href="#" onclick="showAlerts()">Check Notifications</a></p>
+            </div>
+        </div>
+
+        <!-- Multi-Admin Support -->
+        <div class="card">
+            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#multiAdmin">
+                <h5 class="mb-0">Multi-Admin Support</h5>
+            </div>
+            <div id="multiAdmin" class="card-body collapse show">
+                <p><strong>Admin List:</strong> <a href="#" onclick="showAdminList()">View all admins and their roles</a></p>
+                <div id="adminList" class="admin-list d-none">
+                    <ul class="list-group" id="adminListGroup">
+                        <li class="list-group-item">John Doe - Administrator</li>
+                        <li class="list-group-item">Jane Smith - Moderator</li>
+                    </ul>
+                </div>
+                <button class="btn btn-custom mb-2" data-bs-toggle="modal" data-bs-target="#addAdminModal">Add New Admin</button><br>
+                <p><strong>Role-Based Access Control (RBAC):</strong> Restrict or allow access based on roles</p>
+                <p><strong>Admin Logs & Actions:</strong> <a href="#" onclick="showAdminLogs()">Track changes made by other admins</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Change Password Modal -->
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Change Password</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="changePasswordForm">
+                        <div class="mb-3">
+                            <label for="currentPassword" class="form-label">Current Password</label>
+                            <input type="password" class="form-control" id="currentPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="newPassword" class="form-label">New Password</label>
+                            <input type="password" class="form-control" id="newPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Confirm New Password</label>
+                            <input type="password" class="form-control" id="confirmPassword" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-custom" onclick="changePassword()">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Update Profile Modal -->
+    <div class="modal fade" id="updateProfileModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Update Profile Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="updateProfileForm">
+                        <div class="mb-3">
+                            <label for="updateName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="updateName" value="John Doe" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="updateEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="updateEmail" value="admin@mobicomm.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="updatePhone" class="form-label">Phone</label>
+                            <input type="text" class="form-control" id="updatePhone" value="+12 3456-7890" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-custom" onclick="updateProfile()">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add New Admin Modal -->
+    <div class="modal fade" id="addAdminModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Admin</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addAdminForm">
+                        <div class="mb-3">
+                            <label for="newAdminName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="newAdminName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="newAdminRole" class="form-label">Role</label>
+                            <select class="form-select" id="newAdminRole" required>
+                                <option value="Administrator">Administrator</option>
+                                <option value="Moderator">Moderator</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-custom" onclick="addNewAdmin()">Add Admin</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+        let is2FAEnabled = false;
+        let notificationsEnabled = true;
+
+        // Sidebar Toggle
+        const sidebar = document.querySelector('.sidebar');
+        const menuToggle = document.querySelector('.menu-toggle');
+        const overlay = document.querySelector('.sidebar-overlay');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        // Logout Function
+        function logout() {
+            alert('Logging out...');
+            window.location.href = 'login.html';
+        }
+
+        // Change Password Function
+        function changePassword() {
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (newPassword !== confirmPassword) {
+                alert('New password and confirmation do not match!');
+                return;
+            }
+            if (newPassword.length < 6) {
+                alert('Password must be at least 6 characters long!');
+                return;
+            }
+            alert('Password changed successfully!');
+            document.getElementById('changePasswordForm').reset();
+            bootstrap.Modal.getInstance(document.getElementById('changePasswordModal')).hide();
+        }
+
+        // Update Profile Function
+        function updateProfile() {
+            const name = document.getElementById('updateName').value;
+            const email = document.getElementById('updateEmail').value;
+            const phone = document.getElementById('updatePhone').value;
+
+            document.getElementById('adminName').textContent = name;
+            document.getElementById('adminNameAbout').textContent = name;
+            document.getElementById('adminEmail').textContent = email;
+            document.getElementById('adminEmail').href = `mailto:${email}`;
+            document.getElementById('adminPhone').textContent = phone;
+
+            alert('Profile updated successfully!');
+            bootstrap.Modal.getInstance(document.getElementById('updateProfileModal')).hide();
+        }
+
+        // Manage Notifications Function
+        function manageNotifications() {
+            notificationsEnabled = !notificationsEnabled;
+            alert(`Notifications are now ${notificationsEnabled ? 'enabled' : 'disabled'}!`);
+        }
+
+        // Toggle 2FA Function
+        function toggle2FA() {
+            is2FAEnabled = !is2FAEnabled;
+            document.getElementById('toggle2FABtn').textContent = `${is2FAEnabled ? 'Disable' : 'Enable'} Two-Factor Authentication (2FA)`;
+            alert(`2FA is now ${is2FAEnabled ? 'enabled' : 'disabled'}!`);
+        }
+
+        // Show Logs Function
+        function showLogs() {
+            const logs = document.getElementById('logs');
+            logs.classList.toggle('d-none');
+        }
+
+        // Show Failed Attempts Function
+        function showFailedAttempts() {
+            alert('No failed login attempts recorded.');
+        }
+
+        // Show Alerts Function
+        function showAlerts() {
+            alert('No system alerts at this time.');
+        }
+
+        // Show Admin List Function
+        function showAdminList() {
+            const adminList = document.getElementById('adminList');
+            adminList.classList.toggle('d-none');
+        }
+
+        // Add New Admin Function
+        function addNewAdmin() {
+            const name = document.getElementById('newAdminName').value;
+            const role = document.getElementById('newAdminRole').value;
+
+            if (!name) {
+                alert('Please enter a name!');
+                return;
+            }
+            const adminList = document.getElementById('adminListGroup');
+            const newAdmin = document.createElement('li');
+            newAdmin.className = 'list-group-item';
+            newAdmin.textContent = `${name} - ${role}`;
+            adminList.appendChild(newAdmin);
+
+            alert(`${name} added as ${role}!`);
+            document.getElementById('addAdminForm').reset();
+            bootstrap.Modal.getInstance(document.getElementById('addAdminModal')).hide();
+        }
+
+        // Show Admin Logs Function
+        function showAdminLogs() {
+            alert('Admin logs feature coming soon!');
+        }
+    </script>
+</body>
+</html>

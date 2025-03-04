@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobi Comm</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --web: #a91919;
+            --web-dark: #a91919;
+            --web-light: #c92323;
+            --violet: #e67e22;
+            --violet-dark: #d35400;
+            --shadow: rgba(0, 0, 0, 0.15);
+            --bg-light: #f8f9fa;
+            --navbar-height: 60px;
+        }
+
+        *::selection {
+            background: var(--web);
+            color: #fff;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            box-shadow: 0 4px 15px var(--shadow);
+            background: linear-gradient(90deg, var(--web), var(--web-dark));
+            height: 60px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 20px;
+        }
+
+        .navbar .navbar-nav {
+            flex-direction: row;
+            justify-content: flex-end;
+        }
+
+        .navbar .navbar-nav .nav-link {
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .navbar .navbar-nav .nav-link:hover {
+            background: var(--web);
+            transform: scale(1.05);
+        }
+
+        .container-fluid {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 80px;
+        }
+
+        .content-wrapper {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-box {
+            flex: 1;
+            text-align: center;
+        }
+
+        .image-box img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+        }
+
+        .otp-box {
+            flex: 1;
+            max-width: 400px;
+            border: 2px solid var(--web);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 2px 4px var(--web);
+            background-color: wheat;
+            text-align: center;
+        }
+
+        .otp-box:hover {
+            box-shadow: 2px 4px 12px var(--web);
+        }
+
+        .form-group button {
+            background-color: var(--web);
+            color: white;
+            border-radius: 50px;
+            border: none;
+            padding: 8px 20px;
+        }
+
+        .form-group input {
+            border: 1.5px solid var(--web);
+            text-align: center;
+        }
+
+        .form-group button:hover {
+            background-color: white;
+            color: var(--web);
+            border: 2px solid var(--web);
+        }
+
+        .timer {
+            font-size: 14px;
+            color: red;
+        }
+
+        footer {
+            background: linear-gradient(90deg, var(--web), var(--web-dark));
+            color: white;
+            padding: 10px 15px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            box-shadow: 0 -2px 10px var(--shadow);
+        }
+
+        /* Modal Styling */
+        .modal-content {
+            border: 2px solid var(--web);
+            border-radius: 10px;
+        }
+
+        .modal-header {
+            background-color: var(--web);
+            color: white;
+        }
+
+        .modal-footer {
+            border-top: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">
+            <img src="images/Logo.png" alt="Logo" id="navbarLogo"> <span id="navbarBrand">Mobi Comm</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="loginPlans.html" id="viewPlansLink">View Plans</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid">
+        <div class="content-wrapper">
+            <!-- Left Image -->
+            <div class="image-box">
+                <img src="images/otp.jpg" alt="OTP Verification">
+            </div>
+
+            <!-- Right OTP Box -->
+            <div class="otp-box">
+                <h3>Verify OTP</h3>
+                <p>Enter the OTP sent to your mobile number.</p>
+
+                <!-- OTP Input Field -->
+                <div class="form-group">
+                    <input type="text" id="otp" class="form-control" maxlength="6" placeholder="Enter OTP"
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                </div>
+
+                <!-- Resend OTP and Timer -->
+                <div class="form-group">
+                    <button class="btn btn-primary mt-2" id="verifyBtn">Verify OTP</button>
+                    <button class="btn btn-secondary mt-2" id="resendBtn" disabled>Resend OTP</button>
+                    <p id="timer" class="timer">30 seconds remaining</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- OTP Modal -->
+    <div class="modal fade" id="otpModal" tabindex="-1" role="dialog" aria-labelledby="otpModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="otpModalLabel">Your OTP</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Your One-Time Password (OTP) is:</p>
+                    <h4 id="otpDisplay" class="text-center" style="color: var(--web);"></h4>
+                    <p>Please enter this OTP in the verification box.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© <span id="year"></span> Mobile Recharge Company. All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Function to generate a 6-digit OTP
+        function generateOTP() {
+            return Math.floor(100000 + Math.random() * 900000).toString(); // Generates a random 6-digit number
+        }
+
+        // Fetch navbar data
+        async function fetchNavbarData() {
+            try {
+                const response = await fetch('http://localhost:3000/navbar');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                document.getElementById("navbarLogo").src = data.brand.logo;
+                document.getElementById("navbarBrand").textContent = data.brand.text;
+                document.getElementById("viewPlansLink").textContent = data.links[0].text;
+                document.getElementById("viewPlansLink").href = data.links[0].href;
+            } catch (error) {
+                console.error("Error fetching navbar data:", error);
+                alert("Failed to load navbar data. Using default values.");
+                // Fallback to default values if fetch fails
+                document.getElementById("navbarLogo").src = "https://via.placeholder.com/40?text=Logo";
+                document.getElementById("navbarBrand").textContent = "Mobi Comm";
+                document.getElementById("viewPlansLink").textContent = "View Plans";
+                document.getElementById("viewPlansLink").href = "dummy-loginPlans.html";
+            }
+        }
+
+        // Load footer year and initialize OTP
+        let generatedOTP;
+        function loadData() {
+            // Set footer year
+            document.getElementById("year").textContent = new Date().getFullYear();
+
+            // Generate and display OTP in modal
+            generatedOTP = generateOTP();
+            document.getElementById("otpDisplay").textContent = generatedOTP;
+            $('#otpModal').modal('show'); // Show the modal using Bootstrap's jQuery method
+        }
+
+        // Timer variables
+        var countdown = 30;
+        var timerElement = document.getElementById("timer");
+        var resendBtn = document.getElementById("resendBtn");
+        var verifyBtn = document.getElementById("verifyBtn");
+
+        // Function to start the timer
+        function startTimer() {
+            var timerInterval = setInterval(function () {
+                countdown--;
+                timerElement.textContent = countdown + " seconds remaining";
+
+                if (countdown <= 0) {
+                    clearInterval(timerInterval);
+                    resendBtn.disabled = false;
+                    timerElement.textContent = "OTP expired. Click to resend.";
+                    generatedOTP = null; // Invalidate OTP after expiry
+                }
+            }, 1000);
+        }
+
+        // Load everything when the page opens
+        window.onload = function () {
+            fetchNavbarData(); // Fetch navbar data
+            loadData();
+            startTimer();
+        };
+
+        // Resend OTP
+        resendBtn.addEventListener("click", function () {
+            countdown = 30;
+            resendBtn.disabled = true;
+            generatedOTP = generateOTP(); // Generate a new OTP
+            document.getElementById("otpDisplay").textContent = generatedOTP;
+            $('#otpModal').modal('show'); // Show the modal again with the new OTP
+            startTimer();
+        });
+
+        // Verify OTP
+        verifyBtn.addEventListener("click", function () {
+            var otpValue = document.getElementById("otp").value;
+            if (otpValue.length !== 6) {
+                alert("Please enter a valid 6-digit OTP.");
+            } else if (!generatedOTP) {
+                alert("OTP has expired. Please resend a new OTP.");
+            } else if (otpValue === generatedOTP) {
+                alert("OTP verified successfully!");
+                window.location.href = "homePage.html"; // Redirect only if OTP matches
+            } else {
+                alert("Invalid OTP. Please try again.");
+            }
+        });
+    </script>
+</body>
+
+</html>

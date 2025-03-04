@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network & System Health</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%) !important;
+            color: #333;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, #921e24 0%, #6b1519 100%) !important;
+            color: white;
+            padding: 30px 20px;
+            overflow-y: auto;
+            z-index: 1001;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        .sidebar .brand {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .sidebar .brand img {
+            max-height: 50px;
+            margin-right: 10px;
+        }
+        .sidebar .brand h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin: 0;
+            color: #fff;
+        }
+        .sidebar .search-form {
+            margin: 15px 0;
+            display: flex;
+        }
+        .sidebar .search-form .form-control {
+            border-radius: 8px 0 0 8px;
+            border: 2px solid #ffffff;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 10px;
+            font-size: 0.9rem;
+        }
+        .sidebar .search-form .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .sidebar .search-form .btn {
+            border-radius: 0 8px 8px 0;
+            background-color: #ffffff;
+            border: 2px solid #ffffff;
+            border-left: none;
+            color: #921e24;
+            padding: 10px;
+            font-size: 0.9rem;
+        }
+        .sidebar h4 {
+            font-size: 1.4rem;
+            margin: 20px 0 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #ffffff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 5px;
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .sidebar a:hover {
+            background-color: #28a745;
+            transform: translateX(5px);
+        }
+        .sidebar .collapse a {
+            padding-left: 30px;
+            font-size: 0.9rem;
+        }
+        .btn-logout {
+            background: linear-gradient(45deg, #28a745);
+            color: black;
+            font-weight: bold;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            margin-top: 20px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+        .btn-logout:hover {
+            background: linear-gradient(45deg, #218838, #c9e265);
+            transform: scale(1.05);
+        }
+
+        /* Hamburger Menu Button */
+        .menu-toggle {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1002;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            padding: 10px;
+            cursor: pointer;
+            display: none;
+        }
+        .menu-toggle:hover {
+            color: #d36671;
+        }
+
+        /* Sidebar Overlay */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Main Content Styling */
+        .main-content {
+            margin-left: 280px;
+            padding: 40px;
+            min-height: 100vh;
+            background-color: beige;
+            border-radius: 15px 0 0 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin: 20px 20px 20px 300px;
+            transition: margin-left 0.3s ease;
+        }
+
+        /* Card Styling */
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            border: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .card-header {
+            background-color: #90237c;
+            color: white;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            padding: 15px;
+        }
+        .card-body {
+            padding: 20px;
+        }
+
+        /* Table Styling */
+        .table {
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+        .table th, .table td {
+            padding: 10px;
+            text-align: center;
+        }
+        .badge {
+            font-size: 0.8em;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { opacity: 1; transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive Design */
+        @media (min-width: 1200px) {
+            .main-content {
+                margin-left: 280px;
+                padding: 40px;
+                margin: 20px 20px 20px 300px;
+            }
+            .sidebar {
+                width: 280px;
+            }
+        }
+        @media (min-width: 768px) and (max-width: 1199px) {
+            .sidebar {
+                width: 250px;
+                padding: 25px 15px;
+            }
+            .main-content {
+                margin-left: 250px;
+                padding: 30px;
+                margin: 15px 15px 15px 265px;
+            }
+        }
+        @media (min-width: 481px) and (max-width: 767px) {
+            .sidebar {
+                width: 220px;
+                padding: 20px 12px;
+                transform: translateX(-220px);
+            }
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 20px 15px;
+                margin: 10px;
+                border-radius: 0;
+            }
+            .menu-toggle {
+                display: block;
+                color: #000;
+                background: #fff;
+                border-radius: 5px;
+                padding: 8px;
+            }
+        }
+        @media (max-width: 480px) {
+            .sidebar {
+                width: 200px;
+                padding: 15px 10px;
+                transform: translateX(-200px);
+            }
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 15px 10px;
+                margin: 5px;
+                border-radius: 0;
+            }
+            .menu-toggle {
+                display: block;
+                color: #000;
+                background: #fff;
+                border-radius: 4px;
+                padding: 6px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hamburger Menu Button -->
+    <button class="menu-toggle d-md-none"><i class="bi bi-list"></i></button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="brand">
+            <img src="/image/Logo.png" alt="Mobi-Comm Logo" class="img-fluid">
+            <h1>MOBI-COMM</h1>
+        </div>
+        <form class="search-form d-flex">
+            <input type="text" class="form-control" placeholder="Search">
+            <button class="btn" type="button"><i class="bi bi-search"></i></button>
+        </form>
+        <h4>Admin Panel</h4>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="manage-user.html">Managing Users</a>
+        <a href="manage-plans.html">Managing Plans</a>
+        <!-- <a href="graph and pie.html">Graphs & Pie Charts</a> -->
+        <a href="3.billingandtransaction.html">Billing & Transactions</a>
+        <a href="4.report&analytics.html">Report & Analytics</a>
+        <!-- <a href="7.securityandfraudmonitoring.html">Security & Fraud Monitoring</a> -->
+        <a href="8.network&systemhealth.html">Network & System Health</a>
+        <a href="adminProfile.html">
+            <i class="bi bi-person-fill"></i> Profile
+        </a>
+        <button class="btn-logout" onclick="logout()">Logout</button>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1 class="mb-4">Network & System Health</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header">Network Outage Reports</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Outages</h5>
+                        <p class="card-text network-outages">Loading...</p>
+                        <canvas id="outageChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        Server Health & Uptime Status
+                        <select class="form-select" id="cityFilter">
+                            <option value="">Select City</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="Kerala">Kerala</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Karnataka">Karnataka</option>
+                        </select>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Server Status</h5>
+                        <p class="card-text server-health" id="serverHealth">Loading...</p>
+                        <p class="card-text server-uptime" id="serverUptime">Loading...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header">API Response Time</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Response Time</h5>
+                        <p class="card-text api-response-time">Loading...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header">Active Sessions & User Load</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Sessions & Load</h5>
+                        <p class="card-text active-sessions">Loading...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-4">
+                    <div class="card-header">System Health Metrics</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Detailed System Health Metrics</h5>
+                        <p class="card-text">Here you can view detailed metrics for system health.</p>
+                        <table class="table table-striped" id="system-health-metrics">
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th>Value</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-4">
+                    <div class="card-header">Detailed Outage Information</div>
+                    <div class="card-body">
+                        <h5 class="card-title">State Details</h5>
+                        <p class="card-text" id="stateDetails">Click on a state in the chart to see details.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const jsonData = {
+            "serverHealth": {
+                "status": "Healthy",
+                "uptime": "99.95%"
+            },
+            "apiResponseTime": {
+                "average": "200ms"
+            },
+            "activeSessions": {
+                "sessions": 1000,
+                "userLoad": 5000
+            },
+            "systemHealthMetrics": [
+                {
+                    "metric": "CPU Usage",
+                    "value": "35%",
+                    "status": "Healthy"
+                },
+                {
+                    "metric": "Memory Usage",
+                    "value": "60%",
+                    "status": "Warning"
+                },
+                {
+                    "metric": "Disk Usage",
+                    "value": "75%",
+                    "status": "Critical"
+                },
+                {
+                    "metric": "Network Bandwidth",
+                    "value": "45%",
+                    "status": "Healthy"
+                }
+            ],
+            "networkOutages": {
+                "Tamil Nadu": {
+                    "total_outages": 150,
+                    "details": "Multiple areas affected due to maintenance work and heavy rainfall."
+                },
+                "Kerala": {
+                    "total_outages": 120,
+                    "details": "Red alert in Pathanamthitta, Ernakulam, and Idukki districts. Heavy rainfall expected."
+                },
+                "Delhi": {
+                    "total_outages": 87,
+                    "details": "Multiple reports of outages in various parts of Delhi."
+                },
+                "Karnataka": {
+                    "total_outages": 109,
+                    "details": "Outages reported in Bengaluru and surrounding areas due to heavy rainfall."
+                }
+            },
+            "serverHealthByCity": {
+                "Tamil Nadu": {
+                    "status": "Healthy",
+                    "uptime": "99.95%"
+                },
+                "Kerala": {
+                    "status": "Warning",
+                    "uptime": "99.90%"
+                },
+                "Delhi": {
+                    "status": "Critical",
+                    "uptime": "99.80%"
+                },
+                "Karnataka": {
+                    "status": "Healthy",
+                    "uptime": "99.95%"
+                }
+            }
+        };
+
+        function loadServerHealthData() {
+            document.querySelector('.server-health').textContent = `Status: ${jsonData.serverHealth.status}`;
+            document.querySelector('.server-uptime').textContent = `Uptime: ${jsonData.serverHealth.uptime}`;
+        }
+
+        function loadApiResponseTimeData() {
+            document.querySelector('.api-response-time').textContent = `Average: ${jsonData.apiResponseTime.average}`;
+        }
+
+        function loadActiveSessionsData() {
+            document.querySelector('.active-sessions').innerHTML = `
+                Active Sessions: ${jsonData.activeSessions.sessions}<br>
+                User Load: ${jsonData.activeSessions.userLoad}
+            `;
+        }
+
+        function loadSystemHealthMetricsData() {
+            const metricsTableBody = document.querySelector('#system-health-metrics tbody');
+            metricsTableBody.innerHTML = '';
+            jsonData.systemHealthMetrics.forEach(metric => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${metric.metric}</td>
+                    <td>${metric.value}</td>
+                    <td><span class="badge bg-${getStatusColor(metric.status)}">${metric.status}</span></td>
+                `;
+                metricsTableBody.appendChild(row);
+            });
+        }
+
+        function getStatusColor(status) {
+            switch (status) {
+                case 'Healthy':
+                    return 'success';
+                case 'Warning':
+                    return 'warning';
+                case 'Critical':
+                    return 'danger';
+                default:
+                    return 'secondary';
+            }
+        }
+
+        function initializeOutageChart() {
+            const ctx = document.getElementById('outageChart').getContext('2d');
+            const outageChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(jsonData.networkOutages),
+                    datasets: [{
+                        label: 'Total Outages',
+                        data: Object.values(jsonData.networkOutages).map(state => state.total_outages),
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const state = context.label;
+                                    const outages = jsonData.networkOutages[state].total_outages;
+                                    const details = jsonData.networkOutages[state].details;
+                                    return `Outages: ${outages}\nDetails: ${details}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Initialize the page
+        window.onload = () => {
+            loadServerHealthData();
+            loadApiResponseTimeData();
+            loadActiveSessionsData();
+            loadSystemHealthMetricsData();
+            initializeOutageChart();
+            document.getElementById('cityFilter').addEventListener('change', updateServerHealthByCity);
+        };
+
+        // Logout function
+        function logout() {
+            window.location.href = 'login.html';
+        }
+
+        function updateServerHealthByCity() {
+            const city = document.getElementById('cityFilter').value;
+            if (city) {
+                const serverHealthData = jsonData.serverHealthByCity[city];
+                document.getElementById('serverHealth').textContent = `Status: ${serverHealthData.status}`;
+                document.getElementById('serverUptime').textContent = `Uptime: ${serverHealthData.uptime}`;
+            } else {
+                loadServerHealthData();
+            }
+        }
+
+        // Toggle sidebar on smaller screens with hamburger menu
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+
+        document.querySelector('.sidebar-overlay').addEventListener('click', () => {
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+    </script>
+</body>
+</html>

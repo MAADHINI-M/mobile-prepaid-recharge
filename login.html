@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobi Comm</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    <style>
+        /* Mobile view adjustments */
+        @media (max-width: 991px) {
+            .navbar {
+                background: linear-gradient(45deg, #ff6b6b, #4ecdc4) !important;
+            }
+            .navbar-nav .nav-link {
+                color: black !important;
+                font-weight: bold;
+            }
+            .navbar-brand {
+                color: black !important;
+            }
+            .navbar-toggler-icon {
+                filter: invert(1);
+            }
+            .navbar-collapse {
+                position: relative;
+                z-index: 1000;
+                background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+                padding: 10px 0;
+            }
+            .navbar-nav {
+                margin-top: 10px;
+            }
+            .navbar-nav .nav-item {
+                margin-bottom: 10px;
+            }
+            #offers .row {
+                gap: 20px;
+            }
+            #offers .col-md-4 {
+                margin-bottom: 20px;
+            }
+            .content, #offers, #sim, #Port, #fancy, #why, #ourservices, #faq, .footer {
+                text-align: center;
+            }
+            .plan-card, .sim-card {
+                margin: 0 auto;
+                max-width: 90%;
+            }
+            .footer-section {
+                margin-bottom: 20px;
+            }
+            .plan-card-grid {
+                justify-content: center !important;
+            }
+        }
+
+        /* Modal styling */
+        .modal-dialog {
+            max-width: 400px;
+        }
+        .modal-content {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .modal-body {
+            text-align: center;
+            padding: 20px;
+        }
+        .modal-body p {
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        /* Plan Cards Styling */
+        .plan-card {
+            background: linear-gradient(135deg, #fff, #f9e1ff);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border: 2px solid var(--web-dark);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 18rem;
+            margin: 10px;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(142, 36, 170, 0.3);
+        }
+
+        .plan-card .card-title {
+            color: var(--web);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .plan-card .card-text {
+            color: #444;
+            font-size: 1rem;
+        }
+
+        .plan-card .price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--web-dark);
+        }
+
+        .btn-custom {
+            background: linear-gradient(90deg, var(--web), var(--web-dark));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .btn-custom:hover {
+            background: linear-gradient(90deg, var(--web-dark), var(--web));
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .offer-banner {
+            font-size: 0.9rem;
+            color: #fff;
+            background: #ff6b6b;
+            padding: 5px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        .extra-benefit {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">
+            <img src="/images/Logo.png" alt="Logo" id="navbarLogo"> <span id="navbarBrand">Mobi Comm</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="loginPlans.html" id="viewPlansLink">View Plans</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#offers">Offers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#sim">Buy Sim</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#Port">Port to Mobi</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#fancy">fancyNumber</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#ourservices">Our Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#faq">FAQs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#aboutus">About Us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid content d-flex flex-column align-items-center justify-content-center min-vh-100">
+        <div class="row w-100 d-flex justify-content-center">
+            <div class="col-md-6 d-flex justify-content-center">
+                <div class="login-form w-100">
+                    <h3 style="display: flex; align-items: center; justify-content: center; color: var(--web); font-weight: bold;">
+                        <span id="loginTitle">Login</span>
+                    </h3>
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="mobileNumber" id="mobileNumberLabel">Mobile Number</label>
+                            <input type="text" class="form-control" id="mobileNumber" placeholder="Enter mobile number"
+                                style="border: 2px solid var(--web);">
+                        </div>
+                        <button type="submit" class="btn btn-custom mt-3 w-100" id="loginButton">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row w-100 d-flex justify-content-center mt-4">
+            <h2 class="text-center mb-4" style="color: var(--web); font-weight: bold; margin-top: 100px;">Recommended Recharge Plans</h2>
+            <div class="row w-100 d-flex justify-content-center plan-card-grid" id="recommendedPlansContainer">
+                <!-- Recommended plans will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4" id="offers">
+        <h2 class="text-center mb-4" style="color: var(--web); font-weight: bold;">Offers</h2>
+        <div class="row justify-content-center" id="offersContainer">
+            <!-- Offers will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <div class="container text-center mt-5" id="sim">
+        <h3 class="fw-bold" style="color: var(--web);">New to Mobi-Comm?</h3>
+        <p>Get Mobi-Comm SIM delivered free</p>
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-3 col-6 mb-3">
+                <div class="sim-card p-3" onclick="showForm('prepaid')">
+                    <img src="/images/prepaidsim.png" alt="Prepaid SIM">
+                    <p class="mb-0 fw-bold" style="color: var(--web);">Buy Prepaid SIM</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center mt-5" id="Port">
+        <h3 class="fw-bold" style="color: var(--web);">Port to Mobi-Comm</h3>
+        <p>Switch to Mobi-Comm and enjoy seamless connectivity</p>
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-3 col-6 mb-3">
+                <div class="sim-card p-3" onclick="showForm('port')">
+                    <img src="/images/portsim.png" alt="Port to Mobi-Comm">
+                    <p class="mb-0 fw-bold" style="color: var(--web);">Port to Mobi-Comm</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center mt-5" id="fancy">
+        <h3 class="fw-bold" style="color: var(--web);">Buy Fancy Number</h3>
+        <p>Get a unique number of your choice</p>
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-3 col-6 mb-3">
+                <div class="sim-card p-3" onclick="showForm('fancy')">
+                    <img src="/images/kingsim.jpg" alt="Fancy Number">
+                    <p class="mb-0 fw-bold" style="color: var(--web);">Buy Fancy Number</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="formOverlay" class="form-overlay">
+        <div id="formBox" class="form-box">
+            <span class="close-btn" onclick="closeForm()">✖</span>
+            <div id="formContent"></div>
+        </div>
+    </div>
+
+    <div class="container why-choose-section" id="why">
+        <div class="row align-items-center">
+            <div class="col-md-6 text-content">
+                <h2>Why Choose Us?</h2>
+                <p>Stay connected wherever you go! Whether you're on a long journey, exploring new destinations, or
+                    simply enjoying nature, our mobile data ensures seamless connectivity.</p>
+                <p>Experience high-speed internet for uninterrupted video calls, smooth browsing, and fast
+                    downloads—even in remote locations.</p>
+                <p>Travel freely without worrying about losing network coverage. Stay in touch with your loved ones and
+                    enjoy digital entertainment without limits.</p>
+            </div>
+            <div class="col-md-6 image-content text-center">
+                <img src="/images/data.jpg" alt="Mobile Data Connectivity">
+            </div>
+        </div>
+    </div>
+
+    <div class="containerr benefits-section" style="margin-top: 100px;" id="ourservices">
+        <h2 class="fw-bold" style="color: black;">Enjoy uninterrupted connectivity with our premium network services</h2>
+        <div class="row mt-4 justify-content-center">
+            <div class="col-md-2 col-sm-6 mb-3">
+                <div class="benefit-card">
+                    <div class="card-front">
+                        <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Unlimited Calls">
+                        <h6>Unlimited</h6>
+                        <p>Calls & Data</p>
+                    </div>
+                    <div class="card-back">
+                        <h6>Unlimited Access</h6>
+                        <p>Anytime, Anywhere</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-6 mb-3">
+                <div class="benefit-card">
+                    <div class="card-front">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1688/1688833.png" alt="Unlimited 5G">
+                        <h6>Unlimited 5G</h6>
+                        <p>Fast & Reliable</p>
+                    </div>
+                    <div class="card-back">
+                        <h6>Blazing Speed</h6>
+                        <p>Next-Gen Tech</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-6 mb-3">
+                <div class="benefit-card">
+                    <div class="card-front">
+                        <img src="https://cdn-icons-png.flaticon.com/512/9068/9068622.png" alt="No Cut Off Network">
+                        <h6>No Cut-Off Network</h6>
+                        <p>Stay Connected Always</p>
+                    </div>
+                    <div class="card-back">
+                        <h6>Seamless</h6>
+                        <p>No Drops Ever</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-6 mb-3">
+                <div class="benefit-card">
+                    <div class="card-front">
+                        <img src="https://cdn-icons-png.flaticon.com/512/9426/9426742.png" alt="Network in Hills">
+                        <h6>Network in Hills</h6>
+                        <p>Strong Signal Anywhere</p>
+                    </div>
+                    <div class="card-back">
+                        <h6>Rugged Reach</h6>
+                        <p>Mountains Covered</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-6 mb-3">
+                <div class="benefit-card">
+                    <div class="card-front">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1667/1667968.png" alt="No Disturbance">
+                        <h6>No Disturbance</h6>
+                        <p>Clear & Stable Connection</p>
+                    </div>
+                    <div class="card-back">
+                        <h6>Crystal Clear</h6>
+                        <p>Zero Noise</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-6 mb-3">
+                <div class="benefit-card">
+                    <div class="card-front">
+                        <img src="https://cdn-icons-png.flaticon.com/512/880/880594.png" alt="24x7 Support">
+                        <h6>24 x 7</h6>
+                        <p>Support</p>
+                    </div>
+                    <div class="card-back">
+                        <h6>Always Here</h6>
+                        <p>Round-the-Clock</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="my-5" id="faq">
+        <h1 class="text-center mb-4" style="color: var(--web);">FAQ</h1>
+        <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Q1. How do I recharge my mobile number?
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        You can recharge your mobile number by entering your 10-digit mobile number on the homepage and
+                        selecting a recharge plan.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Q2. What payment methods are accepted?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        We accept payments via credit/debit cards, net banking, UPI, and mobile wallets.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Q3. How long does it take for the recharge to be processed?
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Recharges are usually processed instantly. However, it may take up to 5 minutes in some cases.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Q4. Can I recharge a number from a different operator?
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes, you can recharge numbers from any operator as long as the number is valid and active.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFive">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        Q5. What should I do if my recharge fails?
+                    </button>
+                </h2>
+                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        If your recharge fails, please check your payment method and try again. If the issue persists,
+                        contact our customer support.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSix">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        Q6. Can I get a refund for a failed recharge?
+                    </button>
+                </h2>
+                <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes, if your recharge fails, the amount will be refunded to your original payment method within
+                        5-7 business days.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSeven">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                        Q7. How do I check my recharge history?
+                    </button>
+                </h2>
+                <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        You can check your recharge history by logging into your account and navigating to the "Recharge
+                        History" section.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingEight">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                        Q8. Are there any discounts or offers available?
+                    </button>
+                </h2>
+                <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes, we frequently offer discounts and special recharge plans. Check the "Offers" section for the latest deals.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingNine">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                        Q9. Can I recharge for someone else?
+                    </button>
+                </h2>
+                <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes, you can recharge for someone else by entering their mobile number and selecting a plan.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTen">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                        Q10. Is my personal information secure?
+                    </button>
+                </h2>
+                <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes, we take your privacy and security seriously. All your personal information is encrypted and securely stored.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer mt-5">
+        <div class="row">
+            <div class="col-md-3 footer-section" id="aboutus">
+                <h5>About Company</h5>
+                <p>We are a leading provider of mobile recharge services, offering a seamless and secure platform to recharge mobile phones with a variety of plans.</p>
+            </div>
+            <div class="col-md-3 footer-section">
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="#home">Login</a></li>
+                    <li><a href="#plans">Plans</a></li>
+                    <li><a href="#offers">Offers</a></li>
+                    <li><a href="#why">Why Choose us</a></li>
+                    <li><a href="#ourservices">Our Services</a></li>
+                    <li><a href="#sim">Buy Sim</a></li>
+                    <li><a href="#faq">FAQs</a></li>
+                    <li><a href="#aboutus">About Us</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 footer-section">
+                <h5>Support</h5>
+                <ul>
+                    <li><a href="#faq">FAQs</a></li>
+                    <li><a href="websitedetails.html#contactus">Contact Us</a></li>
+                    <li><a href="#">Email: mobicomm@gmail.com</a></li>
+                    <li><a href="#">Phone no: 9876543210</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 footer-section">
+                <h5>Feedback</h5>
+                <form class="feedback-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea rows="4" placeholder="Your Feedback" required></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <hr style="color: white;">
+        <p>© <span id="year"></span> Mobile Recharge Company. All rights reserved.</p>
+    </footer>
+
+    <button id="goTopBtn" onclick="scrollToTop()">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- Modals -->
+    <div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p id="welcomeMessage"></p>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="redirectToOtp()">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="subscriptionModal" tabindex="-1" aria-labelledby="subscriptionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>You are not a Mobi Comm subscriber. Please subscribe.</p>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="invalidNumberModal" tabindex="-1" aria-labelledby="invalidNumberModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Please enter a valid 10-digit number.</p>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Error validating mobile number. Please try again later.</p>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        window.onscroll = function () {
+            const goTopBtn = document.getElementById("goTopBtn");
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                goTopBtn.style.display = "flex";
+            } else {
+                goTopBtn.style.display = "none";
+            }
+        };
+
+        function redirectToPayment(planName, price, data, validity) {
+            const url = `loginPayment.html?plan=${encodeURIComponent(planName)}&price=${price}&data=${encodeURIComponent(data)}&validity=${encodeURIComponent(validity)}`;
+            window.location.href = url;
+        }
+
+        function redirectToOtp() {
+            window.location.href = "otp.html";
+        }
+
+        // Function to validate mobile number
+        async function validateMobileNumber(mobile) {
+            if (!/^\d{10}$/.test(mobile)) {
+                return { isValid: false, message: "Please enter a valid 10-digit number." };
+            }
+
+            try {
+                const response = await fetch('http://localhost:3000/userDetailsData', {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const data = await response.json();
+                const subscriber = data.find(user => user.phoneNumber === mobile);
+                return subscriber ? 
+                    { isValid: true, message: `Welcome, ${subscriber.name}! You are a Mobi Comm subscriber.` } : 
+                    { isValid: false, message: "You are not a Mobi Comm subscriber. Please subscribe." };
+            } catch (error) {
+                console.error("Fetch error:", error);
+                return { isValid: false, message: "Error validating mobile number. Please try again later." };
+            }
+        }
+
+        // Function to fetch and display recommended plans
+        async function fetchRecommendedPlans() {
+            try {
+                const response = await fetch('http://localhost:3000/recommendedPlans', {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const plans = await response.json();
+                const container = document.getElementById('recommendedPlansContainer');
+                container.innerHTML = '';
+
+                plans.forEach(plan => {
+                    const planCard = `
+                        <div class="col-md-4 d-flex justify-content-center">
+                            <div class="plan-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">${plan.name}</h5>
+                                    <p class="card-text">Price: ${plan.price}</p>
+                                    <p class="card-text">Data: ${plan.dataPacks}</p>
+                                    <p class="card-text">Features: ${plan.features}</p>
+                                    <p class="card-text">Validity: ${plan.validity}</p>
+                                    <button class="btn btn-custom" onclick="redirectToPayment('${plan.name}', '${plan.price.replace('₹', '')}', '${plan.dataPacks}', '${plan.validity}')">Buy Now</button>
+                                </div>
+                            </div>
+                        </div>`;
+                    container.innerHTML += planCard;
+                });
+            } catch (error) {
+                console.error("Error fetching recommended plans:", error);
+            }
+        }
+
+        // Function to fetch and display offers
+        async function fetchOffers() {
+            try {
+                const response = await fetch('http://localhost:3000/offers', {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const offers = await response.json();
+                const container = document.getElementById('offersContainer');
+                container.innerHTML = '';
+
+                offers.forEach(offer => {
+                    const offerCard = `
+                        <div class="col-md-4 d-flex">
+                            <div class="plan-card w-100">
+                                <span class="offer-banner">${offer.banner}</span>
+                                <h4 class="plan-title mt-2">${offer.name}</h4>
+                                <div class="d-flex align-items-center">
+                                    <span class="price">${offer.price}</span>
+                                </div>
+                                <div class="d-flex justify-content-between mt-2">
+                                    <div><strong>${offer.data}</strong><br>Data</div>
+                                    <div><strong>${offer.validity}</strong><br>Validity</div>
+                                    <button class="btn btn-custom" onclick="redirectToPayment('${offer.name}', '${offer.price.replace('₹', '')}', '${offer.data}', '${offer.validity}')">Buy</button>
+                                </div>
+                                <hr>
+                                <ul class="list-unstyled">
+                                    ${offer.benefits.map(benefit => `<li>✔ ${benefit}</li>`).join('')}
+                                </ul>
+                                <div class="extra-benefit">${offer.extraBenefit}</div>
+                            </div>
+                        </div>`;
+                    container.innerHTML += offerCard;
+                });
+            } catch (error) {
+                console.error("Error fetching offers:", error);
+            }
+        }
+
+        // Handle login form submission
+        document.getElementById("loginForm").addEventListener("submit", async function (event) {
+            event.preventDefault();
+            const mobileNumber = document.getElementById("mobileNumber").value.trim();
+            const result = await validateMobileNumber(mobileNumber);
+
+            if (result.isValid) {
+                document.getElementById("welcomeMessage").textContent = result.message;
+                const welcomeModal = new bootstrap.Modal(document.getElementById('welcomeModal'));
+                welcomeModal.show();
+            } else if (result.message === "You are not a Mobi Comm subscriber. Please subscribe.") {
+                const subscriptionModal = new bootstrap.Modal(document.getElementById('subscriptionModal'));
+                subscriptionModal.show();
+            } else if (result.message === "Please enter a valid 10-digit number.") {
+                const invalidNumberModal = new bootstrap.Modal(document.getElementById('invalidNumberModal'));
+                invalidNumberModal.show();
+            } else {
+                const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+                errorModal.show();
+            }
+        });
+
+        function showForm(type) {
+            document.getElementById("formOverlay").style.display = "flex";
+            let formHtml = "";
+            if (type === "prepaid") {
+                formHtml = `
+                    <h4>Buy Prepaid SIM</h4>
+                    <form onsubmit="submitForm(event, 'Prepaid SIM')">
+                        <label>Name:</label> <input type="text" id="name" class="form-control" required><br>
+                        <label>Age:</label> <input type="number" id="age" class="form-control" required><br>
+                        <label>DOB:</label> <input type="date" id="dob" class="form-control" required><br>
+                        <label>Aadhar Number:</label> <input type="text" id="aadhar" class="form-control" required><br>
+                        <label>Address:</label> <input type="text" id="address" class="form-control" required><br>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>`;
+            } else if (type === "port") {
+                formHtml = `
+                    <h4>Port to Mobi-Comm</h4>
+                    <form onsubmit="submitForm(event, 'Port to Mobi-Comm')">
+                        <label>Name:</label> <input type="text" id="name" class="form-control" required><br>
+                        <label>Age:</label> <input type="number" id="age" class="form-control" required><br>
+                        <label>DOB:</label> <input type="date" id="dob" class="form-control" required><br>
+                        <label>Old SIM Number:</label> <input type="text" id="oldSim" class="form-control" required><br>
+                        <label>Port From:</label> 
+                        <select id="portFrom" class="form-control" required>
+                            <option value="">Select Network</option>
+                            <option value="Jio">Jio</option>
+                            <option value="Airtel">Airtel</option>
+                            <option value="Vi">Vi</option>
+                        </select><br>
+                        <label>Address:</label> <input type="text" id="address" class="form-control" required><br>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>`;
+            } else if (type === "fancy") {
+                formHtml = `
+                    <h4>Buy Fancy Number</h4>
+                    <form id="fancyForm" onsubmit="submitFancyForm(event)">
+                        <label>Name:</label> <input type="text" id="name" class="form-control" required oninput="checkFancyFields()"><br>
+                        <label>Age:</label> <input type="number" id="age" class="form-control" required oninput="checkFancyFields()"><br>
+                        <label>DOB:</label> <input type="date" id="dob" class="form-control" required oninput="checkFancyFields()"><br>
+                        <label>Address:</label> <input type="text" id="address" class="form-control" required oninput="checkFancyFields()"><br>
+                        <button type="button" class="btn btn-primary" id="generateFancyBtn" disabled onclick="generateFancyNumber()">Generate Fancy Number</button>
+                        <p id="fancyNumberDisplay" class="mt-3"></p>
+                        <button type="submit" id="confirmFancyBtn" class="btn btn-success mt-2" disabled>Confirm</button>
+                    </form>`;
+            }
+            document.getElementById("formContent").innerHTML = formHtml;
+            document.getElementById("formBox").classList.add("show");
+        }
+
+        function checkFancyFields() {
+            let name = document.getElementById("name").value.trim();
+            let age = document.getElementById("age").value.trim();
+            let dob = document.getElementById("dob").value.trim();
+            let address = document.getElementById("address").value.trim();
+            let generateBtn = document.getElementById("generateFancyBtn");
+            if (name && age && dob && address) {
+                generateBtn.disabled = false;
+            } else {
+                generateBtn.disabled = true;
+            }
+        }
+
+        function generateFancyNumber() {
+            let firstDigit = Math.floor(Math.random() * 4) + 6;
+            let otherDigits = Math.floor(100000000 + Math.random() * 900000000);
+            let fancyNumber = `${firstDigit}${otherDigits}`;
+            document.getElementById("fancyNumberDisplay").innerHTML = `<strong>Your Fancy Number:</strong> ${fancyNumber}`;
+            let confirmBtn = document.getElementById("confirmFancyBtn");
+            confirmBtn.disabled = false;
+            confirmBtn.setAttribute("onclick", `submitFancyForm(event, '${fancyNumber}')`);
+        }
+
+        function submitFancyForm(event, fancyNumber) {
+            event.preventDefault();
+            alert(`Fancy Number ${fancyNumber} confirmed! Your SIM will be delivered to your address.`);
+            closeForm();
+        }
+
+        function closeForm() {
+            document.getElementById("formBox").classList.remove("show");
+            setTimeout(() => {
+                document.getElementById("formOverlay").style.display = "none";
+                document.getElementById("formContent").innerHTML = "";
+            }, 500);
+        }
+
+        function submitForm(event, type) {
+            event.preventDefault();
+            alert(`${type} request submitted successfully! Your SIM will be delivered to your address.`);
+            closeForm();
+        }
+
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Load plans and offers on page load
+        window.onload = function() {
+            fetchRecommendedPlans();
+            fetchOffers();
+        };
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

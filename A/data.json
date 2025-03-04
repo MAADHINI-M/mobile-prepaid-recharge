@@ -1,0 +1,72 @@
+{
+    "adminCredentials": [
+        {"username": "maadhini", "password": "maa123"},
+        {"username": "obuli", "password": "obuli456"}
+    ],
+    "expiringSubscribersData": [
+        {"name": "Rahul Sharma", "phoneNumber": "9876543210", "planExpiryDate": "2025-03-01", "email": "rahul@example.com"},
+        {"name": "Priya Patel", "phoneNumber": "9876543211", "planExpiryDate": "2025-02-28", "email": "priya@example.com"},
+        {"name": "Amit Kumar", "phoneNumber": "9876543212", "planExpiryDate": "2025-03-02", "email": "amit@example.com"},
+        {"name": "Neha Singh", "phoneNumber": "9876543213", "planExpiryDate": "2025-03-01", "email": "neha@example.com"}
+    ],
+    "userDetailsData": [
+        {"name": "Rahul Sharma", "phoneNumber": "9876543210", "rechargeDate": "2025-01-20", "nextRecharge": "2025-03-01", "currentPlanId": 1},
+        {"name": "Priya Patel", "phoneNumber": "9876543211", "rechargeDate": "2025-01-15", "nextRecharge": "2025-02-28", "currentPlanId": 2},
+        {"name": "Amit Kumar", "phoneNumber": "9876543212", "rechargeDate": "2025-01-10", "nextRecharge": "2025-03-02", "currentPlanId": 3},
+        {"name": "Neha Singh", "phoneNumber": "9876543213", "rechargeDate": "2025-01-05", "nextRecharge": "2025-03-01", "currentPlanId": 4},
+        {"name": "Vikram Rao", "phoneNumber": "9876543214", "rechargeDate": "2025-01-25", "nextRecharge": "2025-03-05", "currentPlanId": 5},
+        {"name": "Sneha Gupta", "phoneNumber": "9876543215", "rechargeDate": "2025-01-30", "nextRecharge": "2025-03-10", "currentPlanId": 6},
+        {"name": "Kiran Desai", "phoneNumber": "9876543216", "rechargeDate": "2025-02-01", "nextRecharge": "2025-03-15", "currentPlanId": 7},
+        {"name": "Anjali Mehta", "phoneNumber": "9876543217", "rechargeDate": "2025-02-05", "nextRecharge": "2025-03-20", "currentPlanId": 8},
+        {"name": "Maadhini", "phoneNumber": "9361877619", "rechargeDate": "2025-02-01", "nextRecharge": "2025-03-01", "currentPlanId": 9}
+    ],
+    "rechargeHistory": [
+        {"name": "Rahul Sharma", "phoneNumber": "9876543210", "emailId": "rahul@example.com", "recharges": [{"date": "2025-01-20", "payment": "credit", "price": "₹299", "time": "10:30", "package": "Basic"}, {"date": "2024-12-10", "payment": "upi", "price": "₹199", "time": "14:15", "package": "Basic"}]},
+        {"name": "Priya Patel", "phoneNumber": "9876543211", "emailId": "priya@example.com", "recharges": [{"date": "2025-01-15", "payment": "debit", "price": "₹499", "time": "09:45", "package": "Standard"}, {"date": "2024-11-05", "payment": "bank", "price": "₹399", "time": "16:00", "package": "Standard"}]},
+        {"name": "Amit Kumar", "phoneNumber": "9876543212", "emailId": "amit@example.com", "recharges": [{"date": "2025-01-10", "payment": "credit", "price": "₹799", "time": "12:00", "package": "Unlimited"}]},
+        {"name": "Neha Singh", "phoneNumber": "9876543213", "emailId": "neha@example.com", "recharges": [{"date": "2025-01-05", "payment": "upi", "price": "₹399", "time": "15:30", "package": "Data only"}]},
+        {"name": "Vikram Rao", "phoneNumber": "9876543214", "emailId": "vikram@example.com", "recharges": [{"date": "2025-01-25", "payment": "debit", "price": "₹599", "time": "11:00", "package": "Ott"}]},
+        {"name": "Sneha Gupta", "phoneNumber": "9876543215", "emailId": "sneha@example.com", "recharges": [{"date": "2025-01-30", "payment": "bank", "price": "₹999", "time": "13:45", "package": "Premium"}]},
+        {"name": "Kiran Desai", "phoneNumber": "9876543216", "emailId": "kiran@example.com", "recharges": [{"date": "2025-02-01", "payment": "credit", "price": "₹199", "time": "10:15", "package": "Data additional"}]},
+        {"name": "Anjali Mehta", "phoneNumber": "9876543217", "emailId": "anjali@example.com", "recharges": [{"date": "2025-02-05", "payment": "upi", "price": "₹699", "time": "17:00", "package": "Entertainment"}]},
+        {"name": "Maadhini", "phoneNumber": "9361877619", "emailId": "maadhini@example.com", "recharges": [{"date": "2025-02-01", "payment": "upi", "price": "₹199", "time": "12:00", "package": "Ott"}]}
+    ],
+    "plans": [
+        {"id": 1, "name": "Basic", "price": "₹299", "features": "Unlimited Calls, 2GB Data", "expiry": "30 days", "dataPacks": "2GB"},
+        {"id": 2, "name": "Standard", "price": "₹499", "features": "Unlimited Calls, 5GB Data", "expiry": "30 days", "dataPacks": "5GB"},
+        {"id": 3, "name": "Unlimited", "price": "₹799", "features": "Unlimited Calls, Unlimited Data", "expiry": "30 days", "dataPacks": "Unlimited"},
+        {"id": 4, "name": "Data only", "price": "₹399", "features": "10GB Data", "expiry": "30 days", "dataPacks": "10GB"},
+        {"id": 5, "name": "Ott", "price": "₹599", "features": "Unlimited Calls, 5GB Data, OTT Subscription", "expiry": "30 days", "dataPacks": "5GB"},
+        {"id": 6, "name": "Premium", "price": "₹999", "features": "Unlimited Calls, 20GB Data, Premium Support", "expiry": "30 days", "dataPacks": "20GB"},
+        {"id": 7, "name": "Data additional", "price": "₹199", "features": "Additional 5GB Data", "expiry": "30 days", "dataPacks": "5GB"},
+        {"id": 8, "name": "Entertainment", "price": "₹699", "features": "Unlimited Calls, 10GB Data, Entertainment Pack", "expiry": "30 days", "dataPacks": "10GB"},
+        {"id": 9, "name": "Ott", "price": "₹199", "features": "Unlimited Calls, 5GB Data, Entertainment Pack", "expiry": "30 days", "dataPacks": "5GB"}
+    ],
+    "newCustomers": [
+        { "name": "Maadhini", "phoneNumber": "9361877619", "email": "maadhini@example.com", "address": "123, Lotus Lane, Chennai, Tamil Nadu", "year": 1, "status": "new" },
+        { "name": "Rahul Sharma", "phoneNumber": "9876543210", "email": "rahul@example.com", "address": "45, Rosewood Street, Mumbai, Maharashtra", "year": 1, "status": "new" },
+        { "name": "Priya Patel", "phoneNumber": "9876543211", "email": "priya@example.com", "address": "78, Silver Oak, Ahmedabad, Gujarat", "year": 1, "status": "new" }
+    ],
+    "inactiveCustomers": [
+        { "name": "Amit Kumar", "phoneNumber": "9876543212", "email": "amit@example.com", "address": "56, Green Valley, Delhi", "year": 2, "status": "inactive" },
+        { "name": "Neha Singh", "phoneNumber": "9876543213", "email": "neha@example.com", "address": "90, Jasmine Lane, Bangalore, Karnataka", "year": 2, "status": "inactive" }
+    ],
+    "monthlySubscription": [
+        { "name": "Vikram Rao", "phoneNumber": "9876543214", "email": "vikram@example.com", "address": "34, Orchid Road, Hyderabad, Telangana", "year": 1, "status": "active" },
+        { "name": "Sneha Gupta", "phoneNumber": "9876543215", "email": "sneha@example.com", "address": "67, Coral Beach, Pune, Maharashtra", "year": 1, "status": "active" },
+        { "name": "Kiran Desai", "phoneNumber": "9876543216", "email": "kiran@example.com", "address": "12, Sandalwood Street, Kolkata, West Bengal", "year": 2, "status": "active" },
+        { "name": "Anjali Mehta", "phoneNumber": "9876543217", "email": "anjali@example.com", "address": "89, Palm Grove, Kochi, Kerala", "year": 2, "status": "active" }
+    ],
+    "dailySubscription": [
+        { "name": "Rahul Sharma", "phoneNumber": "9876543210", "email": "rahul@example.com", "address": "45, Rosewood Street, Mumbai, Maharashtra", "year": 1, "status": "active" },
+        { "name": "Priya Patel", "phoneNumber": "9876543211", "email": "priya@example.com", "address": "78, Silver Oak, Ahmedabad, Gujarat", "year": 1, "status": "active" },
+        { "name": "Amit Kumar", "phoneNumber": "9876543212", "email": "amit@example.com", "address": "56, Green Valley, Delhi", "year": 1, "status": "active" }
+    ],
+    "weeklySubscription": [
+        { "name": "Neha Singh", "phoneNumber": "9876543213", "email": "neha@example.com", "address": "90, Jasmine Lane, Bangalore, Karnataka", "year": 1, "status": "active" },
+        { "name": "Vikram Rao", "phoneNumber": "9876543214", "email": "vikram@example.com", "address": "34, Orchid Road, Hyderabad, Telangana", "year": 1, "status": "active" }
+    ],
+    "yearlySubscription": [
+        { "name": "Sneha Gupta", "phoneNumber": "9876543215", "email": "sneha@example.com", "address": "67, Coral Beach, Pune, Maharashtra", "year": 3, "status": "active" }
+    ]
+}

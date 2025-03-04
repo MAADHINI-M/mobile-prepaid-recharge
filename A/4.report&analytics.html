@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports & Analytics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%) !important;
+            color: #333;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, #921e24 0%, #6b1519 100%) !important;
+            color: white;
+            padding: 30px 20px;
+            overflow-y: auto;
+            z-index: 1001;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        .sidebar .brand {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .sidebar .brand img {
+            max-height: 50px;
+            margin-right: 10px;
+        }
+        .sidebar .brand h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin: 0;
+            color: #fff;
+        }
+        .sidebar .search-form {
+            margin: 15px 0;
+            display: flex;
+        }
+        .sidebar .search-form .form-control {
+            border-radius: 8px 0 0 8px;
+            border: 2px solid #ffffff;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 10px;
+            font-size: 0.9rem;
+        }
+        .sidebar .search-form .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .sidebar .search-form .btn {
+            border-radius: 0 8px 8px 0;
+            background-color: #ffffff;
+            border: 2px solid #ffffff;
+            border-left: none;
+            color: #921e24;
+            padding: 10px;
+            font-size: 0.9rem;
+        }
+        .sidebar h4 {
+            font-size: 1.4rem;
+            margin: 20px 0 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #ffffff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 5px;
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .sidebar a:hover {
+            background-color: #28a745;
+            transform: translateX(5px);
+        }
+        .sidebar .collapse a {
+            padding-left: 30px;
+            font-size: 0.9rem;
+        }
+        .btn-logout {
+            background: linear-gradient(45deg, #28a745);
+            color: black;
+            font-weight: bold;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            margin-top: 20px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+        .btn-logout:hover {
+            background: linear-gradient(45deg, #218838, #c9e265);
+            transform: scale(1.05);
+        }
+
+        /* Hamburger Menu Button */
+        .menu-toggle {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1002;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            padding: 10px;
+            cursor: pointer;
+            display: none;
+        }
+        .menu-toggle:hover {
+            color: #d36671;
+        }
+
+        /* Sidebar Overlay */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Main Content Styling */
+        .main-content {
+            margin-left: 280px;
+            padding: 40px;
+            min-height: 100vh;
+            background-color: beige;
+            border-radius: 15px 0 0 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin: 20px 20px 20px 300px;
+            transition: margin-left 0.3s ease;
+        }
+
+        /* Card Styling */
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: white;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .card-header {
+            background-color: #90237c;
+            color: white;
+            border-radius: 10px 10px 0 0;
+            padding: 15px;
+        }
+        .card-body {
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { opacity: 1; transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive Design */
+        @media (min-width: 1200px) {
+            .main-content {
+                margin-left: 280px;
+                padding: 40px;
+                margin: 20px 20px 20px 300px;
+            }
+            .sidebar {
+                width: 280px;
+            }
+        }
+        @media (min-width: 768px) and (max-width: 1199px) {
+            .sidebar {
+                width: 250px;
+                padding: 25px 15px;
+            }
+            .main-content {
+                margin-left: 250px;
+                padding: 30px;
+                margin: 15px 15px 15px 265px;
+            }
+        }
+        @media (min-width: 481px) and (max-width: 767px) {
+            .sidebar {
+                width: 220px;
+                padding: 20px 12px;
+                transform: translateX(-220px);
+            }
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 20px 15px;
+                margin: 10px;
+                border-radius: 0;
+            }
+            .menu-toggle {
+                display: block;
+                color: #000;
+                background: #fff;
+                border-radius: 5px;
+                padding: 8px;
+            }
+        }
+        @media (max-width: 480px) {
+            .sidebar {
+                width: 200px;
+                padding: 15px 10px;
+                transform: translateX(-200px);
+            }
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 15px 10px;
+                margin: 5px;
+                border-radius: 0;
+            }
+            .menu-toggle {
+                display: block;
+                color: #000;
+                background: #fff;
+                border-radius: 4px;
+                padding: 6px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hamburger Menu Button -->
+    <button class="menu-toggle d-md-none"><i class="bi bi-list"></i></button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="brand">
+            <img src="/image/Logo.png" alt="Mobi-Comm Logo" class="img-fluid">
+            <h1>MOBI-COMM</h1>
+        </div>
+        <form class="search-form d-flex">
+            <input type="text" class="form-control" placeholder="Search">
+            <button class="btn" type="button"><i class="bi bi-search"></i></button>
+        </form>
+        <h4>Admin Panel</h4>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="manage-user.html">Managing Users</a>
+        <a href="manage-plans.html">Managing Plans</a>
+        <!-- <a href="graph and pie.html">Graphs & Pie Charts</a> -->
+        <a href="3.billingandtransaction.html">Billing & Transactions</a>
+        <a href="4.report&analytics.html">Report & Analytics</a>
+        <!-- <a href="7.securityandfraudmonitoring.html">Security & Fraud Monitoring</a> -->
+        <a href="8.network&systemhealth.html">Network & System Health</a>
+        <a href="adminProfile.html">
+            <i class="bi bi-person-fill"></i> Profile
+        </a>
+        <button class="btn-logout" onclick="logout()">Logout</button>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1 class="mb-4">Reports & Analytics</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header">User Growth Chart</div>
+                    <div class="card-body">
+                        <canvas id="userGrowthChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header">Revenue Graph</div>
+                    <div class="card-body">
+                        <canvas id="revenueGraph" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header">Plan Subscription Trends</div>
+                    <div class="card-body">
+                        <canvas id="planSubscriptionTrends" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header">Customer Churn Rate</div>
+                    <div class="card-body">
+                        <canvas id="customerChurnRate" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function logout() {
+            window.location.href = 'login.html';
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Placeholder data for charts
+            const placeholderMonths = ['2024-11', '2024-12', '2025-01', '2025-02'];
+            
+            // User Growth Chart (Line)
+            const userGrowthChartData = {
+                labels: placeholderMonths,
+                datasets: [{
+                    label: 'Active Users',
+                    data: [5, 10, 15, 20], // Placeholder data
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    fill: true,
+                    tension: 0.1
+                }]
+            };
+
+            // Revenue Graph (Line)
+            const revenueGraphData = {
+                labels: placeholderMonths,
+                datasets: [{
+                    label: 'Revenue (₹)',
+                    data: [1000, 2000, 3000, 4000], // Placeholder data
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    fill: true,
+                    tension: 0.1
+                }]
+            };
+
+            // Plan Subscription Trends (Bar)
+            const planSubscriptionTrendsData = {
+                labels: ['Basic Plan', 'Standard Plan', 'Premium Plan', 'Economy Plan'],
+                datasets: [{
+                    label: 'Subscribers',
+                    data: [5, 3, 2, 1], // Placeholder data
+                    backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+            // Customer Churn Rate (Pie)
+            const customerChurnRateData = {
+                labels: ['Active Users', 'Churned Users'],
+                datasets: [{
+                    data: [70, 30], // Placeholder data
+                    backgroundColor: ['rgba(75, 192, 192, 0.7)', 'rgba(255, 99, 132, 0.7)'],
+                    borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
+                    borderWidth: 1
+                }]
+            };
+
+            // Render Charts
+            const userGrowthChartCtx = document.getElementById('userGrowthChart').getContext('2d');
+            new Chart(userGrowthChartCtx, {
+                type: 'line',
+                data: userGrowthChartData,
+                options: {
+                    scales: {
+                        y: { beginAtZero: true, title: { display: true, text: 'Number of Users' } },
+                        x: { title: { display: true, text: 'Month' } }
+                    },
+                    plugins: { legend: { position: 'top' } }
+                }
+            });
+
+            const revenueGraphCtx = document.getElementById('revenueGraph').getContext('2d');
+            new Chart(revenueGraphCtx, {
+                type: 'line',
+                data: revenueGraphData,
+                options: {
+                    scales: {
+                        y: { beginAtZero: true, title: { display: true, text: 'Revenue (₹)' } },
+                        x: { title: { display: true, text: 'Month' } }
+                    },
+                    plugins: { legend: { position: 'top' } }
+                }
+            });
+
+            const planSubscriptionTrendsCtx = document.getElementById('planSubscriptionTrends').getContext('2d');
+            new Chart(planSubscriptionTrendsCtx, {
+                type: 'bar',
+                data: planSubscriptionTrendsData,
+                options: {
+                    scales: {
+                        y: { beginAtZero: true, title: { display: true, text: 'Subscribers' } },
+                        x: { title: { display: true, text: 'Plan' } }
+                    },
+                    plugins: { legend: { position: 'top' } }
+                }
+            });
+
+            const customerChurnRateCtx = document.getElementById('customerChurnRate').getContext('2d');
+            new Chart(customerChurnRateCtx, {
+                type: 'pie',
+                data: customerChurnRateData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'right' } }
+                }
+            });
+        });
+
+        // Toggle sidebar on smaller screens with hamburger menu
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+
+        document.querySelector('.sidebar-overlay').addEventListener('click', () => {
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+    </script>
+</body>
+</html>

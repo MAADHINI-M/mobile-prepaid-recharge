@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobi Comm</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="dummy-style.css">
+
+    <style>
+        :root {
+            --web: #a91919;
+        }
+
+        *::selection {
+            background: var(--web);
+            color: #fff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            background-color: white;
+        }
+
+        .navbar {
+            background-color: var(--web);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 20px;
+        }
+
+        .navbar .navbar-nav {
+            flex-direction: row;
+            justify-content: flex-end;
+        }
+
+        .navbar .navbar-nav .nav-link {
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .navbar .navbar-nav .nav-link:hover {
+            background-color: #b83535;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input[type="text"] {
+            padding: 5px;
+            border: none;
+            border-radius: 50px;
+        }
+
+        .search-bar .btn {
+            margin-left: 10px;
+        }
+
+        .notification-icon,
+        .profile-image {
+            margin-left: 15px;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--web);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .notification-icon i,
+        .profile-image i {
+            font-size: 0.8rem;
+        }
+
+        .ml-auto {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-dropdown .dropdown-menu {
+            border-top: none;
+            border-radius: 0;
+        }
+
+        .profile-dropdown .dropdown-item {
+            color: var(--web);
+        }
+
+        .profile-dropdown .dropdown-item:hover {
+            background-color: var(--web);
+            color: white;
+            box-shadow: 2px 4px 12px var(--web);
+            animation: zoomIn 2s ease-in-out forwards;
+        }
+
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 80px;
+            /* background-color: wheat; */
+            /* border-bottom: 2px solid black; */
+            min-height: 400px;
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .text-content {
+            width: 50%;
+            padding: 20px;
+        }
+
+        .text-content h1 {
+            font-size: 35px;
+            font-weight: bold;
+            color: #222;
+        }
+
+        .text-content p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .btn-customm {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff4500;
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            border: none;
+        }
+
+        .btn-customm:hover {
+            background-color: white;
+            color: #ff4500;
+            border: 2px solid #ff4500;
+        }
+
+        .image-content {
+            width: 50%;
+            text-align: center;
+        }
+
+        .image-content img {
+            width: 80%;
+            height: auto;
+            max-height: 300px;
+            border-top-left-radius: 50% 30%;
+            border-bottom-right-radius: 50% 30%;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .text-content,
+            .image-content {
+                width: 100%;
+            }
+
+            .image-content img {
+                max-height: 250px;
+            }
+        }
+
+        .btn-reveal,
+        .btn-primary,
+        .btn-success,
+        .btn-secondary {
+            cursor: pointer;
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            border: 2px solid var(--web);
+            border-radius: 50px;
+            /* animation: bounce 2s infinite; */
+        }
+
+        .btn-reveal:hover {
+            background-color: white;
+            border: 1px solid #ff5722;
+            color: var(--web);
+        }
+
+        .btn-primary:hover,
+        .btn-secondary:hover,
+        .btn-success:hover {
+            background-color: white;
+            border: 1px solid var(--web);
+            color: #ff5722;
+            font-weight: bold;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .ml-auto {
+                display: flex;
+                /* Use flexbox to align items side by side */
+                justify-content: flex-end;
+                /* Align items to the right */
+                align-items: center;
+                /* Vertically center the items */
+            }
+
+            .ml-auto .notification-icon,
+            .ml-auto .profile-dropdown {
+                margin-left: 10px;
+                /* Add space between bell and profile */
+            }
+
+            .ml-auto .profile-dropdown {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+
+            /* Optional: Limit profile image size to fit better */
+            .ml-auto .profile-image {
+                width: 40px;
+                /* Adjust the width of the profile image */
+                height: 40px;
+                /* Adjust the height of the profile image */
+                border-radius: 50%;
+                /* Make it round */
+            }
+
+            /* Ensure dropdown menu stays visible */
+            .ml-auto .dropdown-menu {
+                position: absolute;
+                right: 0;
+                top: 100%;
+                width: auto;
+                /* Adjust dropdown width */
+                max-width: 200px;
+            }
+        }
+
+
+
+        /* Add some space to the buttons */
+        .button-container {
+            margin-top: 20px;
+        }
+
+        /* Ensure full height and center content */
+        .container-fluid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 70vh;
+            /* border: 2px solid black; */
+            margin-top: 100px;
+        }
+
+        /* Left content styling */
+        .content-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 100px;
+        }
+
+        /* Buttons container */
+        .button-container {
+            margin-top: 15px;
+        }
+
+        .button-container .btn {
+            margin-right: 10px;
+        }
+
+        /* Image container */
+        .image-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0 100px;
+        }
+
+        .image-container img {
+            width: 80%;
+            max-width: 500px;
+            height: 90%;
+            border-radius: 5px;
+            box-shadow: 0 8px 12px var(--web);
+        }
+
+        .accordion {
+            max-width: 800px;
+            margin: 0 auto;
+            /* animation: bounce 2s infinite; */
+            border: 2px solid var(--web);
+            border-radius: 5px;
+        }
+
+        .accordion:hover {
+            box-shadow: 2px 8px 12px solid var(--web);
+        }
+
+        .accordion-button {
+            background-color: #f8f9fa;
+            color: var(--web);
+            font-weight: bold;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: #e2e6ea;
+            color: #000;
+        }
+
+        .accordion-body {
+            background-color: #f1f1f1;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: var(--web);
+            padding: 10px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .footer .footer-section {
+            margin-bottom: 10px;
+        }
+
+        .footer .footer-section h5 {
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .footer .footer-section ul {
+            list-style: none;
+            padding-left: 9px;
+        }
+
+        .footer .footer-section ul li {
+            margin: 5px 80px;
+            text-align: left;
+        }
+
+        .footer .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer .feedback-form input,
+        .footer .feedback-form textarea {
+            width: 100%;
+            padding: 5px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .footer .feedback-form button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #ff5722;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+
+        .footer .feedback-form button:hover {
+            background-color: white;
+            color: var(--web);
+            border: 1.5px solid var(--web);
+            border-radius: 50px;
+        }
+
+        /* ///myprofile/// */
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+        }
+
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 1040;
+        }
+
+        .modal-content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            z-index: 1050;
+            display: none;
+            width: 90%;
+            max-width: 600px;
+            border: 4px solid var(--web);
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            color: var(--web);
+        }
+
+        .modal-content label {
+            color: var(--web);
+        }
+
+        .modal-content input {
+            border: 1.5px solid var(--web);
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--web);
+            font-size: 38px;
+            font-weight: bold;
+            margin: 90px 0;
+        }
+
+        .pricing-header {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--web);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .price-circle {
+            background: black;
+            color: white;
+            font-weight: bold;
+            font-size: 22px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: 4px solid white;
+        }
+
+        .pricing-card ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .pricing-card ul li {
+            margin: 0 10px;
+        }
+        .btn-custom {
+            border-radius: 20px;
+            width: 100%;
+            margin-top: auto;
+            align-self: center;
+        }
+        .right-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .pricing-card {
+            position: relative;
+            background: wheat;
+            width: 220px;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid black;
+            text-align: center;
+            box-shadow: 0 2px 4px var(--web);
+            /* animation: bounce 2s infinite; */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 320px;
+        }
+
+        .pricing-card:hover {
+            box-shadow: 0 8px 12px var(--web);
+        }
+
+        .plans-btn {
+            width: 150px;
+            height: 40px;
+            color: white;
+            background-color: #ff5722;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            border: none;
+            font-size: 16px;
+            margin: auto;
+        }
+
+        .offers-btn {
+            width: 200px;
+            height: 40px;
+            color: white;
+            background-color: #ff5722;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            border: none;
+            font-size: 16px;
+            margin: 20px auto 10px auto;
+        }
+
+        .plans-btn:hover {
+            color: #ff5722;
+            background-color: white;
+            border: 1.5px solid #ff5722;
+        }
+
+        @media (max-width: 768px) {
+            .right-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .pricing-card {
+                width: 90%;
+            }
+        }
+
+        .profile-img {
+            width: 40px;
+            /* Adjust the size */
+            height: 40px;
+            /* Adjust the size */
+            border-radius: 50%;
+            /* Makes the image round */
+            object-fit: cover;
+            /* Ensures the image maintains its aspect ratio */
+        }
+
+        /* Styling for the "Go to Top" Button */
+        #goTopBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--web);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: none;
+            /* Initially hidden */
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            cursor: pointer;
+            box-shadow: 2px 4px 6px var(--web);
+            transition: opacity 0.3s, transform 0.2s;
+        }
+
+        #goTopBtn:hover {
+            background-color: white;
+            color: var(--web);
+            border: 2px solid var(--web);
+            transform: scale(1.1);
+        }
+
+        .offer-banner {
+            background: #FFD700;
+            color: black;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            display: inline-block;
+        }
+
+        .plan-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+            animation: bounce 1.5s infinite;
+            background: wheat;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px var(--web);
+            border: 2px solid black;
+            max-width: 400px;
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 0 18px;
+        }
+
+        .plan-card:hover {
+            box-shadow: 4px 8px 12px var(--web);
+            transform: translateY(-10px);
+        }
+
+        .plan-title {
+            color: var(--web);
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .price {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .buy-btn {
+            background: var(--web);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .buy-btn:hover {
+            background: white;
+            color: var(--web);
+            border: 2px solid var(--web);
+        }
+
+        .extra-benefit {
+            background: #FAEBD7;
+            padding: 8px;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: auto;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#" id="home">
+            <img src="/images/Logo.png" alt="Logo">
+            Mobi Comm
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#heroSection">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#website">Website</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#plans">Plans</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#offers">Special Offers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#faq">FAQs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#aboutus">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="websitedetails.html#contactdetails">Help</a>
+                </li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+                <button class="btn btn-outline-light" type="submit"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="ml-auto">
+                <button class="btn btn-outline-light notification-icon" type="button">
+                    <i class="fas fa-bell"></i>
+                </button>
+                <div class="profile-dropdown dropdown">
+                    <button class="profile-image dropdown-toggle" type="button" id="profileDropdown"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="/images/profile.jpg" alt="Profile Image" class="profile-img">
+                    </button>
+
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+                        <a class="dropdown-item" href="#" onclick="showProfile(); return false;">My Profile</a>
+                        <a class="dropdown-item" href="#" onclick="showPolicy(); return false;">Policy & Privacy</a>
+                        <a class="dropdown-item" href="websitedetails.html#contactdetails">Help</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="login.html">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Modal -->
+    <div id="modalBackdrop" class="modal-backdrop"></div>
+    <div id="profileModal" class="modal-content">
+        <h2>Profile Form</h2>
+        <form id="profileForm">
+            <div class="form-group">
+                <label for="userName">User Name</label>
+                <input type="text" class="form-control" id="userName" required>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" class="form-control" id="dob" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" class="form-control" id="age" readonly>
+            </div>
+            <div class="form-group">
+                <label for="email">Email ID</label>
+                <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" required>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="saveProfile()">Save</button>
+            <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
+        </form>
+    </div>
+
+    <div id="policyModal" class="modal-content">
+        <h2>Policy and Privacy</h2>
+        <p>
+            At our mobile recharge website, we prioritize your privacy and security. We collect and use your information
+            to provide you with the best possible service. Your personal data is protected and used only for the
+            purposes of facilitating transactions and improving user experience.
+        </p>
+        <p>
+            We do not share your information with third parties without your consent. For more details, please refer to
+            our <a href="#" onclick="showTerms(); return false;">Terms of Service</a>.
+        </p>
+        <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
+    </div>
+
+    <div id="termsModal" class="modal-content">
+        <h2>Terms of Services</h2>
+        <p>
+            Welcome to our mobile recharge website. By using our services, you agree to the following terms and
+            conditions:
+        </p>
+        <ul>
+            <li>You must be at least 18 years old to use our services.</li>
+            <li>You agree to provide accurate and complete information when registering.</li>
+            <li>You are responsible for maintaining the confidentiality of your account and password.</li>
+            <li>We reserve the right to modify or discontinue our services at any time without notice.</li>
+            <li>You agree to comply with all applicable laws and regulations.</li>
+        </ul>
+        <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
+    </div>
+
+    <!-- Carousel -->
+    <!-- Content Section -->
+    <section id="heroSection" class="hero-section">
+        <div class="text-content">
+            <h1 id="slideTitle">Wi-Fi like speeds, now on the go.</h1>
+            <p id="slideDescription">With Airtel 5G Plus. Up to 30x faster.</p>
+            <button id="slideButton" class="btn-customm">Know More</button>
+        </div>
+        <div class="image-content">
+            <img id="slideImage" src="/images/slider-4.jpg" alt="Slide Image">
+        </div>
+    </section>
+    <!-- Main Container -->
+    <div class="container-fluid" id="website">
+        <div class="row">
+            <div class="col-md-6 content-left">
+                <h1 style="color: var(--web);">Welcome to Our Website</h1>
+                <p>Welcome to our platform, your one-stop destination for all your mobile recharge needs. We provide a
+                    seamless, fast, and secure experience for users to recharge their mobile numbers with just a few
+                    clicks. Whether you're looking to top up your balance or activate a specific plan, we've got you
+                    covered with a wide range of options.</p>
+                <div class="button-container">
+                    <a class="btn btn-primary" href="#plans">Get Started</a>
+                    <a class="btn btn-secondary" href="websitedetails.html">Learn More</a>
+                </div>
+            </div>
+            <div class="col-md-6 image-container">
+                <img src="images/d2.jpeg" alt="Placeholder Image">
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing Plans -->
+    <div class="section-title" id="plans">Recharge Plans</div>
+    <div class="right-section">
+        <div class="pricing-card">
+            <div class="pricing-header">Basic Plan</div>
+            <div class="price-circle">₹99</div>
+            <ul>
+                <li><i class="fas fa-calendar-day"></i> Validity: 14 Days</li>
+                <li><i class="fas fa-wifi"></i> 1GB Data/per day</li>
+                <li><i class="fas fa-moon"></i> 1GB extra data at 12.00am</li>
+            </ul>
+
+            <button class="btn btn-primary btn-custom" onclick="location.href='recharge.html'">Check Now</button>
+        </div>
+        <div class="pricing-card">
+            <div class="pricing-header">Standard Plan</div>
+            <div class="price-circle">₹199</div>
+            <ul>
+                <li><i class="fas fa-calendar-day"></i> Validity: 30 Days</li>
+                <li><i class="fas fa-wifi"></i> 3GB Data/per day</li>
+                <li><i class="fas fa-phone-alt"></i> Unlimited calls at 12.00am</li>
+            </ul>
+
+            <button class="btn btn-primary btn-custom" onclick="location.href='recharge.html'">Check Now</button>
+        </div>
+        <div class="pricing-card">
+            <div class="pricing-header">Economy Plan</div>
+            <div class="price-circle">₹299</div>
+            <ul>
+                <li><i class="fas fa-calendar-day"></i> Validity: 45 Days</li>
+                <li><i class="fas fa-wifi"></i> 5GB Data/per day</li>
+                <li><i class="fas fa-infinity"></i> Unlimited data at 12.00am</li>
+            </ul>
+
+            <button class="btn btn-success btn-custom" onclick="location.href='recharge.html'">Check Now</button>
+        </div>
+        <div class="pricing-card">
+            <div class="pricing-header">Premium Plan</div>
+            <div class="price-circle">₹499</div>
+            <ul>
+                <li><i class="fas fa-calendar-day"></i> Validity: 60 Days</li>
+                <li><i class="fas fa-wifi"></i> 10GB Data/per day</li>
+                <li><i class="fas fa-phone-alt"></i> Unlimited calls & <i class="fas fa-infinity"></i> data at 12.00am
+                </li>
+            </ul>
+
+            <button class="btn btn-success btn-custom" onclick="location.href='recharge.html'">Check Now</button>
+        </div>
+    </div>
+    <button class="plans-btn" onclick="location.href='recharge.html'">Explore more plans</button>
+
+
+    <div class="containerr mt-4" id="offers">
+        <h2 class="text-center mb-4" style="color: var(--web); font-weight: bold; margin-top: 100px;">Offers</h2>
+        <div class="row justify-content-center">
+
+            <!-- Plan 1 -->
+            <div class="col-md-4 d-flex">
+                <div class="plan-card w-100">
+                    <span class="offer-banner">NEW! 12am–12pm Unlimited Data</span>
+                    <h4 class="plan-title mt-2">Mobi-Comm SuperHero</h4>
+                    <div class="d-flex align-items-center">
+                        <span class="price">₹365</span>
+                    </div>
+                    <div class="d-flex justify-content-between mt-2">
+                        <div><strong>2 GB/day</strong><br>data</div>
+                        <div><strong>28 days</strong><br>validity</div>
+                        <button class="buy-btn"
+                            onclick="redirectToPayment('Mobi-Comm SuperHero', 365, '2GB/day')">buy</button>
+                    </div>
+                    <hr>
+                    <ul class="list-unstyled">
+                        <li>✔ 12am–12pm Unlimited Data</li>
+                        <li>✔ Unlimited Calls</li>
+                        <li>✔ Weekend Data Rollover...</li>
+                    </ul>
+                    <div class="extra-benefit">get up to 130 GB extra with Mobi-Comm Guarantee</div>
+                </div>
+            </div>
+
+            <!-- Plan 2 -->
+            <div class="col-md-4 d-flex">
+                <div class="plan-card w-100">
+                    <span class="offer-banner">Limited Offer! Extra Data</span>
+                    <h4 class="plan-title mt-2">Mobi-Comm Unlimited Plan</h4>
+                    <div class="d-flex align-items-center">
+                        <span class="price">₹599</span>
+                    </div>
+                    <div class="d-flex justify-content-between mt-2">
+                        <div><strong>3 GB/day</strong><br>data</div>
+                        <div><strong>56 days</strong><br>validity</div>
+                        <button class="buy-btn"
+                            onclick="redirectToPayment('Mobi-Comm Unlimited Plan', 599, '3GB/day')">buy</button>
+                    </div>
+                    <hr>
+                    <ul class="list-unstyled">
+                        <li>✔ Unlimited 5G Data</li>
+                        <li>✔ 100 SMS/day</li>
+                        <li>✔ Weekend Data Rollover...</li>
+                    </ul>
+                    <div class="extra-benefit">get up to 200 GB extra with Mobi-Comm Guarantee</div>
+                </div>
+            </div>
+
+            <!-- Plan 3 -->
+            <div class="col-md-4 d-flex">
+                <div class="plan-card w-100">
+                    <span class="offer-banner">Best Value Pack</span>
+                    <h4 class="plan-title mt-2">Mobi-Comm Super Combo</h4>
+                    <div class="d-flex align-items-center">
+                        <span class="price">₹799</span>
+                    </div>
+                    <div class="d-flex justify-content-between mt-2">
+                        <div><strong>4 GB/day</strong><br>data</div>
+                        <div><strong>84 days</strong><br>validity</div>
+                        <button class="buy-btn"
+                            onclick="redirectToPayment('Mobi-Comm Super Combo', 799, '4GB/day')">buy</button>
+                    </div>
+                    <hr>
+                    <ul class="list-unstyled">
+                        <li>✔ Unlimited 5G Data</li>
+                        <li>✔ Unlimited Calls + 200 SMS/day</li>
+                        <li>✔ Binge All Night + Weekend Data Rollover</li>
+                    </ul>
+                    <div class="extra-benefit">get up to 250 GB extra with Mobi-Comm Guarantee</div>
+                </div>
+            </div>
+            <button class="offers-btn" onclick="location.href='offers.html'" style="margin-top: 15px;">Explore more
+                Offers</button>
+
+        </div>
+    </div>
+
+    <div class="containerr benefits-section" style="margin-top: 100px;">
+        <h2 class="fw-bold" style="color: var(--web);">Enjoy uninterrupted connectivity with our premium network
+            services</h2>
+
+        <div class="row mt-4 justify-content-center">
+            <!-- Card 1 -->
+            <div class="col-md-2 col-sm-6 mb-3">
+                <div class="benefit-card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Unlimited Calls">
+                    <h6>Unlimited</h6>
+                    <p>Calls & Data</p>
+                </div>
+            </div>
+            <!-- Card 5 -->
+            <div class="col-md-2 col-sm-6 mb-3">
+                <div class="benefit-card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1688/1688833.png" alt="Unlimited 5G">
+                    <h6>Unlimited 5G</h6>
+                    <p>Fast & Reliable</p>
+                </div>
+            </div>
+
+
+
+            <!-- Card 2 -->
+            <div class="col-md-2 col-sm-6 mb-3">
+                <div class="benefit-card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/9068/9068622.png" alt="No Cut Off Network">
+                    <h6>No Cut-Off Network</h6>
+                    <p>Stay Connected Always</p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-md-2 col-sm-6 mb-3">
+                <div class="benefit-card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/9426/9426742.png" alt="Network in Hills">
+                    <h6>Network in Hills</h6>
+                    <p>Strong Signal Anywhere</p>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="col-md-2 col-sm-6 mb-3">
+                <div class="benefit-card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1667/1667968.png" alt="No Disturbance">
+                    <h6>No Disturbance</h6>
+                    <p>Clear & Stable Connection</p>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="col-md-2 col-sm-6 mb-3">
+                <div class="benefit-card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/880/880594.png" alt="24x7 Support">
+                    <h6>24 x 7</h6>
+                    <p>Support</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="my-5">
+        <h1 class="text-center mb-4" style="color: var(--web);" id="faq">FAQ</h1>
+        <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Q1. How do I recharge my mobile number?
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        You can recharge your mobile number by entering your 10-digit mobile number on the homepage and
+                        selecting a recharge plan.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Q2. What payment methods are accepted?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        We accept payments via credit/debit cards, net banking, UPI, and mobile wallets.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Q3. How long does it take for the recharge to be processed?
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Recharges are usually processed instantly. However, it may take up to 5 minutes in some cases.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Q4. Can I recharge a number from a different operator?
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes, you can recharge numbers from any operator as long as the number is valid and active.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFive">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        Q5. What should I do if my recharge fails?
+                    </button>
+                </h2>
+                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        If your recharge fails, please check your payment method and try again. If the issue persists,
+                        contact our customer support.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSix">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        Q6. Can I get a refund for a failed recharge?
+                    </button>
+                </h2>
+                <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes, if your recharge fails, the amount will be refunded to your original payment method within
+                        5-7 business days.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSeven">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                        Q7. How do I check my recharge history?
+                    </button>
+                </h2>
+                <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        You can check your recharge history by logging into your account and navigating to the "Recharge
+                        History" section.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingEight">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                        Q8. Are there any discounts or offers available?
+                    </button>
+                </h2>
+                <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes, we frequently offer discounts and special recharge plans. Check the "Trending Plans"
+                        section for the latest offers.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingNine">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                        Q9. Can I recharge for someone else?
+                    </button>
+                </h2>
+                <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes, you can recharge for someone else by entering their mobile number and selecting a plan.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTen">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                        Q10. Is my personal information secure?
+                    </button>
+                </h2>
+                <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes, we take your privacy and security seriously. All your personal information is encrypted and
+                        securely stored.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer mt-5">
+        <div class="row">
+            <div class="col-md-3 footer-section" id="aboutus">
+                <h5>About Company</h5>
+                <p>We are a leading provider of mobile recharge services, offering a seamless and secure platform to
+                    recharge mobile phones with a variety of plans.</p>
+            </div>
+            <div class="col-md-3 footer-section">
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#website">Our Website</a></li>
+                    <li><a href="#plans">Plans</a></li>
+                    <li><a href="#offers">Special Offers</a></li>
+                    <li><a href="#faq">FAQs</a></li>
+                    <li><a href="#aboutus">About Us</a></li>
+                    <li><a href="websitedetails.html#contactus">Help</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 footer-section">
+                <h5>Support</h5>
+                <ul>
+                    <li><a href="#faq">FAQs</a></li>
+                    <li><a href="websitedetails.html#contactus">Contact Us</a></li>
+                    <li><a href="#" onclick="showTerms(); return false;">Terms & Conditions</a></li>
+                    <li><a href="#" onclick="showPolicy(); return false">Policy & Privacy</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 footer-section">
+                <h5>Feedback</h5>
+                <form class="feedback-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea rows="4" placeholder="Your Feedback" required></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <hr style="color: white;">
+        <p>&copy; <span id="year"></span> Mobile Recharge Company. All rights reserved.</p>
+    </footer>
+    <!-- Go to Top Button -->
+    <button id="goTopBtn" onclick="scrollToTop()">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+    <script>
+        function redirectToPayment(planName, price, data, validity) {
+    let url = `payment.html?plan=${encodeURIComponent(planName)}&price=${encodeURIComponent(price)}&data=${encodeURIComponent(data)}&validity=${encodeURIComponent(validity)}`;
+    console.log("Redirecting to:", url); // Debugging
+    window.location.href = url;
+}
+
+        document.getElementById("year").textContent = new Date().getFullYear();
+        // Show the button when scrolling down
+        window.onscroll = function () {
+            let button = document.getElementById("goTopBtn");
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                button.style.display = "flex"; // Show button
+            } else {
+                button.style.display = "none"; // Hide button
+            }
+        };
+
+        // Function to scroll smoothly to the top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        /////////////////////////
+        const slides = [
+            {
+                title: "Wi-Fi like speeds, now on the go.",
+                description: "With Airtel 5G Plus. Up to 30x faster.",
+                buttonText: "Know More",
+                image: "/images/slider-4.jpg",
+                link: "websitedetails.html",
+                reverse: false
+            },
+            {
+                title: "Best Prepaid Recharge Plans",
+                description: "Get the best plans with high-speed data and unlimited calls.",
+                buttonText: "Explore Plans",
+                image: "/images/slider-5.jpg",
+                link: "recharge.html",
+                reverse: true
+            },
+            {
+                title: "Get Cashback on Every Recharge",
+                description: "Enjoy exciting cashback, discounts, and offers on prepaid recharge.",
+                buttonText: "Check Offers",
+                image: "/images/slider-3.jpg",
+                link: "#offers",
+                reverse: false
+            },
+            {
+                title: "24/7 Customer Support",
+                description: "Need help? Contact our support team for any recharge issues.",
+                buttonText: "Get Support",
+                image: "/images/slider-4.jpg",
+                link: "websitedetails.html#contactus",
+                reverse: true
+            }
+        ];
+
+        let currentIndex = 0;
+
+        function changeSlide() {
+            const heroSection = document.getElementById("heroSection");
+            const title = document.getElementById("slideTitle");
+            const description = document.getElementById("slideDescription");
+            const button = document.getElementById("slideButton");
+            const image = document.getElementById("slideImage");
+
+            // Slow fade-out effect
+            heroSection.style.opacity = 0;
+
+            setTimeout(() => {
+                // Change content after fade-out
+                title.textContent = slides[currentIndex].title;
+                description.textContent = slides[currentIndex].description;
+                button.textContent = slides[currentIndex].buttonText;
+                button.setAttribute("data-link", slides[currentIndex].link);
+                image.src = slides[currentIndex].image;
+
+                // Reverse layout (image left or right)
+                heroSection.style.flexDirection = slides[currentIndex].reverse ? "row-reverse" : "row";
+
+                // Slow fade-in effect
+                heroSection.style.opacity = 1;
+
+                // Move to the next slide
+                currentIndex = (currentIndex + 1) % slides.length;
+            }, 1000); // 1 second delay before new content appears
+        }
+
+        // Change slides every 5 seconds
+        setInterval(changeSlide, 5000);
+
+        // Redirect on button click
+        document.getElementById("slideButton").addEventListener("click", function () {
+            window.location.href = this.getAttribute("data-link");
+        });
+        ///////////
+        function calculateAge() {
+            const dob = document.getElementById('dob').value;
+            if (dob) {
+                const birthDate = new Date(dob);
+                const today = new Date();
+                let age = today.getFullYear() - birthDate.getFullYear();
+                const monthDiff = today.getMonth() - birthDate.getMonth();
+                if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                document.getElementById('age').value = age;
+            }
+        }
+
+        document.getElementById('dob').addEventListener('change', calculateAge);
+
+        function saveProfile() {
+            const userName = document.getElementById('userName').value;
+            const dob = document.getElementById('dob').value;
+            const age = document.getElementById('age').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+
+            const profileData = {
+                userName,
+                dob,
+                age,
+                email,
+                phone
+            };
+
+            localStorage.setItem('profileData', JSON.stringify(profileData));
+            alert('Profile saved successfully!');
+            closeModal();
+        }
+
+        function loadProfile() {
+            const profileData = JSON.parse(localStorage.getItem('profileData'));
+            if (profileData) {
+                document.getElementById('userName').value = profileData.userName;
+                document.getElementById('dob').value = profileData.dob;
+                document.getElementById('age').value = profileData.age;
+                document.getElementById('email').value = profileData.email;
+                document.getElementById('phone').value = profileData.phone;
+            }
+        }
+
+        function showProfile() {
+            const profileModal = document.getElementById('profileModal');
+            const modalBackdrop = document.getElementById('modalBackdrop');
+            profileModal.style.display = 'block';
+            modalBackdrop.style.display = 'block';
+            loadProfile();
+        }
+
+        function showPolicy() {
+            const policyModal = document.getElementById('policyModal');
+            const modalBackdrop = document.getElementById('modalBackdrop');
+            policyModal.style.display = 'block';
+            modalBackdrop.style.display = 'block';
+        }
+
+        function showTerms() {
+            const termsModal = document.getElementById('termsModal');
+            const modalBackdrop = document.getElementById('modalBackdrop');
+            termsModal.style.display = 'block';
+            modalBackdrop.style.display = 'block';
+        }
+
+        function closeModal() {
+            const profileModal = document.getElementById('profileModal');
+            const policyModal = document.getElementById('policyModal');
+            const termsModal = document.getElementById('termsModal');
+            const modalBackdrop = document.getElementById('modalBackdrop');
+            profileModal.style.display = 'none';
+            policyModal.style.display = 'none';
+            termsModal.style.display = 'none';
+            modalBackdrop.style.display = 'none';
+        }
+
+        document.getElementById('modalBackdrop').addEventListener('click', closeModal);
+
+        document.getElementById('profileModal').addEventListener('click', function (event) {
+            event.stopPropagation();
+        });
+
+        document.getElementById('policyModal').addEventListener('click', function (event) {
+            event.stopPropagation();
+        });
+
+        document.getElementById('termsModal').addEventListener('click', function (event) {
+            event.stopPropagation();
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/YOUR-KIT-ID.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

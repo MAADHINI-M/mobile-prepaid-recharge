@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Success</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --web: #a91919;
+            --web-dark: #a91919;
+            --web-light: #c92323;
+            --violet: #e67e22;
+            --violet-dark: #d35400;
+            --shadow: rgba(0, 0, 0, 0.15);
+            --bg-light: #f8f9fa;
+            --navbar-height: 60px;
+        }
+
+        *::selection {
+            background: var(--web);
+            color: #fff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            /* background-color: wheat; */
+            background: linear-gradient(135deg, #6dd5fa, #ff758c, #b3ffab);
+            margin-bottom: 100px; /* Space for footer */
+        }
+
+        .navbar {
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 15px var(--shadow);
+            background: linear-gradient(90deg, var(--web), var(--web-dark));
+            height: var(--navbar-height);
+        }
+
+        .navbar-brand {
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 20px;
+        }
+
+        .navbar .navbar-nav .nav-link {
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .navbar .navbar-nav .nav-link:hover {
+            background-color: #b83535;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input[type="text"] {
+            padding: 5px;
+            border: none;
+            border-radius: 50px;
+        }
+
+        .search-bar .btn {
+            margin-left: 10px;
+        }
+
+        .notification-icon,
+        .profile-image {
+            margin-left: 15px;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--web);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .notification-icon i,
+        .profile-image i {
+            font-size: 0.8rem;
+        }
+
+        .profile-dropdown .dropdown-menu {
+            border-top: none;
+            border-radius: 0;
+        }
+
+        .profile-dropdown .dropdown-item {
+            color: var(--web);
+        }
+
+        .profile-dropdown .dropdown-item:hover {
+            background-color: var(--web);
+            color: white;
+            box-shadow: 2px 4px 12px var(--shadow);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin-top: 80px;
+        }
+
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 1040;
+        }
+
+        .modal-content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            z-index: 1050;
+            display: none;
+            width: 90%;
+            max-width: 600px;
+            border: 4px solid var(--web);
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            color: var(--web);
+        }
+
+        .modal-content label {
+            color: var(--web);
+        }
+
+        .modal-content input {
+            border: 1.5px solid var(--web);
+        }
+
+        .btn-reveal,
+        .btn-primary,
+        .btn-success,
+        .btn-secondary {
+            background-color: #ff5722;
+            color: white;
+            border: 2px solid var(--web);
+            border-radius: 50px;
+            padding: 10px 20px;
+            transition: all 0.3s;
+        }
+
+        .btn-reveal:hover,
+        .btn-primary:hover,
+        .btn-success:hover,
+        .btn-secondary:hover {
+            background-color: white;
+            color: #ff5722;
+            font-weight: bold;
+        }
+
+        .card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .card img {
+            height: 50px;
+            width: 50px;
+            margin: 0 auto;
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px; /* Space between table and buttons */
+            margin-bottom: 20px; /* Space before footer */
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 0 10px; /* Adjusted for horizontal spacing */
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        .back-btn {
+            background-color: #008CBA;
+            color: white;
+        }
+
+        .back-btn:hover {
+            color: #4CAF50;
+            background-color: white;
+            border: 2px solid #4CAF50;
+            font-weight: bold;
+        }
+
+        .download-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .download-btn:hover {
+            color: #008CBA;
+            background-color: white;
+            border: 2px solid #008CBA;
+            font-weight: bold;
+        }
+
+        footer {
+            background: linear-gradient(90deg, var(--web), var(--web-dark));
+            color: white;
+            padding: 10px 15px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            box-shadow: 0 -2px 10px var(--shadow);
+            z-index: 10;
+        }
+
+        #goTopBtn {
+            position: fixed;
+            bottom: 55px;
+            right: 20px;
+            background: var(--web);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px var(--shadow);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        #goTopBtn:hover {
+            background: var(--web-dark);
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px var(--shadow);
+        }
+
+        @media (max-width: 768px) {
+            .navbar-nav {
+                text-align: center;
+            }
+
+            .search-bar {
+                margin: 10px 0;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            button {
+                margin: 10px 0; /* Vertical spacing on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#" id="home">
+            <img src="/images/Logo.png" alt="Logo"> Mobi Comm
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="homepage.html#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="websitedetails.html">Website</a></li>
+                <li class="nav-item"><a class="nav-link" href="recharge.html">Plans</a></li>
+                <li class="nav-item"><a class="nav-link" href="homepage.html#ourservices">Our Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="homePage.html#faq">FAQs</a></li>
+                <li class="nav-item"><a class="nav-link" href="homePage.html#aboutus">About Us</a></li>
+            </ul>
+            <div class="search-bar ms-auto d-flex align-items-center">
+                <input type="text" placeholder="Search...">
+                <button class="btn btn-outline-light" type="submit"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="d-flex align-items-center ms-3">
+                <button class="notification-icon"><i class="fas fa-bell"></i></button>
+                <div class="profile-dropdown dropdown ms-2">
+                    <button class="profile-image dropdown-toggle" type="button" id="profileDropdown"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="images/profile.jpg" alt="Profile Image" class="profile-img w-100 h-100">
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                        <li><a class="dropdown-item" href="homePage.html">Home</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showProfile(); return false;">My Profile</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showPolicy(); return false;">Policy & Privacy</a></li>
+                        <li><a class="dropdown-item" href="websitedetails.html#contactdetails">Help</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="login.html">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="modalBackdrop" class="modal-backdrop"></div>
+    <div id="profileModal" class="modal-content">
+        <h2>Profile Form</h2>
+        <form id="profileForm">
+            <div class="mb-3">
+                <label for="userName" class="form-label">User Name</label>
+                <input type="text" class="form-control" id="userName" required>
+            </div>
+            <div class="mb-3">
+                <label for="dob" class="form-label">Date of Birth</label>
+                <input type="date" class="form-control" id="dob" required>
+            </div>
+            <div class="mb-3">
+                <label for="age" class="form-label">Age</label>
+                <input type="number" class="form-control" id="age" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email ID</label>
+                <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" required>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="saveProfile()">Save</button>
+            <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
+        </form>
+    </div>
+
+    <div id="policyModal" class="modal-content">
+        <h2>Policy and Privacy</h2>
+        <p>
+            At our mobile recharge website, we prioritize your privacy and security. We collect and use your information
+            to provide you with the best possible service. Your personal data is protected and used only for the
+            purposes of facilitating transactions and improving user experience.
+        </p>
+        <p>
+            We do not share your information with third parties without your consent. For more details, please refer to
+            our <a href="#" onclick="showTerms(); return false;">Terms of Service</a>.
+        </p>
+        <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
+    </div>
+
+    <div id="termsModal" class="modal-content">
+        <h2>Terms of Services</h2>
+        <p>
+            Welcome to our mobile recharge website. By using our services, you agree to the following terms and
+            conditions:
+        </p>
+        <ul>
+            <li>You must be at least 18 years old to use our services.</li>
+            <li>You agree to provide accurate and complete information when registering.</li>
+            <li>You are responsible for maintaining the confidentiality of your account and password.</li>
+            <li>We reserve the right to modify or discontinue our services at any time without notice.</li>
+            <li>You agree to comply with all applicable laws and regulations.</li>
+        </ul>
+        <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
+    </div>
+
+    <div class="container">
+        <div class="card shadow-sm">
+            <h2 class="text-center text-success">Payment Successful!</h2>
+            <img src="images/tick.png" alt="Payment Success" class="mx-auto d-block">
+            <h3 class="mt-4">Recharge Details</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Plan</th>
+                            <th>Price (₹)</th>
+                            <th>Data (GB)</th>
+                            <th>Validity (Days)</th>
+                            <th>Payment Date</th>
+                            <th>Next Recharge</th>
+                            <th>Payment Mode</th>
+                        </tr>
+                    </thead>
+                    <tbody id="paymentHistory"></tbody>
+                </table>
+            </div>
+            <!-- Buttons placed directly after the table -->
+            <div class="buttons">
+                <button class="back-btn" onclick="goBack()">🔙 Back to Home</button>
+                <button class="download-btn" onclick="downloadPDF()">⬇ Download PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <button id="goTopBtn" onclick="scrollToTop()">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <footer>
+        <p>© <span id="year"></span> Mobile Recharge Company. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.26/jspdf.plugin.autotable.min.js"></script>
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        window.onscroll = function () {
+            const goTopBtn = document.getElementById("goTopBtn");
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                goTopBtn.style.display = "flex";
+            } else {
+                goTopBtn.style.display = "none";
+            }
+        };
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let paymentHistory = JSON.parse(localStorage.getItem('paymentHistory')) || [];
+            let historyTable = document.getElementById('paymentHistory');
+            historyTable.innerHTML = paymentHistory.length === 0
+                ? "<tr><td colspan='7' class='text-center'>No Payment History Available</td></tr>"
+                : paymentHistory.map(entry => `
+                    <tr>
+                        <td>${entry.planName}</td>
+                        <td>₹${entry.price}</td>
+                        <td>${entry.dataLimit}GB</td>
+                        <td>${entry.days} Days</td>
+                        <td>${entry.paymentDate}</td>
+                        <td>${entry.nextRecharge}</td>
+                        <td>${entry.paymentMode}</td>
+                    </tr>
+                `).join('');
+            document.getElementById("year").textContent = new Date().getFullYear();
+        });
+
+        function goBack() {
+            window.location.href = "homePage.html";
+        }
+
+        function downloadPDF() {
+            let paymentHistory = JSON.parse(localStorage.getItem('paymentHistory')) || [];
+            if (paymentHistory.length === 0) {
+                alert("No payment history to download!");
+                return;
+            }
+            const { jsPDF } = window.jspdf;
+            let doc = new jsPDF();
+            doc.setFontSize(16);
+            doc.text("Payment Receipt", 90, 15);
+            doc.setFontSize(12);
+            doc.text("Customer Payment Details", 14, 30);
+            doc.autoTable({
+                startY: 40,
+                head: [["Plan Name", "Price", "Data Limit", "Validity", "Payment Date", "Next Recharge", "Payment Mode"]],
+                body: paymentHistory.map(entry => [
+                    entry.planName,
+                    `₹${entry.price}`,
+                    `${entry.dataLimit}GB`,
+                    `${entry.days} Days`,
+                    entry.paymentDate,
+                    entry.nextRecharge,
+                    entry.paymentMode
+                ]),
+                theme: "grid"
+            });
+            doc.save("Payment_History.pdf");
+        }
+
+        function calculateAge() {
+            const dob = document.getElementById('dob').value;
+            if (dob) {
+                const birthDate = new Date(dob);
+                const today = new Date();
+                let age = today.getFullYear() - birthDate.getFullYear();
+                const monthDiff = today.getMonth() - birthDate.getMonth();
+                if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                document.getElementById('age').value = age;
+            }
+        }
+
+        document.getElementById('dob').addEventListener('change', calculateAge);
+
+        function saveProfile() {
+            const profileData = {
+                userName: document.getElementById('userName').value,
+                dob: document.getElementById('dob').value,
+                age: document.getElementById('age').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value
+            };
+            localStorage.setItem('profileData', JSON.stringify(profileData));
+            alert('Profile saved successfully!');
+            closeModal();
+        }
+
+        function loadProfile() {
+            const profileData = JSON.parse(localStorage.getItem('profileData'));
+            if (profileData) {
+                document.getElementById('userName').value = profileData.userName;
+                document.getElementById('dob').value = profileData.dob;
+                document.getElementById('age').value = profileData.age;
+                document.getElementById('email').value = profileData.email;
+                document.getElementById('phone').value = profileData.phone;
+            }
+        }
+
+        function showProfile() {
+            document.getElementById('profileModal').style.display = 'block';
+            document.getElementById('modalBackdrop').style.display = 'block';
+            loadProfile();
+        }
+
+        function showPolicy() {
+            document.getElementById('policyModal').style.display = 'block';
+            document.getElementById('modalBackdrop').style.display = 'block';
+        }
+
+        function showTerms() {
+            document.getElementById('termsModal').style.display = 'block';
+            document.getElementById('modalBackdrop').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('profileModal').style.display = 'none';
+            document.getElementById('policyModal').style.display = 'none';
+            document.getElementById('termsModal').style.display = 'none';
+            document.getElementById('modalBackdrop').style.display = 'none';
+        }
+
+        document.getElementById('modalBackdrop').addEventListener('click', closeModal);
+        document.querySelectorAll('.modal-content').forEach(modal => {
+            modal.addEventListener('click', e => e.stopPropagation());
+        });
+    </script>
+</body>
+</html>

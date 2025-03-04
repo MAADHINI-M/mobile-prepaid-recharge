@@ -1,0 +1,1649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobi Comm</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --web: #a91919;
+            --web-dark: #a91919;
+            --web-light: #c92323;
+            --violet: #e67e22;
+            --violet-dark: #d35400;
+            --shadow: rgba(0, 0, 0, 0.15);
+            --bg-light: #f8f9fa;
+            --navbar-height: 60px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        *::selection {
+            background: var(--web);
+            color: #fff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            background: linear-gradient(135deg, var(--bg-light), #fff);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar */
+        .navbar {
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 15px var(--shadow);
+            background: linear-gradient(90deg, var(--web), var(--web-dark));
+            height: var(--navbar-height);
+        }
+
+        .navbar-brand {
+            color: white;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .navbar-brand:hover {
+            color: #f0f0f0;
+            transform: scale(1.05);
+        }
+
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 15px;
+            filter: drop-shadow(0 2px 4px var(--shadow));
+        }
+
+        .navbar-nav .nav-link {
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover {
+            background: var(--web-dark);
+            transform: scale(1.05);
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+        }
+
+        .search-bar input[type="text"] {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 50px 0 0 50px;
+            box-shadow: inset 0 1px 3px var(--shadow);
+            font-size: 0.9rem;
+            transition: width 0.3s;
+        }
+
+        .search-bar input[type="text"]:focus {
+            width: 150px;
+        }
+
+        .search-bar .btn {
+            margin-left: 0;
+            padding: 6px 12px;
+            border-radius: 0 50px 50px 0;
+            background: var(--web-dark);
+            color: white;
+            border: none;
+            transition: background 0.3s;
+        }
+
+        .search-bar .btn:hover {
+            background: var(--violet-dark);
+        }
+
+        .notification-icon, .profile-image {
+            margin-left: 15px;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            background: var(--web-dark);
+            color: white;
+            border: 2px solid white;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .notification-icon:hover, .profile-image:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 10px var(--shadow);
+        }
+
+        .ml-auto {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .dropdown-menu {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px var(--shadow);
+            background: #fff;
+            border: none;
+        }
+
+        .dropdown-item {
+            color: var(--web);
+            padding: 8px 15px;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+            background: var(--web);
+            color: white;
+            transform: translateX(5px);
+            box-shadow: 2px 4px 12px var(--shadow);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 100px 80px;
+            background: linear-gradient(120deg, rgba(142, 36, 170, 0.05), rgba(18, 143, 201, 0.05));
+            min-height: 500px;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .text-content {
+            width: 50%;
+            padding: 20px;
+        }
+
+        .text-content h1 {
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--web);
+            text-shadow: 2px 2px 5px var(--shadow);
+        }
+
+        .text-content p {
+            font-size: 18px;
+            color: #555;
+            margin: 15px 0;
+        }
+
+        .btn-customm {
+            padding: 12px 25px;
+            font-size: 16px;
+            background: linear-gradient(90deg, var(--web), var(--web-dark));
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px var(--shadow);
+        }
+
+        .btn-customm:hover {
+            background: linear-gradient(90deg, var(--web-dark), var(--web));
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px var(--shadow);
+        }
+
+        .image-content {
+            width: 50%;
+            text-align: center;
+        }
+
+        .image-content img {
+            width: 85%;
+            max-height: 350px;
+            border-radius: 20px;
+            box-shadow: 5px 5px 20px var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .image-content img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Main Container */
+        .container-fluid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 70vh;
+            margin-top: 120px;
+            background: linear-gradient(135deg, #fff, var(--bg-light));
+            padding: 50px 0;
+        }
+
+        .content-left {
+            padding: 0 80px;
+        }
+
+        .content-left h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--web);
+            margin-bottom: 20px;
+        }
+
+        .content-left p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .button-container {
+            margin-top: 25px;
+        }
+
+        .button-container .btn {
+            margin-right: 15px;
+            padding: 10px 20px;
+            background: linear-gradient(90deg, var(--web), var(--web-dark));
+            color: white;
+            border-radius: 50px;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .button-container .btn:hover {
+            background: linear-gradient(90deg, var(--web-dark), var(--web));
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .image-container img {
+            width: 80%;
+            max-width: 450px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Pricing Plans */
+        .section-title {
+            text-align: center;
+            color: var(--web);
+            font-size: 40px;
+            font-weight: 800;
+            margin: 100px 0 50px;
+            text-shadow: 2px 2px 5px var(--shadow);
+        }
+
+        .right-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        .pricing-card {
+            background: linear-gradient(135deg, #fff, #f9e1ff);
+            width: 220px;
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid var(--violet-dark);
+            box-shadow: 0 4px 12px var(--shadow);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 320px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(142, 36, 170, 0.3);
+        }
+
+        .pricing-header {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--web);
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .price-circle {
+            background: var(--web-dark);
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            box-shadow: 0 4px 10px var(--shadow);
+            border: 3px solid black;
+        }
+
+        .pricing-card ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+            flex-grow: 1;
+            font-size: 14px;
+            color: #444;
+        }
+
+        .pricing-card ul li {
+            margin: 8px 0;
+        }
+
+        .pricing-card ul li i {
+            color: var(--web);
+            margin-right: 5px;
+        }
+
+        .btn-custom {
+            border-radius: 20px;
+            width: 100%;
+            margin-top: auto;
+            background: linear-gradient(90deg, var(--web), var(--web-dark));
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background: linear-gradient(90deg, var(--web-dark), var(--web));
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .plans-btn {
+            width: 160px;
+            height: 40px;
+            color: white;
+            background: linear-gradient(90deg, var(--web), var(--web-dark));
+            border-radius: 20px;
+            border: none;
+            font-size: 16px;
+            margin: 30px auto 0;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .plans-btn:hover {
+            background: linear-gradient(90deg, var(--web-dark), var(--web));
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        /* Offers Section */
+        .containerr {
+            padding: 0 20px;
+        }
+
+        #offers h2 {
+            text-align: center;
+            color: var(--web);
+            font-size: 36px;
+            font-weight: 700;
+            margin-top: 100px;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 5px var(--shadow);
+        }
+
+        .plan-card {
+            background: linear-gradient(135deg, #fff, #e1f5fe);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 12px var(--shadow);
+            border: 2px solid var(--web-dark);
+            max-width: 350px;
+            min-height: 380px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 0 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(18, 143, 201, 0.3);
+        }
+
+        .offer-banner {
+            background: #FFD700;
+            color: #333;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 13px;
+            display: inline-block;
+            box-shadow: 0 2px 5px var(--shadow);
+        }
+
+        .plan-title {
+            color: var(--web);
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        .price {
+            font-size: 26px;
+            font-weight: bold;
+            color: var(--web-dark);
+        }
+
+        .buy-btn {
+            background: linear-gradient(90deg, var(--web), var(--web-dark));
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .buy-btn:hover {
+            background: linear-gradient(90deg, var(--web-dark), var(--web));
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .extra-benefit {
+            background: #e1f5fe;
+            padding: 8px;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-top: auto;
+            color: var(--web-dark);
+        }
+
+        .offers-btn {
+            width: 200px;
+            height: 40px;
+            color: white;
+            background: linear-gradient(90deg, var(--web), var(--web-dark));
+            border-radius: 20px;
+            border: none;
+            font-size: 16px;
+            margin: 20px auto 0;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .offers-btn:hover {
+            background: linear-gradient(90deg, var(--web-dark), var(--web));
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        /* Benefits Section */
+        .benefits-section h2 {
+            text-align: center;
+            color: var(--web);
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 5px var(--shadow);
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(142, 36, 170, 0.2);
+        }
+
+        .benefit-card img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+
+        .benefit-card h6 {
+            color: var(--web);
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .benefit-card p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* FAQ Section */
+        #faq h1 {
+            text-align: center;
+            color: var(--web);
+            font-size: 38px;
+            font-weight: 700;
+            margin: 100px 0 50px;
+            text-shadow: 2px 2px 5px var(--shadow);
+        }
+
+        .accordion {
+            max-width: 900px;
+            margin: 0 auto;
+            border: 2px solid var(--web);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        .accordion-item {
+            border: none;
+        }
+
+        .accordion-button {
+            background: linear-gradient(135deg, #fff, var(--bg-light));
+            color: var(--web);
+            font-weight: 600;
+            padding: 15px 20px;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background: linear-gradient(135deg, var(--web), var(--web-dark));
+            color: white;
+        }
+
+        .accordion-body {
+            background: #f9f9f9;
+            padding: 15px 20px;
+            color: #444;
+        }
+
+        /* Modal Styles */
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 1040;
+        }
+
+        .modal-content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 1050;
+            display: none;
+            width: 90%;
+            max-width: 600px;
+            border: 4px solid var(--web);
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            color: var(--web);
+            font-weight: 700;
+        }
+
+        .modal-content label {
+            color: var(--web);
+            font-weight: 600;
+        }
+
+        .modal-content input {
+            border: 2px solid var(--web);
+            border-radius: 5px;
+            padding: 8px;
+            transition: border-color 0.3s ease;
+        }
+
+        .modal-content input:focus {
+            border-color: var(--web-dark);
+            box-shadow: 0 0 5px rgba(142, 36, 170, 0.5);
+        }
+
+        /* Container styling */
+        .containerr.benefits-section {
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #6dd5fa, #ff758c, #b3ffab);
+            margin-top: 100px;
+            perspective: 1000px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        /* Heading styling */
+        .benefits-section h2 {
+            font-size: 2.8rem;
+            text-align: center;
+            color: var(--web);
+            margin-bottom: 45px;
+            font-weight: 800;
+        }
+
+        /* Card wrapper for flip effect */
+        .benefit-card {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease;
+        }
+
+        .benefit-card:hover {
+            transform: rotateY(180deg);
+        }
+
+        /* Front and back faces */
+        .card-front, .card-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-front {
+            background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+            z-index: 2;
+        }
+
+        .card-back {
+            background: linear-gradient(135deg, var(--web), #ffb6c1);
+            transform: rotateY(180deg);
+            color: #fff;
+        }
+
+        /* Content styling */
+        .card-front img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+
+        .card-front h6 {
+            font-size: 1.1rem;
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .card-front p {
+            font-size: 0.85rem;
+            color: #5d6d7e;
+            margin: 0;
+        }
+
+        .card-back h6 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        .card-back p {
+            font-size: 0.9rem;
+            color: #f0f8ff;
+            margin: 0;
+        }
+
+        /* Footer */
+        footer {
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+            background: linear-gradient(90deg, var(--web), var(--web-dark));
+            box-shadow: 0 -4px 15px var(--shadow);
+            margin-top: 50px;
+        }
+
+        .footer-section h5 {
+            font-weight: 700;
+            margin: 20px 0;
+            color: #fff;
+        }
+
+        .footer-section p, .footer-section ul li a {
+            color: #f0f0f0;
+            font-size: 14px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .footer-section ul li {
+            margin: 10px 0;
+        }
+
+        .footer-section ul li a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .feedback-form input, .feedback-form textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            border: 1px solid var(--violet-dark);
+            border-radius: 5px;
+            background: #fff;
+            transition: border-color 0.3s ease;
+        }
+
+        .feedback-form input:focus, .feedback-form textarea:focus {
+            border-color: var(--web);
+            box-shadow: 0 0 5px rgba(142, 36, 170, 0.5);
+        }
+
+        .feedback-form button {
+            padding: 10px 20px;
+            background: linear-gradient(90deg, var(--web), var(--web-dark));
+            color: white;
+            border-radius: 50px;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .feedback-form button:hover {
+            background: linear-gradient(90deg, var(--web-dark), var(--web));
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        /* Go to Top Button */
+        #goTopBtn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--web, #3498db);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px var(--shadow, rgba(0, 0, 0, 0.2));
+            transition: all 0.3s ease;
+        }
+
+        #goTopBtn:hover {
+            background: var(--web-dark, #2980b9);
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px var(--shadow, rgba(0, 0, 0, 0.3));
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px;
+            }
+
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+
+            .navbar-nav .nav-link {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+
+            .search-bar {
+                margin-left: 0;
+                width: 100%;
+                margin-top: 15px;
+            }
+
+            .search-bar input[type="text"] {
+                width: 70%;
+            }
+
+            .notification-icon, .profile-image {
+                margin-left: 10px;
+            }
+
+            .hero-section {
+                flex-direction: column;
+                padding: 60px 20px;
+                margin-top: 80px;
+            }
+
+            .text-content, .image-content {
+                width: 100%;
+                padding: 15px;
+            }
+
+            .text-content h1 {
+                font-size: 30px;
+                margin-bottom: 15px;
+            }
+
+            .text-content p {
+                margin-bottom: 20px;
+            }
+
+            .image-content img {
+                max-height: 250px;
+                margin: 20px 0;
+            }
+
+            .container-fluid {
+                margin-top: 100px;
+                padding: 40px 15px;
+            }
+
+            .content-left, .image-container {
+                padding: 0 15px;
+            }
+
+            .content-left h1 {
+                margin-bottom: 20px;
+            }
+
+            .button-container {
+                margin-top: 30px;
+            }
+
+            .button-container .btn {
+                margin-bottom: 15px;
+            }
+
+            .right-section {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+                padding: 0 15px;
+            }
+
+            .pricing-card {
+                width: 90%;
+                margin-bottom: 20px;
+            }
+
+            .containerr {
+                padding: 0 15px;
+            }
+
+            #offers h2 {
+                margin-top: 80px;
+                margin-bottom: 30px;
+            }
+
+            .plan-card {
+                max-width: 100%;
+                margin: 15px 0;
+            }
+
+            .offers-btn {
+                margin: 30px auto;
+            }
+
+            .benefits-section {
+                padding: 40px 15px;
+                margin-top: 80px;
+            }
+
+            .benefits-section h2 {
+                margin-bottom: 30px;
+            }
+
+            .benefit-card {
+                margin-bottom: 20px;
+            }
+
+            #faq h1 {
+                margin: 80px 0 40px;
+            }
+
+            .accordion {
+                padding: 10px;
+            }
+
+            footer {
+                padding: 20px 15px;
+            }
+
+            .footer-section {
+                margin-bottom: 20px;
+            }
+
+            .footer-section h5 {
+                margin-bottom: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+
+            .navbar-nav .nav-link {
+                font-size: 0.9rem;
+                padding: 8px;
+            }
+
+            .search-bar input[type="text"] {
+                width: 100px;
+            }
+
+            .text-content h1 {
+                font-size: 24px;
+            }
+
+            .plan-title {
+                font-size: 16px;
+            }
+
+            .price {
+                font-size: 22px;
+            }
+
+            .benefits-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .benefit-card {
+                height: 160px;
+            }
+
+            .card-front img {
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#" id="home">
+            <img src="/images/Logo.png" alt="Logo" id="navbarLogo">
+            <span id="navbarBrand">Mobi Comm</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto" id="navLinks">
+                <!-- Navbar links will be populated dynamically -->
+            </ul>
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+                <button class="btn" type="submit"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="ml-auto">
+                <button class="notification-icon" type="button"><i class="fas fa-bell"></i></button>
+                <div class="profile-dropdown dropdown">
+                    <button class="profile-image dropdown-toggle" type="button" id="profileDropdown"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="/images/profile.jpg" alt="Profile Image" class="profile-img">
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+                        <a class="dropdown-item" href="#" onclick="showProfile(); return false;">My Profile</a>
+                        <a class="dropdown-item" href="#" onclick="showPolicy(); return false;">Policy & Privacy</a>
+                        <a class="dropdown-item" href="websiteDetails.html#contactdetails">Help</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="login.html">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Modal -->
+    <div id="modalBackdrop" class="modal-backdrop"></div>
+    <div id="profileModal" class="modal-content">
+        <h2>Profile Form</h2>
+        <form id="profileForm">
+            <div class="form-group">
+                <label for="userName">User Name</label>
+                <input type="text" class="form-control" id="userName" required>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" class="form-control" id="dob" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" class="form-control" id="age" readonly>
+            </div>
+            <div class="form-group">
+                <label for="email">Email ID</label>
+                <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" required>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="saveProfile()">Save</button>
+            <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
+        </form>
+    </div>
+
+    <div id="policyModal" class="modal-content">
+        <h2>Policy and Privacy</h2>
+        <p>At Mobi Comm, we prioritize your privacy and security. Your personal data is protected and used only for
+            facilitating transactions and improving user experience.</p>
+        <p>We do not share your information with third parties without consent. See our <a href="#"
+                onclick="showTerms(); return false;">Terms of Service</a>.</p>
+        <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
+    </div>
+
+    <div id="termsModal" class="modal-content">
+        <h2>Terms of Services</h2>
+        <p>By using Mobi Comm, you agree to:</p>
+        <ul>
+            <li>Be at least 18 years old.</li>
+            <li>Provide accurate information.</li>
+            <li>Maintain account confidentiality.</li>
+            <li>Comply with applicable laws.</li>
+        </ul>
+        <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="heroSection" class="hero-section">
+        <div class="text-content">
+            <h1 id="slideTitle">Wi-Fi like speeds, now on the go.</h1>
+            <p id="slideDescription">With Mobi Comm 5G Plus. Up to 30x faster.</p>
+            <button id="slideButton" class="btn-customm">Know More</button>
+        </div>
+        <div class="image-content">
+            <img id="slideImage" src="/images/wifi.jpg" alt="Slide Image">
+        </div>
+    </section>
+
+    <!-- Main Container -->
+    <div class="container-fluid" id="website">
+        <div class="row">
+            <div class="col-md-6 content-left">
+                <h1>Welcome to Mobi Comm</h1>
+                <p>Your one-stop destination for seamless mobile recharges. Enjoy fast, secure top-ups with a variety of
+                    plans tailored to your needs.</p>
+                <div class="button-container">
+                    <a class="btn btn-primary" href="#plans">Get Started</a>
+                    <a class="btn btn-secondary" href="websitedetails.html">Learn More</a>
+                </div>
+            </div>
+            <div class="col-md-6 image-container">
+                <img src="images/mobilerecharge.jpg" alt="Placeholder Image">
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing Plans -->
+    <div class="section-title" id="plans">Recharge Plans</div>
+    <div class="right-section" id="plansContainer">
+        <!-- Plans will be populated dynamically -->
+    </div>
+    <button class="plans-btn" onclick="location.href='recharge.html'">Explore More Plans</button>
+
+    <!-- Offers Section -->
+    <div class="containerr mt-4" id="offers">
+        <h2>Special Offers</h2>
+        <div class="row justify-content-center" id="offersContainer">
+            <!-- Offers will be populated dynamically -->
+        </div>
+        <button class="offers-btn" onclick="location.href='recharge.html#festive'">Explore More Offers</button>
+    </div>
+
+    <div class="containerr benefits-section" style="margin-top: 100px;" id="ourservices">
+        <h2 class="fw-bold" style="color: black;">Enjoy uninterrupted connectivity with our premium network services</h2>
+        <div class="row mt-4 justify-content-center">
+            <!-- Card 1 -->
+            <div class="col-md-2 col-sm-6 mb-3">
+                <div class="benefit-card">
+                    <div class="card-front">
+                        <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Unlimited Calls">
+                        <h6>Unlimited</h6>
+                        <p>Calls & Data</p>
+                    </div>
+                    <div class="card-back">
+                        <h6>Unlimited Access</h6>
+                        <p>Anytime, Anywhere</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="col-md-2 col-sm-6 mb-3">
+                <div class="benefit-card">
+                    <div class="card-front">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1688/1688833.png" alt="Unlimited 5G">
+                        <h6>Unlimited 5G</h6>
+                        <p>Fast & Reliable</p>
+                    </div>
+                    <div class="card-back">
+                        <h6>Blazing Speed</h6>
+                        <p>Next-Gen Tech</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="col-md-2 col-sm-6 mb-3">
+                <div class="benefit-card">
+                    <div class="card-front">
+                        <img src="https://cdn-icons-png.flaticon.com/512/9068/9068622.png" alt="No Cut Off Network">
+                        <h6>No Cut-Off Network</h6>
+                        <p>Stay Connected Always</p>
+                    </div>
+                    <div class="card-back">
+                        <h6>Seamless</h6>
+                        <p>No Drops Ever</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="col-md-2 col-sm-6 mb-3">
+                <div class="benefit-card">
+                    <div class="card-front">
+                        <img src="https://cdn-icons-png.flaticon.com/512/9426/9426742.png" alt="Network in Hills">
+                        <h6>Network in Hills</h6>
+                        <p>Strong Signal Anywhere</p>
+                    </div>
+                    <div class="card-back">
+                        <h6>Rugged Reach</h6>
+                        <p>Mountains Covered</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 5 -->
+            <div class="col-md-2 col-sm-6 mb-3">
+                <div class="benefit-card">
+                    <div class="card-front">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1667/1667968.png" alt="No Disturbance">
+                        <h6>No Disturbance</h6>
+                        <p>Clear & Stable Connection</p>
+                    </div>
+                    <div class="card-back">
+                        <h6>Crystal Clear</h6>
+                        <p>Zero Noise</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 6 -->
+            <div class="col-md-2 col-sm-6 mb-3">
+                <div class="benefit-card">
+                    <div class="card-front">
+                        <img src="https://cdn-icons-png.flaticon.com/512/880/880594.png" alt="24x7 Support">
+                        <h6>24 x 7</h6>
+                        <p>Support</p>
+                    </div>
+                    <div class="card-back">
+                        <h6>Always Here</h6>
+                        <p>Round-the-Clock</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="my-5">
+        <h1 class="text-center mb-4" style="color: var(--web);" id="faq">FAQ</h1>
+        <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Q1. How do I recharge my mobile number?
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        You can recharge your mobile number by entering your 10-digit mobile number on the homepage and selecting a recharge plan.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Q2. What payment methods are accepted?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        We accept payments via credit/debit cards, net banking, UPI, and mobile wallets.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Q3. How long does it take for the recharge to be processed?
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Recharges are usually processed instantly. However, it may take up to 5 minutes in some cases.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Q4. Can I recharge a number from a different operator?
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes, you can recharge numbers from any operator as long as the number is valid and active.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFive">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        Q5. What should I do if my recharge fails?
+                    </button>
+                </h2>
+                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        If your recharge fails, please check your payment method and try again. If the issue persists, contact our customer support.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSix">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        Q6. Can I get a refund for a failed recharge?
+                    </button>
+                </h2>
+                <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes, if your recharge fails, the amount will be refunded to your original payment method within 5-7 business days.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSeven">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                        Q7. How do I check my recharge history?
+                    </button>
+                </h2>
+                <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        You can check your recharge history by logging into your account and navigating to the "Recharge History" section.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingEight">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                        Q8. Are there any discounts or offers available?
+                    </button>
+                </h2>
+                <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes, we frequently offer discounts and special recharge plans. Check the "Trending Plans" section for the latest offers.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingNine">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                        Q9. Can I recharge for someone else?
+                    </button>
+                </h2>
+                <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes, you can recharge for someone else by entering their mobile number and selecting a plan.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTen">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                        Q10. Is my personal information secure?
+                    </button>
+                </h2>
+                <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes, we take your privacy and security seriously. All your personal information is encrypted and securely stored.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-md-3 footer-section" id="aboutus">
+                <h5>About Company</h5>
+                <p>Leading provider of mobile recharge services with a secure, seamless platform.</p>
+            </div>
+            <div class="col-md-3 footer-section">
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#website">Our Website</a></li>
+                    <li><a href="#plans">Plans</a></li>
+                    <li><a href="#offers">Special Offers</a></li>
+                    <li><a href="#ourservices">Our Services</a></li>
+                    <li><a href="#faq">FAQs</a></li>
+                    <li><a href="#aboutus">About Us</a></li>
+                    <li><a href="websitedetails.html#contactus">Help</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 footer-section">
+                <h5>Support</h5>
+                <ul>
+                    <li><a href="#faq">FAQs</a></li>
+                    <li><a href="websitedetails.html#contactus">Contact Us</a></li>
+                    <li><a href="#" onclick="showTerms(); return false;">Terms & Conditions</a></li>
+                    <li><a href="#" onclick="showPolicy(); return false;">Policy & Privacy</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 footer-section">
+                <h5>Feedback</h5>
+                <form class="feedback-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea rows="3" placeholder="Your Feedback" required></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <hr style="border-color: rgba(255, 255, 255, 0.3);">
+        <p>© <span id="year"></span> Mobi Comm. All rights reserved.</p>
+    </footer>
+
+    <!-- Go to Top Button -->
+    <button id="goTopBtn" onclick="scrollToTop()">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        window.onscroll = function () {
+            const goTopBtn = document.getElementById("goTopBtn");
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                goTopBtn.style.display = "flex";
+            } else {
+                goTopBtn.style.display = "none";
+            }
+        };
+
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        async function fetchData(endpoint) {
+            try {
+                const response = await fetch(`http://localhost:3000/${endpoint}`, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                return await response.json();
+            } catch (error) {
+                console.error(`Error fetching ${endpoint}:`, error);
+                return null;
+            }
+        }
+
+        async function loadNavbar() {
+            const navbarData = await fetchData("navbar");
+            if (navbarData) {
+                document.getElementById("navbarLogo").src = navbarData.brand.logo;
+                document.getElementById("navbarBrand").textContent = navbarData.brand.text;
+                const navList = document.getElementById("navLinks");
+                navList.innerHTML = navbarData.links.map(link => `
+                    <li class="nav-item"><a class="nav-link" href="${link.href}" style="color: white;">${link.text}</a></li>
+                `).join('');
+            }
+        }
+
+        const slides = [
+            { title: "Wi-Fi like speeds, now on the go.", description: "With Mobi Comm 5G Plus. Up to 30x faster.", buttonText: "Know More", image: "/images/5g.jpg", link: "websiteDetails.html", reverse: false },
+            { title: "Best Prepaid Recharge Plans", description: "High-speed data and unlimited calls.", buttonText: "Explore Plans", image: "/images/world1.jpg", link: "recharge.html", reverse: true },
+            { title: "Cashback on Every Recharge", description: "Exciting offers on prepaid recharges.", buttonText: "Check Offers", image: "/images/offer.jpg", link: "#offers", reverse: false },
+            { title: "24/7 Customer Support", description: "Support for all recharge issues.", buttonText: "Get Support", image: "/images/customer.jpg", link: "websiteDetails.html#contactdetails", reverse: true }
+        ];
+
+        let currentIndex = 0;
+
+        function changeSlide() {
+            const heroSection = document.getElementById("heroSection");
+            const title = document.getElementById("slideTitle");
+            const description = document.getElementById("slideDescription");
+            const button = document.getElementById("slideButton");
+            const image = document.getElementById("slideImage");
+
+            heroSection.style.opacity = 0;
+
+            setTimeout(() => {
+                title.textContent = slides[currentIndex].title;
+                description.textContent = slides[currentIndex].description;
+                button.textContent = slides[currentIndex].buttonText;
+                button.setAttribute("data-link", slides[currentIndex].link);
+                image.src = slides[currentIndex].image;
+                heroSection.style.flexDirection = slides[currentIndex].reverse ? "row-reverse" : "row";
+                heroSection.style.opacity = 1;
+                currentIndex = (currentIndex + 1) % slides.length;
+            }, 1000);
+        }
+
+        setInterval(changeSlide, 5000);
+
+        document.getElementById("slideButton").addEventListener("click", function () {
+            window.location.href = this.getAttribute("data-link");
+        });
+
+        async function loadPlans() {
+            const plansData = await fetchData("recommendedPlans");
+            if (plansData) {
+                const plansContainer = document.getElementById("plansContainer");
+                plansContainer.innerHTML = plansData.map(plan => `
+                    <div class="pricing-card">
+                        <div class="pricing-header">${plan.name}</div>
+                        <div class="price-circle">${plan.price}</div>
+                        <ul>
+                            <li><i class="fas fa-calendar-day"></i> Validity: ${plan.validity}</li>
+                            <li><i class="fas fa-wifi"></i> ${plan.data}</li>
+                            ${plan.features.map(feature => `<li><i class="fas ${feature.includes('Unlimited') ? 'fa-infinity' : 'fa-moon'}"></i> ${feature}</li>`).join('')}
+                        </ul>
+                        <button class="btn btn-custom" onclick="location.href='recharge.html'">Check Now</button>
+                    </div>
+                `).join('');
+            }
+        }
+
+        async function loadOffers() {
+            const offersData = await fetchData("offers");
+            if (offersData) {
+                const offersContainer = document.getElementById("offersContainer");
+                offersContainer.innerHTML = offersData.map(offer => `
+                    <div class="col-md-4 d-flex">
+                        <div class="plan-card w-100">
+                            <span class="offer-banner">${offer.banner}</span>
+                            <h4 class="plan-title mt-2">${offer.name}</h4>
+                            <div class="d-flex align-items-center">
+                                <span class="price">${offer.price}</span>
+                            </div>
+                            <div class="d-flex justify-content-between mt-2">
+                                <div><strong>${offer.data}</strong><br>Data</div>
+                                <div><strong>${offer.validity}</strong><br>Validity</div>
+                                <button class="buy-btn" onclick="redirectToPayment('${offer.name}', ${offer.price.replace('₹', '')}, '${offer.data}', '${offer.validity}')">Buy</button>
+                            </div>
+                            <hr>
+                            <ul class="list-unstyled">
+                                ${offer.benefits.map(benefit => `<li>✔ ${benefit}</li>`).join('')}
+                            </ul>
+                            <div class="extra-benefit">${offer.extraBenefit}</div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function redirectToPayment(planName, price, data, days) {
+            let url = `payment.html?plan=${encodeURIComponent(planName)}&price=${encodeURIComponent(price)}&data=${encodeURIComponent(data)}&days=${encodeURIComponent(days)}`;
+            console.log("Redirecting to:", url);
+            window.location.href = url;
+        }
+
+        function calculateAge() {
+            const dob = document.getElementById('dob').value;
+            if (dob) {
+                const birthDate = new Date(dob);
+                const today = new Date();
+                let age = today.getFullYear() - birthDate.getFullYear();
+                const monthDiff = today.getMonth() - birthDate.getMonth();
+                if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                document.getElementById('age').value = age;
+            }
+        }
+
+        document.getElementById('dob').addEventListener('change', calculateAge);
+
+        function saveProfile() {
+            const userName = document.getElementById('userName').value;
+            const dob = document.getElementById('dob').value;
+            const age = document.getElementById('age').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+
+            const profileData = { userName, dob, age, email, phone };
+            localStorage.setItem('profileData', JSON.stringify(profileData));
+            alert('Profile saved successfully!');
+            closeModal();
+        }
+
+        function loadProfile() {
+            const profileData = JSON.parse(localStorage.getItem('profileData'));
+            if (profileData) {
+                document.getElementById('userName').value = profileData.userName;
+                document.getElementById('dob').value = profileData.dob;
+                document.getElementById('age').value = profileData.age;
+                document.getElementById('email').value = profileData.email;
+                document.getElementById('phone').value = profileData.phone;
+            }
+        }
+
+        function showProfile() {
+            const profileModal = document.getElementById('profileModal');
+            const modalBackdrop = document.getElementById('modalBackdrop');
+            profileModal.style.display = 'block';
+            modalBackdrop.style.display = 'block';
+            loadProfile();
+        }
+
+        function showPolicy() {
+            const policyModal = document.getElementById('policyModal');
+            const modalBackdrop = document.getElementById('modalBackdrop');
+            policyModal.style.display = 'block';
+            modalBackdrop.style.display = 'block';
+        }
+
+        function showTerms() {
+            const termsModal = document.getElementById('termsModal');
+            const modalBackdrop = document.getElementById('modalBackdrop');
+            termsModal.style.display = 'block';
+            modalBackdrop.style.display = 'block';
+        }
+
+        function closeModal() {
+            const profileModal = document.getElementById('profileModal');
+            const policyModal = document.getElementById('policyModal');
+            const termsModal = document.getElementById('termsModal');
+            const modalBackdrop = document.getElementById('modalBackdrop');
+            profileModal.style.display = 'none';
+            policyModal.style.display = 'none';
+            termsModal.style.display = 'none';
+            modalBackdrop.style.display = 'none';
+        }
+
+        document.getElementById('modalBackdrop').addEventListener('click', closeModal);
+        document.getElementById('profileModal').addEventListener('click', function (event) { event.stopPropagation(); });
+        document.getElementById('policyModal').addEventListener('click', function (event) { event.stopPropagation(); });
+        document.getElementById('termsModal').addEventListener('click', function (event) { event.stopPropagation(); });
+
+        window.onload = async function () {
+            await Promise.all([
+                loadNavbar(),
+                loadPlans(),
+                loadOffers()
+            ]);
+        };
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

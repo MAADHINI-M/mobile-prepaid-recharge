@@ -9,11 +9,16 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --web: #a91919; /* Amber orange - Warm and approachable */
-            --web-dark: #8f0d0d; /* Darker amber - Strong and authoritative */
-            --web-light: #c92323; /* Red - Sharp contrast */
-            --violet: #c20d79; /* Matches --web */
-            --violet-dark: #d35400; /* Matches --web-dark */
+            --web:  #a91919;
+            /* Amber orange - Warm and approachable */
+            --web-dark: #a91919;
+            /* Darker amber - Strong and authoritative */
+            --web-light: #c92323;
+            /* Red (unchanged) - Sharp contrast */
+            --violet: #e67e22;
+            /* Matches --web */
+            --violet-dark: #d35400;
+            /* Matches --web-dark */
             --shadow: rgba(0, 0, 0, 0.15);
             --bg-light: #f8f9fa;
             --navbar-height: 60px;
@@ -32,91 +37,81 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            padding-top: var(--navbar-height); /* Ensure content starts below navbar */
         }
 
-        /* Navbar */
+        /* Assuming a navbar exists with height 60px */
         .navbar {
+            box-shadow: 0 4px 15px var(--shadow);
             background: linear-gradient(90deg, var(--web), var(--web-dark));
-            padding: 0.75rem 1rem;
+            height: 60px;
+            /* Example height */
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
             z-index: 1000;
-            box-shadow: 0 2px 10px var(--shadow);
-            height: var(--navbar-height);
         }
 
         .navbar-brand {
             color: white;
-            font-weight: 700;
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-
-        .navbar-brand:hover {
-            color: #f5f5f5;
-        }
-
-        .navbar-nav {
             display: flex;
             align-items: center;
-            margin-left: 1rem;
         }
 
-        .navbar-nav .nav-link {
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 20px;
+        }
+
+        .navbar .navbar-nav {
+            flex-direction: row;
+            justify-content: flex-end;
+        }
+
+        .navbar .navbar-nav .nav-link {
             color: white;
-            padding: 0.5rem 1rem;
+            padding: 10px;
             border-radius: 5px;
-            transition: background 0.3s, transform 0.3s;
-            font-size: 1rem;
         }
 
-        .navbar-nav .nav-link:hover {
-            background: var(--web-light);
+        .navbar .navbar-nav .nav-link:hover {
+            background: var(--web);
             transform: scale(1.05);
         }
 
         .search-bar {
             display: flex;
             align-items: center;
-            margin-left: 1.5rem;
+            margin-left: 15px;
         }
 
         .search-bar input[type="text"] {
-            padding: 0.5rem 0.75rem;
+            padding: 6px 10px;
             border: none;
             border-radius: 50px 0 0 50px;
             box-shadow: inset 0 1px 3px var(--shadow);
-            width: 150px;
+            width: 120px;
             font-size: 0.9rem;
-            transition: width 0.3s;
-        }
-
-        .search-bar input[type="text"]:focus {
-            width: 180px;
         }
 
         .search-bar .btn {
             border-radius: 0 50px 50px 0;
+            margin: 0;
             background: var(--web-light);
             color: white;
-            padding: 0.5rem 0.75rem;
+            padding: 6px 10px;
             border: none;
         }
 
         .notification-icon {
-            margin-left: 1rem;
+            margin-left: 10px;
             border-radius: 50%;
-            width: 32px;
-            height: 32px;
+            width: 30px;
+            height: 30px;
             background: var(--web-light);
             color: white;
             border: 2px solid white;
             transition: transform 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .notification-icon:hover {
@@ -124,15 +119,17 @@
         }
 
         .profile-dropdown {
-            margin-left: 1rem;
+            margin-left: 10px;
+            position: relative;
         }
 
         .profile-image {
             border-radius: 50%;
-            width: 32px;
-            height: 32px;
+            width: 30px;
+            height: 30px;
             background: var(--web-light);
             border: 2px solid white;
+            padding: 0;
             transition: transform 0.3s;
         }
 
@@ -150,15 +147,15 @@
         .dropdown-menu {
             border-radius: 8px;
             box-shadow: 0 4px 15px var(--shadow);
-            margin-top: 0.5rem;
-            min-width: 180px;
+            margin-top: 5px;
+            min-width: 160px;
         }
 
         .dropdown-item {
             color: var(--web);
-            padding: 0.5rem 1rem;
+            padding: 6px 12px;
             transition: all 0.3s;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .dropdown-item:hover {
@@ -167,25 +164,22 @@
             transform: translateX(5px);
         }
 
-        /* Payment Container */
         .payment-container {
             background: white;
             border-radius: 15px;
             box-shadow: 0 5px 20px var(--shadow);
-            padding: 2rem;
-            margin: 2rem auto;
-            max-width: 900px;
-            min-height: calc(100vh - var(--navbar-height) - 50px - 4rem); /* Adjust for navbar and footer */
+            padding: 63px;
+            margin-top: 0;
         }
 
         /* Plan Details */
         .plan-details {
-            padding: 1.5rem;
+            padding: 15px;
             background: linear-gradient(135deg, #f5f5f5, #eceff1);
             border-radius: 10px;
             box-shadow: 0 2px 10px var(--shadow);
-            transition: transform 0.3s;
             height: 100%;
+            transition: transform 0.3s;
         }
 
         .plan-details:hover {
@@ -194,48 +188,37 @@
 
         .plan-details h3 {
             color: var(--violet);
-            font-size: 1.5rem;
-            margin-bottom: 1.25rem;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
             text-align: center;
             font-weight: 700;
         }
 
         .plan-info {
             background: white;
-            padding: 1rem;
+            padding: 10px;
             border-radius: 8px;
             box-shadow: 0 1px 5px var(--shadow);
-            border-left: 4px solid var(--violet);
-            font-size: 1rem;
-            line-height: 1.6;
+            border-left: 3px solid var(--violet);
+            font-size: 0.9rem;
         }
 
         .plan-info strong {
             color: var(--violet-dark);
-            display: inline-block;
-            width: 80px; /* Fixed width for alignment */
         }
 
         /* Payment Methods */
         .payment-methods {
-            margin-top: 1.5rem;
-        }
-
-        .payment-methods h4 {
-            color: var(--violet);
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            text-align: center;
-            font-weight: 600;
+            margin-top: 15px;
         }
 
         .payment-method {
             display: flex;
             align-items: center;
-            padding: 0.75rem 1rem;
+            padding: 10px;
             border: 1px solid #ddd;
             border-radius: 8px;
-            margin-bottom: 0.75rem;
+            margin-bottom: 10px;
             cursor: pointer;
             background: linear-gradient(135deg, #fff, #f9f9f9);
             transition: all 0.3s ease;
@@ -273,15 +256,15 @@
         }
 
         .payment-method img {
-            width: 32px;
-            height: 32px;
-            margin-right: 1rem;
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
             filter: drop-shadow(0 1px 2px var(--shadow));
             z-index: 1;
         }
 
         .payment-method span {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 500;
             color: #333;
             z-index: 1;
@@ -289,13 +272,13 @@
 
         /* Payment Form */
         .payment-form {
-            padding: 1.5rem;
+            padding: 15px;
             background: linear-gradient(135deg, #fff8e1, #fffde7);
             border: 2px solid var(--violet);
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(142, 36, 170, 0.1);
-            transition: transform 0.3s;
             height: 100%;
+            transition: transform 0.3s;
         }
 
         .payment-form:hover {
@@ -304,34 +287,45 @@
 
         .payment-form h3 {
             color: var(--violet);
-            font-size: 1.5rem;
-            margin-bottom: 1.25rem;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
             text-align: center;
             font-weight: 700;
         }
 
         .form-group {
             position: relative;
-            margin-bottom: 1.5rem;
+            margin-bottom: 15px;
         }
 
         .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--violet);
-            font-size: 1rem;
+            position: absolute;
+            top: -15px;
+            left: 10px;
+            background: var(--violet);
+            color: white;
+            padding: 2px 6px;
+            font-size: 0.75rem;
+            border-radius: 3px;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input {
+            margin-top: 50px;
         }
 
         .form-control {
             border: 1px solid var(--violet);
             border-radius: 8px;
-            padding: 0.75rem 1rem;
-            font-size: 1rem;
+            padding: 8px 10px;
+            font-size: 0.9rem;
             background: #fff;
             box-shadow: inset 0 1px 3px var(--shadow);
             transition: all 0.3s ease;
-            width: 100%;
-            height: 40px;
+            z-index: 1;
+            height: 36px;
+            margin-top: 10px;
         }
 
         .form-control:focus {
@@ -345,13 +339,12 @@
             color: white;
             border: none;
             border-radius: 50px;
-            padding: 0.75rem 1.5rem;
+            margin-top: 15px;
+            padding: 8px 15px;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
             box-shadow: 0 2px 10px rgba(142, 36, 170, 0.3);
-            width: 100%;
-            margin-top: 1rem;
         }
 
         .btn:hover {
@@ -364,7 +357,7 @@
         footer {
             background: linear-gradient(90deg, var(--web), var(--web-dark));
             color: white;
-            padding: 0.75rem 1rem;
+            padding: 10px 15px;
             text-align: center;
             position: fixed;
             bottom: 0;
@@ -378,23 +371,16 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .navbar {
-                padding: 0.5rem 0.75rem;
+                padding: 8px 10px;
             }
 
             .navbar-nav {
-                margin-top: 0.5rem;
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .navbar-nav .nav-link {
-                padding: 0.5rem 0.75rem;
+                margin-top: 10px;
             }
 
             .search-bar {
-                margin: 0.5rem 0;
+                margin: 10px 0;
                 width: 100%;
-                justify-content: center;
             }
 
             .search-bar input[type="text"] {
@@ -404,71 +390,59 @@
             .ml-auto {
                 justify-content: space-between;
                 width: 100%;
-                margin-top: 0.5rem;
             }
 
-            .payment-container {
-                margin: 1rem;
-                padding: 1.5rem;
+            .container {
+                padding-top: calc(var(--navbar-height) + 10px);
+                padding-bottom: 50px;
+                padding-left: 10px;
+                padding-right: 10px;
             }
 
             .plan-details,
             .payment-form {
-                margin-bottom: 1.5rem;
-            }
-
-            .plan-details h3,
-            .payment-form h3 {
-                font-size: 1.25rem;
+                margin-bottom: 20px;
+                height: auto;
             }
 
             .payment-method {
-                padding: 0.5rem 0.75rem;
+                padding: 8px;
             }
 
             .payment-method img {
-                width: 28px;
-                height: 28px;
+                width: 25px;
+                height: 25px;
             }
         }
 
         @media (max-width: 576px) {
             .navbar-brand {
-                font-size: 1.25rem;
+                font-size: 1.1rem;
             }
 
             .navbar-nav .nav-link {
-                font-size: 0.9rem;
-                padding: 0.4rem 0.6rem;
-            }
-
-            .search-bar input[type="text"] {
-                width: 60%;
-                font-size: 0.85rem;
+                font-size: 0.8rem;
+                padding: 5px 8px;
             }
 
             .plan-details h3,
             .payment-form h3 {
-                font-size: 1.1rem;
-            }
-
-            .plan-info {
-                font-size: 0.9rem;
+                font-size: 1rem;
             }
 
             .payment-method span {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
             }
 
             .form-control {
-                padding: 0.6rem 0.8rem;
-                font-size: 0.9rem;
-                height: 36px;
+                padding: 6px 8px;
+                font-size: 0.8rem;
+                height: 32px;
             }
 
             .btn {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.9rem;
+                padding: 6px 12px;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -482,35 +456,9 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item "><a class="nav-link" href="homePage.html#home">Home</a></li>
-                <li class="nav-item "><a class="nav-link" href="websitedetails.html">Website</a></li>
-                <li class="nav-item "><a class="nav-link" href="recharge.html">Plans</a></li>
-                <li class="nav-item "><a class="nav-link" href="homepage.html#ourservices">Our Services</a></li>
-                <li class="nav-item "><a class="nav-link" href="homePage.html#faq">FAQs</a></li>
-                <li class="nav-item "><a class="nav-link" href="homePage.html#aboutus">About Us</a></li>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active"><a class="nav-link" href="login.html">Back to login</a></li>
             </ul>
-            <div class="ml-auto d-flex align-items-center">
-                <div class="search-bar d-flex align-items-center">
-                    <input type="text" placeholder="Search...">
-                    <button class="btn" type="submit"><i class="fas fa-search"></i></button>
-                </div>
-                <button class="notification-icon" type="button"><i class="fas fa-bell"></i></button>
-                <div class="profile-dropdown dropdown">
-                    <button class="profile-image dropdown-toggle" type="button" id="profileDropdown"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="/images/profile.jpg" alt="Profile Image" class="profile-img">
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item" href="homePage.html">Home</a>
-                        <a class="dropdown-item" href="#">My Profile</a>
-                        <a class="dropdown-item" href="#">Policy & Privacy</a>
-                        <a class="dropdown-item" href="websitedetails.html#contactdetails">Help</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="login.html">Logout</a>
-                    </div>
-                </div>
-            </div>
         </div>
     </nav>
 
@@ -526,7 +474,7 @@
                         <strong>Data:</strong> <span id="selected-data">0GB/Day</span><br>
                         <strong>Validity:</strong> <span id="selected-days">0 Days</span>
                     </div>
-                    <h4>Choose Payment Method</h4>
+                    <h4 style="margin-top: 15px;">Choose Payment Method</h4>
                     <div class="payment-methods">
                         <div class="payment-method" data-method="credit" onclick="selectPaymentMethod('credit')">
                             <img src="https://cdn-icons-png.flaticon.com/512/2694/2694117.png" alt="Credit Card">
@@ -556,7 +504,8 @@
                         <div id="cardDetails">
                             <div class="form-group">
                                 <label for="cardNumber" class="form-label">Card Number</label>
-                                <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456" required>
+                                <input type="text" class="form-control" id="cardNumber"
+                                    placeholder="1234 5678 9012 3456" required>
                             </div>
                             <div class="form-group">
                                 <label for="expiryDate" class="form-label">Expiry Date</label>
@@ -576,22 +525,26 @@
                         <div id="bankDetails" style="display: none;">
                             <div class="form-group">
                                 <label for="accountNumber" class="form-label">Account Number</label>
-                                <input type="text" class="form-control" id="accountNumber" placeholder="Enter Account Number" required>
+                                <input type="text" class="form-control" id="accountNumber"
+                                    placeholder="Enter Account Number" required>
                             </div>
                             <div class="form-group">
                                 <label for="ifscCode" class="form-label">IFSC Code</label>
-                                <input type="text" class="form-control" id="ifscCode" placeholder="Enter IFSC Code" required>
+                                <input type="text" class="form-control" id="ifscCode" placeholder="Enter IFSC Code"
+                                    required>
                             </div>
                             <div class="form-group">
                                 <label for="accountHolder" class="form-label">Account Holder Name</label>
-                                <input type="text" class="form-control" id="accountHolder" placeholder="Enter Account Holder Name" required>
+                                <input type="text" class="form-control" id="accountHolder"
+                                    placeholder="Enter Account Holder Name" required>
                             </div>
                             <div class="form-group">
                                 <label for="branch" class="form-label">Branch</label>
-                                <input type="text" class="form-control" id="branch" placeholder="Enter Branch Name" required>
+                                <input type="text" class="form-control" id="branch" placeholder="Enter Branch Name"
+                                    required>
                             </div>
                         </div>
-                        <button type="submit" class="btn">Pay Now</button>
+                        <button type="submit" class="btn w-100">Pay Now</button>
                     </form>
                 </div>
             </div>
@@ -606,43 +559,34 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        // Make selectedMethod global
-        let selectedMethod = 'credit';
-
-        // Set the current year in the footer
         document.getElementById("year").textContent = new Date().getFullYear();
 
         document.addEventListener("DOMContentLoaded", function () {
-            // Function to get query parameters from URL
             function getQueryParam(param) {
                 const urlParams = new URLSearchParams(window.location.search);
                 return urlParams.get(param);
             }
 
-            // Get plan details from URL or set default values
             const planName = getQueryParam('plan') || "N/A";
             const price = getQueryParam('price') || "0";
             const dataLimit = getQueryParam('data') || "0";
             const days = getQueryParam('days') || "0";
 
-            // Display plan details
             document.getElementById('selected-plan').innerText = planName;
             document.getElementById('selected-price').innerText = `₹${price}`;
             document.getElementById('selected-data').innerText = `${dataLimit}GB/Day`;
             document.getElementById('selected-days').innerText = `${days} Days`;
 
-            // Handle form submission
+            let selectedMethod = 'credit';
+            selectPaymentMethod(selectedMethod);
+
             document.getElementById('paymentForm').addEventListener('submit', function (event) {
                 event.preventDefault();
 
-                console.log("Form submitted! Selected method:", selectedMethod);
-
-                // Prepare payment details
                 let paymentDetails = { planName, price, dataLimit, days, paymentMode: selectedMethod };
                 paymentDetails.paymentDate = new Date().toISOString().slice(0, 10);
                 paymentDetails.nextRecharge = new Date(new Date().getTime() + parseInt(days) * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
 
-                // Validate based on selected method
                 if (selectedMethod === 'UPI') {
                     let upiId = document.getElementById('upiId').value.trim();
                     if (!upiId) {
@@ -663,7 +607,7 @@
                     paymentDetails.ifscCode = ifscCode;
                     paymentDetails.accountHolder = accountHolder;
                     paymentDetails.branch = branch;
-                } else if (selectedMethod === 'credit' || selectedMethod === 'debit') {
+                } else {
                     let cardNumber = document.getElementById('cardNumber').value.trim();
                     let expiryDate = document.getElementById('expiryDate').value.trim();
                     let cvv = document.getElementById('cvv').value.trim();
@@ -674,53 +618,24 @@
                     paymentDetails.cardNumber = cardNumber;
                 }
 
-                console.log("Payment details:", paymentDetails);
-
-                // Save payment history in localStorage
                 let history = JSON.parse(localStorage.getItem('paymentHistory')) || [];
                 history.push(paymentDetails);
                 localStorage.setItem('paymentHistory', JSON.stringify(history));
-                alert("Payment details sent to your registered Mail Id....");
-                window.location.href = "payment_success.html";
+                alert("You must log in first!");
             });
         });
 
-        // Function to switch payment method
         function selectPaymentMethod(method) {
-            selectedMethod = method; // Update the global variable
-
-            console.log("Selected payment method:", method);
-
-            // Toggle active class for selected payment method
+            selectedMethod = method;
             document.querySelectorAll('.payment-method').forEach(el => {
-                el.classList.toggle('active', el.getAttribute('data-method') === method);
+                el.classList.remove('active');
+                if (el.getAttribute('data-method') === method) {
+                    el.classList.add('active');
+                }
             });
-
-            // Show/hide payment details based on selected method
-            const cardDetails = document.getElementById('cardDetails');
-            const upiDetails = document.getElementById('upiDetails');
-            const bankDetails = document.getElementById('bankDetails');
-
-            cardDetails.style.display = (method === 'credit' || method === 'debit') ? 'block' : 'none';
-            upiDetails.style.display = (method === 'UPI') ? 'block' : 'none';
-            bankDetails.style.display = (method === 'bank') ? 'block' : 'none';
-
-            // Remove 'required' attribute from all inputs initially
-            document.querySelectorAll('input').forEach(input => input.required = false);
-
-            // Add 'required' attribute based on selected method
-            if (method === 'bank') {
-                document.getElementById('accountNumber').required = true;
-                document.getElementById('ifscCode').required = true;
-                document.getElementById('accountHolder').required = true;
-                document.getElementById('branch').required = true;
-            } else if (method === 'credit' || method === 'debit') {
-                document.getElementById('cardNumber').required = true;
-                document.getElementById('expiryDate').required = true;
-                document.getElementById('cvv').required = true;
-            } else if (method === 'UPI') {
-                document.getElementById('upiId').required = true;
-            }
+            document.getElementById('cardDetails').style.display = (method === 'credit' || method === 'debit') ? 'block' : 'none';
+            document.getElementById('upiDetails').style.display = (method === 'UPI') ? 'block' : 'none';
+            document.getElementById('bankDetails').style.display = (method === 'bank') ? 'block' : 'none';
         }
     </script>
 </body>
