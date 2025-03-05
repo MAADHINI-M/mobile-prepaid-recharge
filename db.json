@@ -1,151 +1,1192 @@
 {
-    "userDetailsData": [
-        {"id": 1, "name": "Rahul Sharma", "phoneNumber": "9876543210", "email": "rahul.sharma@example.com", "dob": "1990-05-15", "age": 34},
-        {"id": 2, "name": "Priya Patel", "phoneNumber": "9876543211", "email": "priya.patel@example.com", "dob": "1988-08-22", "age": 36},
-        {"id": 3, "name": "Amit Kumar", "phoneNumber": "9876543212", "email": "amit.kumar@example.com", "dob": "1995-03-10", "age": 29},
-        {"id": 4, "name": "Neha Singh", "phoneNumber": "9876543213", "email": "neha.singh@example.com", "dob": "1992-11-30", "age": 32},
-        {"id": 5, "name": "Vikram Rao", "phoneNumber": "9876543214", "email": "vikram.rao@example.com", "dob": "1985-07-18", "age": 39},
-        {"id": 6, "name": "Sneha Gupta", "phoneNumber": "9876543215", "email": "sneha.gupta@example.com", "dob": "1993-09-25", "age": 31},
-        {"id": 7, "name": "Kiran Desai", "phoneNumber": "9876543216", "email": "kiran.desai@example.com", "dob": "1991-01-12", "age": 33},
-        {"id": 8, "name": "Anjali Mehta", "phoneNumber": "9876543217", "email": "anjali.mehta@example.com", "dob": "1989-04-05", "age": 35},
-        {"id": 9, "name": "Maadhini", "phoneNumber": "9361877619", "email": "maadhini@example.com", "dob": "1994-12-20", "age": 30}
-    ],
-    "navbar": {
-        "brand": {"logo": "images/Logo.png", "text": "Mobi Comm"},
-        "links": [
-            {"text": "Home", "href": "#heroSection"},
-            {"text": "Website", "href": "#website"},
-            {"text": "Plans", "href": "#plans"},
-            {"text": "Special Offers", "href": "#offers"},
-            {"text": "Our Services", "href": "#ourservices"},
-            {"text": "FAQs", "href": "#faq"},
-            {"text": "About Us", "href": "#aboutus"},
-            {"text": "Help", "href": "websitedetails.html#contactdetails"}
-        ]
+  "userDetailsData": [
+    {
+      "id": 1,
+      "name": "Rahul Sharma",
+      "phoneNumber": "9876543210",
+      "email": "rahul.sharma@example.com",
+      "dob": "1990-05-15",
+      "age": 34,
+      "rechargeDate": "2025-01-20",
+      "nextRecharge": "2025-03-01",
+      "currentPlanId": 1
     },
-    "recommendedPlans": [
-        {"id": 1, "name": "Basic Plan", "price": "₹99", "validity": "14 Days", "data": "1GB/day", "features": ["1GB extra at 12am"]},
-        {"id": 2, "name": "Standard Plan", "price": "₹199", "validity": "30 Days", "data": "3GB/day", "features": ["Unlimited calls at 12am"]},
-        {"id": 3, "name": "Economy Plan", "price": "₹299", "validity": "45 Days", "data": "5GB/day", "features": ["Unlimited data at 12am"]},
-        {"id": 4, "name": "Premium Plan", "price": "₹499", "validity": "60 Days", "data": "10GB/day", "features": ["Unlimited calls & data at 12am"]}
-    ],
-    "offers": [
-        {"id": 1, "name": "Mobi-Comm SuperHero", "price": "₹365", "data": "2GB/day", "validity": "28 Days", "banner": "NEW! 12am–12pm Unlimited Data", "benefits": ["12am–12pm Unlimited Data", "Unlimited Calls", "Weekend Data Rollover"], "extraBenefit": "Up to 130 GB extra with Guarantee"},
-        {"id": 2, "name": "Mobi-Comm Unlimited Plan", "price": "₹599", "data": "3GB/day", "validity": "56 Days", "banner": "Limited Offer! Extra Data", "benefits": ["Unlimited 5G Data", "100 SMS/day", "Weekend Data Rollover"], "extraBenefit": "Up to 200 GB extra with Guarantee"},
-        {"id": 3, "name": "Mobi-Comm Super Combo", "price": "₹799", "data": "4GB/day", "validity": "84 Days", "banner": "Best Value Pack", "benefits": ["Unlimited 5G Data", "Unlimited Calls + 200 SMS/day", "Night & Weekend Data"], "extraBenefit": "Up to 250 GB extra with Guarantee"}
-    ],
-    "basicPlans": [
-        {"id": 1, "name": "Basic Plan 1", "price": 599, "validity": 90, "data": 6, "features": ["Unlimited Calls", "250 SMS/Day"]},
-        {"id": 2, "name": "Basic Plan 2", "price": 699, "validity": 120, "data": 7, "features": ["Unlimited Calls", "300 SMS/Day"]},
-        {"id": 3, "name": "Basic Plan 3", "price": 799, "validity": 150, "data": 8, "features": ["Unlimited Calls", "350 SMS/Day"]},
-        {"id": 4, "name": "Basic Plan 4", "price": 899, "validity": 180, "data": 9, "features": ["Unlimited Calls", "400 SMS/Day"]},
-        {"id": 5, "name": "Basic Plan 5", "price": 999, "validity": 210, "data": 10, "features": ["Unlimited Calls", "450 SMS/Day"]},
-        {"id": 6, "name": "Basic Plan 6", "price": 1099, "validity": 240, "data": 11, "features": ["Unlimited Calls", "500 SMS/Day"]},
-        {"id": 7, "name": "Basic Plan 7", "price": 1199, "validity": 270, "data": 12, "features": ["Unlimited Calls", "550 SMS/Day"]},
-        {"id": 8, "name": "Basic Plan 8", "price": 1299, "validity": 300, "data": 13, "features": ["Unlimited Calls", "600 SMS/Day"]}
-    ],
-    "standardPlans": [
-        {"id": 9, "name": "Standard Plan 1", "price": 999, "validity": 210, "data": 10, "features": ["Unlimited Calls", "450 SMS/Day"]},
-        {"id": 10, "name": "Standard Plan 2", "price": 1099, "validity": 240, "data": 11, "features": ["Unlimited Calls", "500 SMS/Day"]},
-        {"id": 11, "name": "Standard Plan 3", "price": 1199, "validity": 270, "data": 12, "features": ["Unlimited Calls", "550 SMS/Day"]},
-        {"id": 12, "name": "Standard Plan 4", "price": 1299, "validity": 300, "data": 13, "features": ["Unlimited Calls", "600 SMS/Day"]},
-        {"id": 13, "name": "Standard Plan 5", "price": 1399, "validity": 330, "data": 14, "features": ["Unlimited Calls", "650 SMS/Day"]},
-        {"id": 14, "name": "Standard Plan 6", "price": 1499, "validity": 360, "data": 15, "features": ["Unlimited Calls", "700 SMS/Day"]},
-        {"id": 15, "name": "Standard Plan 7", "price": 1599, "validity": 390, "data": 16, "features": ["Unlimited Calls", "750 SMS/Day"]},
-        {"id": 16, "name": "Standard Plan 8", "price": 1699, "validity": 420, "data": 17, "features": ["Unlimited Calls", "800 SMS/Day"]}
-    ],
-    "unlimitedPlans": [
-        {"id": 17, "name": "Unlimited Plan 1", "price": 1099, "validity": 230, "data": 11, "features": ["Unlimited Calls", "500 SMS/Day"]},
-        {"id": 18, "name": "Unlimited Plan 2", "price": 1199, "validity": 250, "data": 12, "features": ["Unlimited Calls", "550 SMS/Day"]},
-        {"id": 19, "name": "Unlimited Plan 3", "price": 1299, "validity": 280, "data": 13, "features": ["Unlimited Calls", "600 SMS/Day"]},
-        {"id": 20, "name": "Unlimited Plan 4", "price": 1399, "validity": 310, "data": 14, "features": ["Unlimited Calls", "650 SMS/Day"]},
-        {"id": 21, "name": "Unlimited Plan 5", "price": 1499, "validity": 340, "data": 15, "features": ["Unlimited Calls", "700 SMS/Day"]},
-        {"id": 22, "name": "Unlimited Plan 6", "price": 1599, "validity": 370, "data": 16, "features": ["Unlimited Calls", "750 SMS/Day"]},
-        {"id": 23, "name": "Unlimited Plan 7", "price": 1699, "validity": 400, "data": 17, "features": ["Unlimited Calls", "800 SMS/Day"]},
-        {"id": 24, "name": "Unlimited Plan 8", "price": 1799, "validity": 430, "data": 18, "features": ["Unlimited Calls", "850 SMS/Day"]}
-    ],
-    "dataOnlyPacks": [
-        {"id": 25, "name": "Data Only Pack 1", "price": 599, "validity": 90, "data": 5, "features": []},
-        {"id": 26, "name": "Data Only Pack 2", "price": 699, "validity": 120, "data": 6, "features": []},
-        {"id": 27, "name": "Data Only Pack 3", "price": 799, "validity": 150, "data": 7, "features": []},
-        {"id": 28, "name": "Data Only Pack 4", "price": 899, "validity": 180, "data": 8, "features": []},
-        {"id": 29, "name": "Data Only Pack 5", "price": 999, "validity": 210, "data": 9, "features": []},
-        {"id": 30, "name": "Data Only Pack 6", "price": 1099, "validity": 240, "data": 10, "features": []},
-        {"id": 31, "name": "Data Only Pack 7", "price": 1199, "validity": 270, "data": 11, "features": []},
-        {"id": 32, "name": "Data Only Pack 8", "price": 1299, "validity": 300, "data": 12, "features": []}
-    ],
-    "ottPlans": [
-        {"id": 33, "name": "OTT Pack 1", "price": 699, "validity": 90, "data": 6, "features": ["Access to Netflix"]},
-        {"id": 34, "name": "OTT Pack 2", "price": 799, "validity": 120, "data": 7, "features": ["Access to Amazon Prime"]},
-        {"id": 35, "name": "OTT Pack 3", "price": 899, "validity": 150, "data": 8, "features": ["Access to Disney+ Hotstar"]},
-        {"id": 36, "name": "OTT Pack 4", "price": 999, "validity": 180, "data": 9, "features": ["Access to Netflix + Prime"]},
-        {"id": 37, "name": "OTT Pack 5", "price": 1099, "validity": 210, "data": 10, "features": ["Access to Netflix + Hotstar"]},
-        {"id": 38, "name": "OTT Pack 6", "price": 1199, "validity": 240, "data": 11, "features": ["Access to Prime + Hotstar"]},
-        {"id": 39, "name": "OTT Pack 7", "price": 1299, "validity": 270, "data": 12, "features": ["Access to Netflix + Prime + Hotstar"]},
-        {"id": 40, "name": "OTT Pack 8", "price": 1399, "validity": 300, "data": 13, "features": ["Access to All OTT Services"]}
-    ],
-    "premiumPlans": [
-        {"id": 41, "name": "Premium Plan 1", "price": 999, "validity": 100, "data": 8, "features": ["Unlimited Calls", "500 SMS/Day"]},
-        {"id": 42, "name": "Premium Plan 2", "price": 1099, "validity": 130, "data": 9, "features": ["Unlimited Calls", "550 SMS/Day"]},
-        {"id": 43, "name": "Premium Plan 3", "price": 1199, "validity": 160, "data": 10, "features": ["Unlimited Calls", "600 SMS/Day"]},
-        {"id": 44, "name": "Premium Plan 4", "price": 1299, "validity": 190, "data": 11, "features": ["Unlimited Calls", "650 SMS/Day"]},
-        {"id": 45, "name": "Premium Plan 5", "price": 1399, "validity": 220, "data": 12, "features": ["Unlimited Calls", "700 SMS/Day"]},
-        {"id": 46, "name": "Premium Plan 6", "price": 1499, "validity": 250, "data": 13, "features": ["Unlimited Calls", "750 SMS/Day"]},
-        {"id": 47, "name": "Premium Plan 7", "price": 1599, "validity": 280, "data": 14, "features": ["Unlimited Calls", "800 SMS/Day"]},
-        {"id": 48, "name": "Premium Plan 8", "price": 1699, "validity": 310, "data": 15, "features": ["Unlimited Calls", "850 SMS/Day"]}
-    ],
-    "specialOffers": [
-        {
-            "name": "Festive Bonanza",
-            "price": 499,
-            "data": 1.5,
-            "validity": 56,
-            "features": [
-                "Unlimited Calls",
-                "100 SMS/Day",
-                "Free OTT Subscription"
-            ]
-        },
-        {
-            "name": "Weekend Special",
-            "price": 299,
-            "data": 2,
-            "validity": 28,
-            "features": [
-                "Unlimited Calls",
-                "50 SMS/Day"
-            ]
-        },
-        {
-            "name": "Seasonal Deal",
-            "price": 999,
-            "data": 3,
-            "validity": 84,
-            "features": [
-                "Unlimited Calls",
-                "100 SMS/Day",
-                "Free Premium OTT"
-            ]
-        },
-        {
-            "name": "Quick Recharge",
-            "price": 199,
-            "data": 1,
-            "validity": 21,
-            "features": [
-                "Unlimited Calls"
-            ]
-        },
-        {
-            "name": "Yearly Offer",
-            "price": 1499,
-            "data": 2.5,
-            "validity": 365,
-            "features": [
-                "Unlimited Calls",
-                "100 SMS/Day",
-                "Free OTT Bundle"
-            ]
-        }
+    {
+      "id": 2,
+      "name": "Priya Patel",
+      "phoneNumber": "9876543211",
+      "email": "priya.patel@example.com",
+      "dob": "1988-08-22",
+      "age": 36,
+      "rechargeDate": "2025-01-15",
+      "nextRecharge": "2025-02-28",
+      "currentPlanId": 2
+    },
+    {
+      "id": 3,
+      "name": "Amit Kumar",
+      "phoneNumber": "9876543212",
+      "email": "amit.kumar@example.com",
+      "dob": "1995-03-10",
+      "age": 29,
+      "rechargeDate": "2025-01-10",
+      "nextRecharge": "2025-03-02",
+      "currentPlanId": 3
+    },
+    {
+      "id": 4,
+      "name": "Neha Singh",
+      "phoneNumber": "9876543213",
+      "email": "neha.singh@example.com",
+      "dob": "1992-11-30",
+      "age": 32,
+      "rechargeDate": "2025-01-05",
+      "nextRecharge": "2025-03-01",
+      "currentPlanId": 4
+    },
+    {
+      "id": 5,
+      "name": "Vikram Rao",
+      "phoneNumber": "9876543214",
+      "email": "vikram.rao@example.com",
+      "dob": "1985-07-18",
+      "age": 39,
+      "rechargeDate": "2025-01-25",
+      "nextRecharge": "2025-03-05",
+      "currentPlanId": 5
+    },
+    {
+      "id": 6,
+      "name": "Sneha Gupta",
+      "phoneNumber": "9876543215",
+      "email": "sneha.gupta@example.com",
+      "dob": "1993-09-25",
+      "age": 31,
+      "rechargeDate": "2025-01-30",
+      "nextRecharge": "2025-03-10",
+      "currentPlanId": 6
+    },
+    {
+      "id": 7,
+      "name": "Kiran Desai",
+      "phoneNumber": "9876543216",
+      "email": "kiran.desai@example.com",
+      "dob": "1991-01-12",
+      "age": 33,
+      "rechargeDate": "2025-02-01",
+      "nextRecharge": "2025-03-15",
+      "currentPlanId": 7
+    },
+    {
+      "id": 8,
+      "name": "Anjali Mehta",
+      "phoneNumber": "9876543217",
+      "email": "anjali.mehta@example.com",
+      "dob": "1989-04-05",
+      "age": 35,
+      "rechargeDate": "2025-02-05",
+      "nextRecharge": "2025-03-20",
+      "currentPlanId": 8
+    },
+    {
+      "id": 9,
+      "name": "Maadhini",
+      "phoneNumber": "9361877619",
+      "email": "maadhini@example.com",
+      "dob": "1994-12-20",
+      "age": 30,
+      "rechargeDate": "2025-02-01",
+      "nextRecharge": "2025-03-01",
+      "currentPlanId": 9
+    }
+  ],
+  "navbar": {
+    "brand": {
+      "logo": "images/Logo.png",
+      "text": "Mobi Comm"
+    },
+    "links": [
+      {
+        "text": "Home",
+        "href": "#heroSection"
+      },
+      {
+        "text": "Website",
+        "href": "#website"
+      },
+      {
+        "text": "Plans",
+        "href": "#plans"
+      },
+      {
+        "text": "Special Offers",
+        "href": "#offers"
+      },
+      {
+        "text": "Our Services",
+        "href": "#ourservices"
+      },
+      {
+        "text": "FAQs",
+        "href": "#faq"
+      },
+      {
+        "text": "About Us",
+        "href": "#aboutus"
+      },
+      {
+        "text": "Help",
+        "href": "websitedetails.html#contactdetails"
+      }
     ]
+  },
+  "recommendedPlans": [
+    {
+      "id": 1,
+      "name": "Basic Plan",
+      "price": "₹99",
+      "validity": "14 Days",
+      "data": "1GB/day",
+      "features": [
+        "1GB extra at 12am"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Standard Plan",
+      "price": "₹199",
+      "validity": "30 Days",
+      "data": "3GB/day",
+      "features": [
+        "Unlimited calls at 12am"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Economy Plan",
+      "price": "₹299",
+      "validity": "45 Days",
+      "data": "5GB/day",
+      "features": [
+        "Unlimited data at 12am"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Premium Plan",
+      "price": "₹499",
+      "validity": "60 Days",
+      "data": "10GB/day",
+      "features": [
+        "Unlimited calls & data at 12am"
+      ]
+    }
+  ],
+  "offers": [
+    {
+      "id": 1,
+      "name": "Mobi-Comm SuperHero",
+      "price": "₹365",
+      "data": "2GB/day",
+      "validity": "28 Days",
+      "banner": "NEW! 12am–12pm Unlimited Data",
+      "benefits": [
+        "12am–12pm Unlimited Data",
+        "Unlimited Calls",
+        "Weekend Data Rollover"
+      ],
+      "extraBenefit": "Up to 130 GB extra with Guarantee"
+    },
+    {
+      "id": 2,
+      "name": "Mobi-Comm Unlimited Plan",
+      "price": "₹599",
+      "data": "3GB/day",
+      "validity": "56 Days",
+      "banner": "Limited Offer! Extra Data",
+      "benefits": [
+        "Unlimited 5G Data",
+        "100 SMS/day",
+        "Weekend Data Rollover"
+      ],
+      "extraBenefit": "Up to 200 GB extra with Guarantee"
+    },
+    {
+      "id": 3,
+      "name": "Mobi-Comm Super Combo",
+      "price": "₹799",
+      "data": "4GB/day",
+      "validity": "84 Days",
+      "banner": "Best Value Pack",
+      "benefits": [
+        "Unlimited 5G Data",
+        "Unlimited Calls + 200 SMS/day",
+        "Night & Weekend Data"
+      ],
+      "extraBenefit": "Up to 250 GB extra with Guarantee"
+    }
+  ],
+  "basicPlans": [
+    {
+      "id": 1,
+      "name": "Basic Plan 1",
+      "price": 599,
+      "validity": 90,
+      "data": 6,
+      "features": [
+        "Unlimited Calls",
+        "250 SMS/Day"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Basic Plan 2",
+      "price": 699,
+      "validity": 120,
+      "data": 7,
+      "features": [
+        "Unlimited Calls",
+        "300 SMS/Day"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Basic Plan 3",
+      "price": 799,
+      "validity": 150,
+      "data": 8,
+      "features": [
+        "Unlimited Calls",
+        "350 SMS/Day"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Basic Plan 4",
+      "price": 899,
+      "validity": 180,
+      "data": 9,
+      "features": [
+        "Unlimited Calls",
+        "400 SMS/Day"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Basic Plan 5",
+      "price": 999,
+      "validity": 210,
+      "data": 10,
+      "features": [
+        "Unlimited Calls",
+        "450 SMS/Day"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Basic Plan 6",
+      "price": 1099,
+      "validity": 240,
+      "data": 11,
+      "features": [
+        "Unlimited Calls",
+        "500 SMS/Day"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Basic Plan 7",
+      "price": 1199,
+      "validity": 270,
+      "data": 12,
+      "features": [
+        "Unlimited Calls",
+        "550 SMS/Day"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Basic Plan 8",
+      "price": 1299,
+      "validity": 300,
+      "data": 13,
+      "features": [
+        "Unlimited Calls",
+        "600 SMS/Day"
+      ]
+    }
+  ],
+  "standardPlans": [
+    {
+      "id": 9,
+      "name": "Standard Plan 1",
+      "price": 999,
+      "validity": 210,
+      "data": 10,
+      "features": [
+        "Unlimited Calls",
+        "450 SMS/Day"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Standard Plan 2",
+      "price": 1099,
+      "validity": 240,
+      "data": 11,
+      "features": [
+        "Unlimited Calls",
+        "500 SMS/Day"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Standard Plan 3",
+      "price": 1199,
+      "validity": 270,
+      "data": 12,
+      "features": [
+        "Unlimited Calls",
+        "550 SMS/Day"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Standard Plan 4",
+      "price": 1299,
+      "validity": 300,
+      "data": 13,
+      "features": [
+        "Unlimited Calls",
+        "600 SMS/Day"
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Standard Plan 5",
+      "price": 1399,
+      "validity": 330,
+      "data": 14,
+      "features": [
+        "Unlimited Calls",
+        "650 SMS/Day"
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Standard Plan 6",
+      "price": 1499,
+      "validity": 360,
+      "data": 15,
+      "features": [
+        "Unlimited Calls",
+        "700 SMS/Day"
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Standard Plan 7",
+      "price": 1599,
+      "validity": 390,
+      "data": 16,
+      "features": [
+        "Unlimited Calls",
+        "750 SMS/Day"
+      ]
+    },
+    {
+      "id": 16,
+      "name": "Standard Plan 8",
+      "price": 1699,
+      "validity": 420,
+      "data": 17,
+      "features": [
+        "Unlimited Calls",
+        "800 SMS/Day"
+      ]
+    }
+  ],
+  "unlimitedPlans": [
+    {
+      "id": 17,
+      "name": "Unlimited Plan 1",
+      "price": 1099,
+      "validity": 230,
+      "data": 11,
+      "features": [
+        "Unlimited Calls",
+        "500 SMS/Day"
+      ]
+    },
+    {
+      "id": 18,
+      "name": "Unlimited Plan 2",
+      "price": 1199,
+      "validity": 250,
+      "data": 12,
+      "features": [
+        "Unlimited Calls",
+        "550 SMS/Day"
+      ]
+    },
+    {
+      "id": 19,
+      "name": "Unlimited Plan 3",
+      "price": 1299,
+      "validity": 280,
+      "data": 13,
+      "features": [
+        "Unlimited Calls",
+        "600 SMS/Day"
+      ]
+    },
+    {
+      "id": 20,
+      "name": "Unlimited Plan 4",
+      "price": 1399,
+      "validity": 310,
+      "data": 14,
+      "features": [
+        "Unlimited Calls",
+        "650 SMS/Day"
+      ]
+    },
+    {
+      "id": 21,
+      "name": "Unlimited Plan 5",
+      "price": 1499,
+      "validity": 340,
+      "data": 15,
+      "features": [
+        "Unlimited Calls",
+        "700 SMS/Day"
+      ]
+    },
+    {
+      "id": 22,
+      "name": "Unlimited Plan 6",
+      "price": 1599,
+      "validity": 370,
+      "data": 16,
+      "features": [
+        "Unlimited Calls",
+        "750 SMS/Day"
+      ]
+    },
+    {
+      "id": 23,
+      "name": "Unlimited Plan 7",
+      "price": 1699,
+      "validity": 400,
+      "data": 17,
+      "features": [
+        "Unlimited Calls",
+        "800 SMS/Day"
+      ]
+    },
+    {
+      "id": 24,
+      "name": "Unlimited Plan 8",
+      "price": 1799,
+      "validity": 430,
+      "data": 18,
+      "features": [
+        "Unlimited Calls",
+        "850 SMS/Day"
+      ]
+    }
+  ],
+  "dataOnlyPacks": [
+    {
+      "id": 25,
+      "name": "Data Only Pack 1",
+      "price": 599,
+      "validity": 90,
+      "data": 5,
+      "features": []
+    },
+    {
+      "id": 26,
+      "name": "Data Only Pack 2",
+      "price": 699,
+      "validity": 120,
+      "data": 6,
+      "features": []
+    },
+    {
+      "id": 27,
+      "name": "Data Only Pack 3",
+      "price": 799,
+      "validity": 150,
+      "data": 7,
+      "features": []
+    },
+    {
+      "id": 28,
+      "name": "Data Only Pack 4",
+      "price": 899,
+      "validity": 180,
+      "data": 8,
+      "features": []
+    },
+    {
+      "id": 29,
+      "name": "Data Only Pack 5",
+      "price": 999,
+      "validity": 210,
+      "data": 9,
+      "features": []
+    },
+    {
+      "id": 30,
+      "name": "Data Only Pack 6",
+      "price": 1099,
+      "validity": 240,
+      "data": 10,
+      "features": []
+    },
+    {
+      "id": 31,
+      "name": "Data Only Pack 7",
+      "price": 1199,
+      "validity": 270,
+      "data": 11,
+      "features": []
+    },
+    {
+      "id": 32,
+      "name": "Data Only Pack 8",
+      "price": 1299,
+      "validity": 300,
+      "data": 12,
+      "features": []
+    }
+  ],
+  "ottPlans": [
+    {
+      "id": 33,
+      "name": "OTT Pack 1",
+      "price": 699,
+      "validity": 90,
+      "data": 6,
+      "features": [
+        "Access to Netflix"
+      ]
+    },
+    {
+      "id": 34,
+      "name": "OTT Pack 2",
+      "price": 799,
+      "validity": 120,
+      "data": 7,
+      "features": [
+        "Access to Amazon Prime"
+      ]
+    },
+    {
+      "id": 35,
+      "name": "OTT Pack 3",
+      "price": 899,
+      "validity": 150,
+      "data": 8,
+      "features": [
+        "Access to Disney+ Hotstar"
+      ]
+    },
+    {
+      "id": 36,
+      "name": "OTT Pack 4",
+      "price": 999,
+      "validity": 180,
+      "data": 9,
+      "features": [
+        "Access to Netflix + Prime"
+      ]
+    },
+    {
+      "id": 37,
+      "name": "OTT Pack 5",
+      "price": 1099,
+      "validity": 210,
+      "data": 10,
+      "features": [
+        "Access to Netflix + Hotstar"
+      ]
+    },
+    {
+      "id": 38,
+      "name": "OTT Pack 6",
+      "price": 1199,
+      "validity": 240,
+      "data": 11,
+      "features": [
+        "Access to Prime + Hotstar"
+      ]
+    },
+    {
+      "id": 39,
+      "name": "OTT Pack 7",
+      "price": 1299,
+      "validity": 270,
+      "data": 12,
+      "features": [
+        "Access to Netflix + Prime + Hotstar"
+      ]
+    },
+    {
+      "id": 40,
+      "name": "OTT Pack 8",
+      "price": 1399,
+      "validity": 300,
+      "data": 13,
+      "features": [
+        "Access to All OTT Services"
+      ]
+    }
+  ],
+  "premiumPlans": [
+    {
+      "id": 41,
+      "name": "Premium Plan 1",
+      "price": 999,
+      "validity": 100,
+      "data": 8,
+      "features": [
+        "Unlimited Calls",
+        "500 SMS/Day"
+      ]
+    },
+    {
+      "id": 42,
+      "name": "Premium Plan 2",
+      "price": 1099,
+      "validity": 130,
+      "data": 9,
+      "features": [
+        "Unlimited Calls",
+        "550 SMS/Day"
+      ]
+    },
+    {
+      "id": 43,
+      "name": "Premium Plan 3",
+      "price": 1199,
+      "validity": 160,
+      "data": 10,
+      "features": [
+        "Unlimited Calls",
+        "600 SMS/Day"
+      ]
+    },
+    {
+      "id": 44,
+      "name": "Premium Plan 4",
+      "price": 1299,
+      "validity": 190,
+      "data": 11,
+      "features": [
+        "Unlimited Calls",
+        "650 SMS/Day"
+      ]
+    },
+    {
+      "id": 45,
+      "name": "Premium Plan 5",
+      "price": 1399,
+      "validity": 220,
+      "data": 12,
+      "features": [
+        "Unlimited Calls",
+        "700 SMS/Day"
+      ]
+    },
+    {
+      "id": 46,
+      "name": "Premium Plan 6",
+      "price": 1499,
+      "validity": 250,
+      "data": 13,
+      "features": [
+        "Unlimited Calls",
+        "750 SMS/Day"
+      ]
+    },
+    {
+      "id": 47,
+      "name": "Premium Plan 7",
+      "price": 1599,
+      "validity": 280,
+      "data": 14,
+      "features": [
+        "Unlimited Calls",
+        "800 SMS/Day"
+      ]
+    },
+    {
+      "id": 48,
+      "name": "Premium Plan 8",
+      "price": 1699,
+      "validity": 310,
+      "data": 15,
+      "features": [
+        "Unlimited Calls",
+        "850 SMS/Day"
+      ]
+    }
+  ],
+  "specialOffers": [
+    {
+      "name": "Festive Bonanza",
+      "price": 499,
+      "data": 1.5,
+      "validity": 56,
+      "features": [
+        "Unlimited Calls",
+        "100 SMS/Day",
+        "Free OTT Subscription"
+      ]
+    },
+    {
+      "name": "Weekend Special",
+      "price": 299,
+      "data": 2,
+      "validity": 28,
+      "features": [
+        "Unlimited Calls",
+        "50 SMS/Day"
+      ]
+    },
+    {
+      "name": "Seasonal Deal",
+      "price": 999,
+      "data": 3,
+      "validity": 84,
+      "features": [
+        "Unlimited Calls",
+        "100 SMS/Day",
+        "Free Premium OTT"
+      ]
+    },
+    {
+      "name": "Quick Recharge",
+      "price": 199,
+      "data": 1,
+      "validity": 21,
+      "features": [
+        "Unlimited Calls"
+      ]
+    },
+    {
+      "name": "speedy pack",
+      "price": 299,
+      "data": 4,
+      "validity": "60 Days",
+      "features": "Unlimited Calls, 5GB Data"
+    },
+    {
+      "name": "Yearly Offer",
+      "price": 1499,
+      "data": 2.5,
+      "validity": 365,
+      "features": [
+        "Unlimited Calls",
+        "100 SMS/Day",
+        "Free OTT Bundle"
+      ]
+    },
+    {
+      "id": null,
+      "name": "SPEEEDY PACK",
+      "price": "299",
+      "features": [
+        "UNLIMIRTED 5G="
+      ],
+      "validity": "03",
+      "data": "3235"
+    }
+  ],
+  "adminCredentials": [
+    {
+      "username": "maadhini",
+      "password": "maa123"
+    },
+    {
+      "username": "obuli",
+      "password": "obuli456"
+    }
+  ],
+  "expiringSubscribersData": [
+    {
+      "name": "Rahul Sharma",
+      "phoneNumber": "9876543210",
+      "planExpiryDate": "2025-03-01",
+      "email": "rahul@example.com"
+    },
+    {
+      "name": "Priya Patel",
+      "phoneNumber": "9876543211",
+      "planExpiryDate": "2025-02-28",
+      "email": "priya@example.com"
+    },
+    {
+      "name": "Amit Kumar",
+      "phoneNumber": "9876543212",
+      "planExpiryDate": "2025-03-02",
+      "email": "amit@example.com"
+    },
+    {
+      "name": "Neha Singh",
+      "phoneNumber": "9876543213",
+      "planExpiryDate": "2025-03-01",
+      "email": "neha@example.com"
+    }
+  ],
+  "rechargeHistory": [
+    {
+      "name": "Rahul Sharma",
+      "phoneNumber": "9876543210",
+      "emailId": "rahul@example.com",
+      "recharges": [
+        {
+          "date": "2025-01-20",
+          "payment": "credit",
+          "price": "₹299",
+          "time": "10:30",
+          "package": "Basic"
+        },
+        {
+          "date": "2024-12-10",
+          "payment": "upi",
+          "price": "₹199",
+          "time": "14:15",
+          "package": "Basic"
+        }
+      ]
+    },
+    {
+      "name": "Priya Patel",
+      "phoneNumber": "9876543211",
+      "emailId": "priya@example.com",
+      "recharges": [
+        {
+          "date": "2025-01-15",
+          "payment": "debit",
+          "price": "₹499",
+          "time": "09:45",
+          "package": "Standard"
+        },
+        {
+          "date": "2024-11-05",
+          "payment": "bank",
+          "price": "₹399",
+          "time": "16:00",
+          "package": "Standard"
+        }
+      ]
+    },
+    {
+      "name": "Amit Kumar",
+      "phoneNumber": "9876543212",
+      "emailId": "amit@example.com",
+      "recharges": [
+        {
+          "date": "2025-01-10",
+          "payment": "credit",
+          "price": "₹799",
+          "time": "12:00",
+          "package": "Unlimited"
+        }
+      ]
+    },
+    {
+      "name": "Neha Singh",
+      "phoneNumber": "9876543213",
+      "emailId": "neha@example.com",
+      "recharges": [
+        {
+          "date": "2025-01-05",
+          "payment": "upi",
+          "price": "₹399",
+          "time": "15:30",
+          "package": "Data only"
+        }
+      ]
+    },
+    {
+      "name": "Vikram Rao",
+      "phoneNumber": "9876543214",
+      "emailId": "vikram@example.com",
+      "recharges": [
+        {
+          "date": "2025-01-25",
+          "payment": "debit",
+          "price": "₹599",
+          "time": "11:00",
+          "package": "Ott"
+        }
+      ]
+    },
+    {
+      "name": "Sneha Gupta",
+      "phoneNumber": "9876543215",
+      "emailId": "sneha@example.com",
+      "recharges": [
+        {
+          "date": "2025-01-30",
+          "payment": "bank",
+          "price": "₹999",
+          "time": "13:45",
+          "package": "Premium"
+        }
+      ]
+    },
+    {
+      "name": "Kiran Desai",
+      "phoneNumber": "9876543216",
+      "emailId": "kiran@example.com",
+      "recharges": [
+        {
+          "date": "2025-02-01",
+          "payment": "credit",
+          "price": "₹199",
+          "time": "10:15",
+          "package": "Data additional"
+        }
+      ]
+    },
+    {
+      "name": "Anjali Mehta",
+      "phoneNumber": "9876543217",
+      "emailId": "anjali@example.com",
+      "recharges": [
+        {
+          "date": "2025-02-05",
+          "payment": "upi",
+          "price": "₹699",
+          "time": "17:00",
+          "package": "Entertainment"
+        }
+      ]
+    },
+    {
+      "name": "Maadhini",
+      "phoneNumber": "9361877619",
+      "emailId": "maadhini@example.com",
+      "recharges": [
+        {
+          "date": "2025-02-01",
+          "payment": "upi",
+          "price": "₹199",
+          "time": "12:00",
+          "package": "Ott"
+        }
+      ]
+    }
+  ],
+  "plans": [
+    {
+      "id": 1,
+      "name": "Basic",
+      "price": "₹299",
+      "features": "Unlimited Calls, 2GB Data",
+      "expiry": "30 days",
+      "dataPacks": "2GB"
+    },
+    {
+      "id": 2,
+      "name": "Standard",
+      "price": "₹499",
+      "features": "Unlimited Calls, 5GB Data",
+      "expiry": "30 days",
+      "dataPacks": "5GB"
+    },
+    {
+      "id": 3,
+      "name": "Unlimited",
+      "price": "₹799",
+      "features": "Unlimited Calls, Unlimited Data",
+      "expiry": "30 days",
+      "dataPacks": "Unlimited"
+    },
+    {
+      "id": 4,
+      "name": "Data only",
+      "price": "₹399",
+      "features": "10GB Data",
+      "expiry": "30 days",
+      "dataPacks": "10GB"
+    },
+    {
+      "id": 5,
+      "name": "Ott",
+      "price": "₹599",
+      "features": "Unlimited Calls, 5GB Data, OTT Subscription",
+      "expiry": "30 days",
+      "dataPacks": "5GB"
+    },
+    {
+      "id": 6,
+      "name": "Premium",
+      "price": "₹999",
+      "features": "Unlimited Calls, 20GB Data, Premium Support",
+      "expiry": "30 days",
+      "dataPacks": "20GB"
+    },
+    {
+      "id": 7,
+      "name": "Data additional",
+      "price": "₹199",
+      "features": "Additional 5GB Data",
+      "expiry": "30 days",
+      "dataPacks": "5GB"
+    },
+    {
+      "id": 8,
+      "name": "Entertainment",
+      "price": "₹699",
+      "features": "Unlimited Calls, 10GB Data, Entertainment Pack",
+      "expiry": "30 days",
+      "dataPacks": "10GB"
+    },
+    {
+      "id": 9,
+      "name": "Ott",
+      "price": "₹199",
+      "features": "Unlimited Calls, 5GB Data, Entertainment Pack",
+      "expiry": "30 days",
+      "dataPacks": "5GB"
+    }
+  ],
+  "newCustomers": [
+    {
+      "name": "Maadhini",
+      "phoneNumber": "9361877619",
+      "email": "maadhini@example.com",
+      "address": "123, Lotus Lane, Chennai, Tamil Nadu",
+      "year": 1,
+      "status": "new"
+    },
+    {
+      "name": "Rahul Sharma",
+      "phoneNumber": "9876543210",
+      "email": "rahul@example.com",
+      "address": "45, Rosewood Street, Mumbai, Maharashtra",
+      "year": 1,
+      "status": "new"
+    },
+    {
+      "name": "Priya Patel",
+      "phoneNumber": "9876543211",
+      "email": "priya@example.com",
+      "address": "78, Silver Oak, Ahmedabad, Gujarat",
+      "year": 1,
+      "status": "new"
+    }
+  ],
+  "inactiveCustomers": [
+    {
+      "name": "Amit Kumar",
+      "phoneNumber": "9876543212",
+      "email": "amit@example.com",
+      "address": "56, Green Valley, Delhi",
+      "year": 2,
+      "status": "inactive"
+    },
+    {
+      "name": "Neha Singh",
+      "phoneNumber": "9876543213",
+      "email": "neha@example.com",
+      "address": "90, Jasmine Lane, Bangalore, Karnataka",
+      "year": 2,
+      "status": "inactive"
+    }
+  ],
+  "monthlySubscription": [
+    {
+      "name": "Vikram Rao",
+      "phoneNumber": "9876543214",
+      "email": "vikram@example.com",
+      "address": "34, Orchid Road, Hyderabad, Telangana",
+      "year": 1,
+      "status": "active"
+    },
+    {
+      "name": "Sneha Gupta",
+      "phoneNumber": "9876543215",
+      "email": "sneha@example.com",
+      "address": "67, Coral Beach, Pune, Maharashtra",
+      "year": 1,
+      "status": "active"
+    },
+    {
+      "name": "Kiran Desai",
+      "phoneNumber": "9876543216",
+      "email": "kiran@example.com",
+      "address": "12, Sandalwood Street, Kolkata, West Bengal",
+      "year": 2,
+      "status": "active"
+    },
+    {
+      "name": "Anjali Mehta",
+      "phoneNumber": "9876543217",
+      "email": "anjali@example.com",
+      "address": "89, Palm Grove, Kochi, Kerala",
+      "year": 2,
+      "status": "active"
+    }
+  ],
+  "dailySubscription": [
+    {
+      "name": "Rahul Sharma",
+      "phoneNumber": "9876543210",
+      "email": "rahul@example.com",
+      "address": "45, Rosewood Street, Mumbai, Maharashtra",
+      "year": 1,
+      "status": "active"
+    },
+    {
+      "name": "Priya Patel",
+      "phoneNumber": "9876543211",
+      "email": "priya@example.com",
+      "address": "78, Silver Oak, Ahmedabad, Gujarat",
+      "year": 1,
+      "status": "active"
+    },
+    {
+      "name": "Amit Kumar",
+      "phoneNumber": "9876543212",
+      "email": "amit@example.com",
+      "address": "56, Green Valley, Delhi",
+      "year": 1,
+      "status": "active"
+    }
+  ],
+  "weeklySubscription": [
+    {
+      "name": "Neha Singh",
+      "phoneNumber": "9876543213",
+      "email": "neha@example.com",
+      "address": "90, Jasmine Lane, Bangalore, Karnataka",
+      "year": 1,
+      "status": "active"
+    },
+    {
+      "name": "Vikram Rao",
+      "phoneNumber": "9876543214",
+      "email": "vikram@example.com",
+      "address": "34, Orchid Road, Hyderabad, Telangana",
+      "year": 1,
+      "status": "active"
+    }
+  ],
+  "yearlySubscription": [
+    {
+      "name": "Sneha Gupta",
+      "phoneNumber": "9876543215",
+      "email": "sneha@example.com",
+      "address": "67, Coral Beach, Pune, Maharashtra",
+      "year": 3,
+      "status": "active"
+    }
+  ]
 }
